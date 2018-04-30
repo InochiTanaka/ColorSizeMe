@@ -1,0 +1,32 @@
+[debug] [2018-04-30T17:02:20.913Z] ----------------------------------------------------------------------
+[debug] [2018-04-30T17:02:20.914Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Inochi Tanaka\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-04-30T17:02:20.915Z] CLI Version:   3.18.4
+[debug] [2018-04-30T17:02:20.915Z] Platform:      win32
+[debug] [2018-04-30T17:02:20.915Z] Node Version:  v8.11.1
+[debug] [2018-04-30T17:02:20.915Z] Time:          Mon Apr 30 2018 10:02:20 GMT-0700 (太平洋夏時間)
+[debug] [2018-04-30T17:02:20.915Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-30T17:02:20.923Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-30T17:02:20.924Z] > authorizing via signed-in user
+[debug] [2018-04-30T17:02:20.925Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/colorsizeme-demo  
+  
+ Mon Apr 30 2018 10:02:20 GMT-0700 (太平洋夏時間)
+[debug] [2018-04-30T17:02:21.339Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-30T17:02:21.340Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/colorsizeme-demo/tokens  
+  
+ Mon Apr 30 2018 10:02:21 GMT-0700 (太平洋夏時間)
+[debug] [2018-04-30T17:02:21.664Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-30T17:02:21.665Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/colorsizeme-demo  
+  
+ Mon Apr 30 2018 10:02:21 GMT-0700 (太平洋夏時間)
+[debug] [2018-04-30T17:02:21.905Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\4900\ColorSizeMe'...
+[info] 
+[debug] [2018-04-30T17:02:21.909Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/838251688484/clients/_:getWebAppConfig  
+  
+ Mon Apr 30 2018 10:02:21 GMT-0700 (太平洋夏時間)
+[debug] [2018-04-30T17:02:22.477Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
