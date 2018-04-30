@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>User Inputs</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../styles/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../JS/Style.js"></script>
+  <script src="../JS/Converter.js"></script>
+  
+</head>
+<body>
+  <div id="wrapper">
+      <div>
+        <span>Gender </span>
+        <span>
+          <select id = "gender" onchange="display()">
+            <option disabled selected value> -- select an option -- </option>
+            <option value="male">Male</option>
+            <option value="female" >Female</option>
+          </select>
+        </span>
+      </div>
+
+      <div>
+        <span>Type of Clothes </span>
+        <span>
+          <select id = "type" onchange="display()">
+            <option disabled selected value> -- select an option -- </option>
+            <option value="top">Top</option>
+            <option value="bottom">Bottom</option>
+          </select>
+        </span>
+      </div>
+
+      <div id = "brand">
+        <span>Brand </span>
+        <span>
+          <select>
+            <option disabled selected value> -- select an option -- </option>
+            <option value="zara">Zara</option>
+            <option value="hnm">H&M</option>
+          </select>
+        </span>
+      </div>
+
+      <div id = "measurement">
+        <span>Measurement </span>
+        <span>
+          <select>
+            <option disabled selected value> -- select an option -- </option>
+            <option value="centimeter">cm</option>
+            <option value="inch">inch</option>
+          </select>
+          </span>
+      </div>
+
+      <div class="inputDiv" id = "femaletop" class="toggle" style="display: none;">
+            <div>Female Top</div>
+            <form action="/action_page.php">
+                  <label>Bust:</label> <input type="text" name="bust" value="0"></br>
+                  <label>Arm Length:</label> <input type="text" name="arm" value="0"></br>
+                  <label>Hip:</label> <input type="text" name="hip" value="0"></br>
+                  <label>Waist:</label> <input type="text" name="waist" value="0"></br>
+                  <label>Body Length:</label> <input type="text" name="body" value="0"></br>
+                  <input type="submit" value="Submit">
+            </form>
+      </div>
+
+      <div class="inputDiv" id = "femalebottom" class="toggle" style="display: none;">
+            <div>Female Bottom</div>
+            <form action="/action_page.php">
+                  Outseam: <input type="text" name="outseam" value="0"></br>
+                  Inseam: <input type="text" name="inseam" value="0"></br>
+                  Hip: <input type="text" name="hip" value="0"></br>
+                  Waist: <input type="text" name="waist" value="0"></br>
+                  Thigh: <input type="text" name="thigh" value="0"></br>
+                  Calf: <input type="text" name="calf" value="0"></br>
+                  Knee: <input type="text" name="knee" value="0"></br>
+                  <input type="submit" value="Submit">
+            </form>
+      </div>
+
+      <div class="inputDiv" id = "maletop" class="toggle" style="display: none;">
+            <div>Male Top</div>
+            <form action="/action_page.php">
+                  Shoulder: <input type="text" name="shoulder" value="0"><br>
+                  Chest: <input type="text" name="chest" value="0"><br>
+                  Back: <input type="text" name="back" value="0"><br>
+                  Waist: <input type="text" name="waist" value="0"><br>
+                  Sleeve: <input type="text" name="sleeve" value="0"><br>
+                  Back Length: <input type="text" name="backlength" value="0"><br>
+                  <input type="submit" value="Submit">
+            </form>
+      </div>
+
+      <div class="inputDiv" id = "malebottom" class="toggle" style="display: none;">
+            <div>Male Bottom</div>
+            <form action="/action_page.php" >
+                Hip: <input type="text" name="hip" value="0"><br>
+                Outseam: <input type="text" name="outseam" value="0"><br>
+                Inseam: <input type="text" name="inseam" value="0"><br>
+                Waist: <input type="text" name="waist" value="0"><br>
+                Knee: <input type="text" name="knee" value="0"><br>
+                Thigh: <input type="text" name="thigh" value="0"><br>
+                Calf: <input type="text" name="calf" value="0"><br>
+                <input type="submit" value="Submit">
+            </form>
+      </div>
+  </div>
+</body>
+</html>
