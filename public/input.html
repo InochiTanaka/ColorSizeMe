@@ -3,11 +3,25 @@
 <head>
   <title>User Inputs</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="../styles/style.css">
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="../JS/Style.js"></script>
-  <script src="../JS/Converter.js"></script>
-  
+  <script src="JS/Style.js"></script>
+  <script src="JS/Converter.js"></script>
+    <script src="projects/web\ design/in.out/public/app.js"></script>
+    <script src="projects/web\ design/in.out/public/maincontroller.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAggze2rZ60EcMihQwYTEoIjRyBqyYVkgA",
+            authDomain: "colorsizeme-demo.firebaseapp.com",
+            databaseURL: "https://colorsizeme-demo.firebaseio.com",
+            projectId: "colorsizeme-demo",
+            storageBucket: "colorsizeme-demo.appspot.com",
+            messagingSenderId: "838251688484"
+        };
+        firebase.initializeApp(config);
+    </script>
 </head>
 <body>
   <div id="wrapper">
@@ -70,40 +84,40 @@
       <div class="inputDiv" id = "femalebottom" class="toggle" style="display: none;">
             <div>Female Bottom</div>
             <form action="/action_page.php">
-                  Outseam: <input type="text" name="outseam" value="0"></br>
-                  Inseam: <input type="text" name="inseam" value="0"></br>
-                  Hip: <input type="text" name="hip" value="0"></br>
-                  Waist: <input type="text" name="waist" value="0"></br>
-                  Thigh: <input type="text" name="thigh" value="0"></br>
-                  Calf: <input type="text" name="calf" value="0"></br>
-                  Knee: <input type="text" name="knee" value="0"></br>
-                  <input type="submit" value="Submit">
+                <label>Outseam:</label> <input type="text" name="outseam" value="0"></br>
+                <label>Inseam:</label> <input type="text" name="inseam" value="0"></br>
+                <label>Hip:</label> <input type="text" name="hip" value="0"></br>
+                <label>Waist:</label> <input type="text" name="waist" value="0"></br>
+                <label>Thigh:</label> <input type="text" name="thigh" value="0"></br>
+                <label>Calf:</label> <input type="text" name="calf" value="0"></br>
+                <label>Knee:</label> <input type="text" name="knee" value="0"></br>
+                <input type="submit" value="Submit">
             </form>
       </div>
 
       <div class="inputDiv" id = "maletop" class="toggle" style="display: none;">
             <div>Male Top</div>
             <form action="/action_page.php">
-                  Shoulder: <input type="text" name="shoulder" value="0"><br>
-                  Chest: <input type="text" name="chest" value="0"><br>
-                  Back: <input type="text" name="back" value="0"><br>
-                  Waist: <input type="text" name="waist" value="0"><br>
-                  Sleeve: <input type="text" name="sleeve" value="0"><br>
-                  Back Length: <input type="text" name="backlength" value="0"><br>
-                  <input type="submit" value="Submit">
+                <label>Shoulder:</label> <input type="text" name="shoulder" value="0"><br>
+                <label>Chest:</label> <input type="text" name="chest" value="0"><br>
+                <label>Back:</label> <input type="text" name="back" value="0"><br>
+                <label>Waist:</label> <input type="text" name="waist" value="0"><br>
+                <label>Sleeve:</label> <input type="text" name="sleeve" value="0"><br>
+                <label>Back Length:</label> <input type="text" name="backlength" value="0"><br>
+                <input type="submit" value="Submit">
             </form>
       </div>
 
       <div class="inputDiv" id = "malebottom" class="toggle" style="display: none;">
             <div>Male Bottom</div>
             <form action="/action_page.php" >
-                Hip: <input type="text" name="hip" value="0"><br>
-                Outseam: <input type="text" name="outseam" value="0"><br>
-                Inseam: <input type="text" name="inseam" value="0"><br>
-                Waist: <input type="text" name="waist" value="0"><br>
-                Knee: <input type="text" name="knee" value="0"><br>
-                Thigh: <input type="text" name="thigh" value="0"><br>
-                Calf: <input type="text" name="calf" value="0"><br>
+                <label>Hip:</label> <input type="text" name="hip" value="0"><br>
+                <label>Outseam:</label> <input type="text" name="outseam" value="0"><br>
+                <label>Inseam:</label> <input type="text" name="inseam" value="0"><br>
+                <label>Waist:</label> <input type="text" name="waist" value="0"><br>
+                <label>Knee:</label> <input type="text" name="knee" value="0"><br>
+                <label>Thigh:</label> <input type="text" name="thigh" value="0"><br>
+                <label>Calf:</label> <input type="text" name="calf" value="0"><br>
                 <input type="submit" value="Submit">
             </form>
       </div>
