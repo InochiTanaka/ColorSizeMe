@@ -7,6 +7,9 @@ function display(){
 
     if (gender == "male" && type == "top")
     {
+        $("#brand").show();
+        $("#measurement").show();
+        
         $("#maletop").show();
         $("#malebottom").hide();
         $("#femalebottom").hide();
@@ -14,13 +17,19 @@ function display(){
     }
     else if (gender == "male" && type == "bottom")
     {
+        $("#brand").show();
+        $("#measurement").show();
+        
         $("#maletop").hide();
         $("#malebottom").show();
         $("#femalebottom").hide();
-        $("#femaletop").hide();
+        $("#femaletop").hide();        
     }
     else if (gender == "female" && type == "top")
     {
+        $("#brand").show();
+        $("#measurement").show();
+        
         $("#maletop").hide();
         $("#malebottom").hide();
         $("#femalebottom").hide();
@@ -28,9 +37,12 @@ function display(){
     }
     else if (gender == "female" && type == "bottom")
     {
+        $("#brand").show();
+        $("#measurement").show();
+        
         $("#maletop").hide();
         $("#malebottom").hide();
         $("#femalebottom").show();
-        $("#femaletop").hide();
+        $("#femaletop").hide();               
     }
 }
