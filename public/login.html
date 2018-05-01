@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>Login/Register form</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -14,6 +14,9 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+	
+		<link rel="stylesheet" type="text/css" media="screen" href="styles/login.css" />
+		<script type="text/javascript" src="JS/Login.js"></script>
 
     <style media="screen">
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -30,85 +33,22 @@
       }
     </style>
 	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-	<script>
-	  // Initialize Firebase
-	  var config = {
-		apiKey: "AIzaSyAggze2rZ60EcMihQwYTEoIjRyBqyYVkgA",
-		authDomain: "colorsizeme-demo.firebaseapp.com",
-		databaseURL: "https://colorsizeme-demo.firebaseio.com",
-		projectId: "colorsizeme-demo",
-		storageBucket: "colorsizeme-demo.appspot.com",
-		messagingSenderId: "838251688484"
-	  };
-	  firebase.initializeApp(config);
-	</script>
+	<script type="text/javascript" src="FirebaseInitialScript.js"></script>
   </head>
   
 <body>
-
-	
     
 	<div id="input-area">
 
 		<input id="email" type="email" placeholder="Email:" required/>
 		<input id="password" type="password" placeholder="Password:" required/>
+		<p id="userID"></p>
+		
+		<button id="logout" onclick="execute(id)">Log out</button>	
 		<button id="login" onclick="execute(id)">Log in</button>
 		<button id="newuser" onclick="execute(id)">Sign in</button>
-
-	</div>
-	<button id="logout" class="hide" onclick="execute(id)">Log out</button>
-	
-	<script>
-	
-	function execute(id)
-	{
-		//Get email and password from UI
-		var email = document.getElementById('email').value;
-		var password = document.getElementById('password').value;
-
-		if(id == "newuser")//execute when pushed Sign in button
-		{
-			firebase.auth().createUserWithEmailAndPassword(email, password)
-			.catch(function(error) {
-
-				alert('Failed to register : ' + error.message);
-
-			});
-		}
-		else if(id == "login")//execute when pushed Log in button
-		{
-			firebase.auth().signInWithEmailAndPassword(email, password)
-			.catch(function(error) {
-
-				alert('Failed to Login : ' + error.message);
-
-			});
-		}
-		else if(id == "logout")//execute when pushed Log out button
-		{
-			//Check login/logout
-			firebase.auth().onAuthStateChanged(function(user) {
-				if(user) {
-				
-					firebase.auth().signOut()
-					.catch(function(error) {
-
-						alert('Failed to Logout : ' + error.message);
-
-					});	
-				}
-				else {
-				
-					//execute in logout
-					alert("not in login");
-				
-				}
-			});
-		}    
 		
-	}
-
-	</script>
+	</div>
  </body>
   
 </html>
