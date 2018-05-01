@@ -9,8 +9,10 @@ The purpose of the program is converting and showing which another residential s
 ## Login / Logout ##
 ## Registration ##
 
-# Instlation Firebase
-Access on cmd / Terminal. Address is root of project folder.
+# Instlation Firebase #
+  - Access on cmd / Terminal. 
+  - Address is root of project folder.
+  - Need to install [npm](https://www.npmjs.com/) before start this process.
    ## Open project ##
    ### Installing FireBase ###  
     npm install -g firebase-tools
