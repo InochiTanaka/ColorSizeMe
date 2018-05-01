@@ -1,6 +1,6 @@
 body {
-	background-color: #250672;
-	color: white;
+	background-color: white;
+	color: black;
 	font-family: Arial, sans-serif;
 }
 
@@ -43,4 +43,8 @@ body {
 
 .inputDiv input[type=text]:focus {
     border: 3px solid #555;
+}
+
+.inputDiv {
+  padding-top: 50px;
 }
