@@ -29,21 +29,19 @@
         body { border-top: 16px solid #ffa100; }
       }
     </style>
-		<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-		<script>
-		  // Initialize Firebase
-		  var config = {
-			apiKey: "AIzaSyBFDulFN0MXssxGg3Yk8YO8v2jSLWdkF30",
-			authDomain: "testproject-78bf4.firebaseapp.com",
-			databaseURL: "https://testproject-78bf4.firebaseio.com",
-			projectId: "testproject-78bf4",
-			storageBucket: "testproject-78bf4.appspot.com",
-			messagingSenderId: "372713360516"
-		  };
-		  firebase.initializeApp(config);
-		  
-
-		</script>
+	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyAggze2rZ60EcMihQwYTEoIjRyBqyYVkgA",
+		authDomain: "colorsizeme-demo.firebaseapp.com",
+		databaseURL: "https://colorsizeme-demo.firebaseio.com",
+		projectId: "colorsizeme-demo",
+		storageBucket: "colorsizeme-demo.appspot.com",
+		messagingSenderId: "838251688484"
+	  };
+	  firebase.initializeApp(config);
+	</script>
   </head>
   
 <body>
@@ -64,20 +62,50 @@
 	
 	function execute(id)
 	{
+		//Get email and password from UI
 		var email = document.getElementById('email').value;
 		var password = document.getElementById('password').value;
 
-		if(id == "newuser")
+		if(id == "newuser")//execute when pushed Sign in button
 		{
 			firebase.auth().createUserWithEmailAndPassword(email, password)
 			.catch(function(error) {
 
-				alert('Could not register : ' + error.message);
+				alert('Failed to register : ' + error.message);
 
 			});
-			//alert(id);
-
 		}
+		else if(id == "login")//execute when pushed Log in button
+		{
+			firebase.auth().signInWithEmailAndPassword(email, password)
+			.catch(function(error) {
+
+				alert('Failed to Login : ' + error.message);
+
+			});
+		}
+		else if(id == "logout")//execute when pushed Log out button
+		{
+			//Check login/logout
+			firebase.auth().onAuthStateChanged(function(user) {
+				if(user) {
+				
+					firebase.auth().signOut()
+					.catch(function(error) {
+
+						alert('Failed to Logout : ' + error.message);
+
+					});	
+				}
+				else {
+				
+					//execute in logout
+					alert("not in login");
+				
+				}
+			});
+		}    
+		
 	}
 
 	</script>
