@@ -1,6 +1,6 @@
 .list-nav00{
-  width:980px;
-  margin:0 auto;
+  width: 980px;
+  margin: 0 auto;
 }
 .list-nav00:after {
   content: "";
@@ -8,18 +8,29 @@
   display: block;
 }
 .list-nav00 li{
-  float:left;
-  width:140px;
+  float: left;
+  width: 140px;
 }
 .list-nav00 a{
-  display:block;
-  line-height:70px;
-  height:70px;
-  text-align:center;
-  background:#000;
-  color:#fff;
-  border-right:1px solid red;
+  display: block;
+  line-height: 70px;
+  height: 70px;
+  text-align: center;
+  background: lightgrey;
+  color: white;
+  border-right: 1px solid white;
 }
-.list-nav00 li:first-child a{
-  border-left:1px solid red;
+
+#navigation {
+  margin: auto;
+  width: 50%;
+  padding-top: 100px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+img {
+  float: left;
 }
