@@ -7,6 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="JS/Style.js"></script>
   <script src="JS/Converter.js"></script>
+    <script src="JS/ninput.js"></script>
     <script src="projects/web\ design/in.out/public/app.js"></script>
     <script src="projects/web\ design/in.out/public/maincontroller.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
@@ -24,7 +25,12 @@
     </script>
 </head>
 <body>
-  <div id="wrapper">
+    <div id="status">
+        <button type="button" onclick="new_user()"> New User</button>
+        <button type="button" onclick="update_user()"> Update User </button>
+        <button type="button" onclick="update_size()"> Update Size </button>
+    </div>
+    <div id="wrapper">
       <div>
         <span>Gender </span>
         <span>
@@ -76,7 +82,7 @@
                   <label>Hip:</label> <input type="text" name="hip" value="0"></br>
                   <label>Waist:</label> <input type="text" name="waist" value="0"></br>
                   <label>Body Length:</label> <input type="text" name="body" value="0"></br>
-                  <input type="submit" value="Submit">
+                  <input type="submit" value="Submit" onclick="update_size()">
             </form>
       </div>
 
@@ -89,7 +95,7 @@
                 <label>Thigh:</label> <input type="text" name="thigh" value="0"></br>
                 <label>Calf:</label> <input type="text" name="calf" value="0"></br>
                 <label>Knee:</label> <input type="text" name="knee" value="0"></br>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" onclick="update_size()">
             </form>
       </div>
 
@@ -101,7 +107,7 @@
                 <label>Waist:</label> <input type="text" name="waist" value="0"><br>
                 <label>Sleeve:</label> <input type="text" name="sleeve" value="0"><br>
                 <label>Back Length:</label> <input type="text" name="backlength" value="0"><br>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" onclick="update_size()">
             </form>
       </div>
 
@@ -114,9 +120,9 @@
                 <label>Knee:</label> <input type="text" name="knee" value="0"><br>
                 <label>Thigh:</label> <input type="text" name="thigh" value="0"><br>
                 <label>Calf:</label> <input type="text" name="calf" value="0"><br>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" onclick="update_size()">
             </form>
       </div>
-  </div>
+    </div>
 </body>
 </html>
