@@ -25,5 +25,5 @@ The purpose of the program is converting and showing which another residential s
     firebase serve
   ###  Deploy to host ###
     firebase deploy
-  ###  Open hosted heb page ###
+  ###  Open hosted web page ###
     firebase open hosting:site
