@@ -1,6 +1,6 @@
 body {
-	background-color: #250672;
-	color: white;
+	background-color: white;
+	color: black;
 	font-family: Arial, sans-serif;
 }
 
@@ -21,6 +21,7 @@ body {
 
 .inputDiv label {
     padding-top: 15px;
+    text-align: left;
     clear: both;
     float: left;
     width: 20%;
@@ -36,10 +37,14 @@ body {
 
 .inputDiv input[type=text] {
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 8px 0 8px 15px;
     box-sizing: border-box;
 }
 
 .inputDiv input[type=text]:focus {
     border: 3px solid #555;
+}
+
+.inputDiv {
+  padding-top: 50px;
 }
