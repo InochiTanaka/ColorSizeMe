@@ -5,44 +5,50 @@ body {
 }
 
 #wrapper {
-    text-align: center;
+  text-align: center;
 }
 
 #wrapper select {
-    display: block;
-    text-align: center;
-    margin: 0 auto;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#status {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
 .inputDiv form {
-    width: 20%;
-    margin: 0 auto;
+  width: 20%;
+  margin: 0 auto;
 }
 
 .inputDiv label {
-    padding-top: 15px;
-    text-align: left;
-    clear: both;
-    float: left;
-    width: 20%;
+  padding-top: 15px;
+  text-align: left;
+  clear: both;
+  float: left;
+  width: 20%;
 }
 
 .inputDiv input, textarea, select, button {
-    width : 200px;
-    margin: 0;
-    -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
-    -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
-    box-sizing: border-box;
+  width : 200px;
+  margin: 0;
+  -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+  -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+  box-sizing: border-box;
 }
 
 .inputDiv input[type=text] {
-    padding: 12px 20px;
-    margin: 8px 0 8px 15px;
-    box-sizing: border-box;
+  padding: 12px 20px;
+  margin: 8px 0 5px 13px;
+  box-sizing: border-box;
 }
 
 .inputDiv input[type=text]:focus {
-    border: 3px solid #555;
+  border: 3px solid #555;
 }
 
 .inputDiv {
