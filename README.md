@@ -21,9 +21,9 @@ The purpose of the program is converting and showing which another residential s
    ###  Identify the project ### 
     firebase init
   ## Test project ##
-  ###  Run on local ###
+  ###  Run on localhost ###
     firebase serve
-  ###  Deploy to host ###
+  ###  Deploy to online host ###
     firebase deploy
   ###  Open hosted web page ###
     firebase open hosting:site

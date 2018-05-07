@@ -1,34 +1,39 @@
-var diffe = 0.39370;
-// Get a reference to the database service
+var config = {
+    apiKey: "AIzaSyAggze2rZ60EcMihQwYTEoIjRyBqyYVkgA",
+    authDomain: "colorsizeme-demo.firebaseapp.com",
+    databaseURL: "https://colorsizeme-demo.firebaseio.com",
+    projectId: "colorsizeme-demo",
+    storageBucket: "colorsizeme-demo.appspot.com",
+    messagingSenderId: "838251688484"
+};
+firebase.initializeApp(config);
 
-    var input_gender = document.getElementById('gender').value;
-    var input_brand = document.getElementById('brand').value;
-    var input_type = document.getElementById('type').value;
-    var data = {
-        gender: input_gender,
-        type: input_type,
-        brand: input_brand,
-        shoulder: 7,
-        chest: 7,
-        back: 7,
-        waist: 7,
-        sleeve: 7,
-        backLength: 7
-    }
-    firebase.database().ref('users/test3/').set(data);
+var database = firebase.database();
+var diffe = 0.39370;
+
+/*Restricts input number boxes to a max 2 decimal places doc onLoad()*/
+$(document).ready(() => {	
+	$('input[type="number"]').on('click', () => {
+        this.value = parseFloat(this.value).toFixed(2);
+    });
+});
 
 
 // Converter
-// from centi to inches
+// from centi -> inches
 function centi_converter(input) {
-    var centimeter = input;
-    return centimeter * diffe;
+    for (var key of Object.keys(input)) {
+        input[key] = (input[key] * diffe);
+    }
+    return input
 };
 
-//from inches to centi
+//from inches -> centi
 function inches_converter(input) {
-    var inches = input;
-    return inches / diffe;
+    for (var key of Object.keys(input)){
+        input[key] = (input[key] / diffe);
+    }
+    return input;
 };
 
 /////////////////////////////////////////////////////////////////////////
@@ -41,193 +46,139 @@ function read() {
     });
 }
 
+//returns value of input text box
+function getIDValue(id) {
+    return document.getElementById(id).value;
+}
+
+function submitForm() {
+    
+	console.log('submitForm');
+	var uid = firebase.auth().currentUser.uid;
+    
+
+    /*USE THIS CODE ONCE DATA-BINDING POSSIBLE TO UPDATE SIZES... (DO THIS ON OTHER FUNCTION)*/
+    /*var user_in_userRecords = db.child('users/'+userID);
+    console.log(user_in_userRecords);
+    user_in_userRecords.once("value")
+        .then(function(snapshot) {
+            userExists = snapshot.exists(); //either it exists or THROWS NULL.
+            console.log(userExists);
+            console.log(snapshot.val());
+            });
+    if (userExists == null) {
+        alert("User data does not exist. Please check credentials!");
+    } else {
+        //This one will download under the user node if it exists, including the 
+        //user sizes. NOTE: Let user only update EMAIL address????
+        /*db.child('users/'+ uid).update({
+        email : 'asaness@yahoo.ca',
+        size : 10.0*/
+    //}
+
+	var gender  = getIDValue('gender');
+    var brand = getIDValue('leBrand');
+    var measurement = getIDValue('measure');
+    var type = getIDValue('type');
+    console.log(uid + ' sex: ' + gender + ' brand: ' + brand + ' type: ' + type + ' meas: ' + measurement);
+    writeNewPost(uid, gender, brand, type, measurement);
+}
+
+function getMaleTopValues() {
+    postData = { shoulder : 0, chest : 0, back : 0, waist : 0, sleeve : 0, back_length : 0};
+    postData.shoulder = parseFloat(getIDValue('MTshoulder'));
+    postData.chest  = parseFloat(getIDValue('MTchest'));
+    postData.back = parseFloat(getIDValue('MTback'));
+    postData.waist  = parseFloat(getIDValue('MTwaist'));
+    postData.sleeve  = parseFloat(getIDValue('MTsleeve'));
+    postData.back_length = parseFloat(getIDValue('MTbacklength'));
+    return postData;
+}
+
+function getMaleBottomValues() {
+    postData = { hip : 0, outseam : 0, inseam : 0, waist : 0, knee : 0, thigh : 0, calf : 0 };
+    postData.hip  = parseFloat(getIDValue('MBhip'));
+    postData.outseam  = parseFloat(getIDValue('MBoutseam'));
+    postData.inseam = parseFloat(getIDValue('MBinseam'));
+    postData.waist= parseFloat(getIDValue('MBwaist'));
+    postData.knee = parseFloat(getIDValue('MBknee'));
+    postData.thigh = parseFloat(getIDValue('MBthigh'));
+    postData.calf = parseFloat(getIDValue('MBcalf'));
+    return postData;
+}
+
+function getFemaleTopValues() {
+    postData = {bust : 0, arm_length : 0, hip : 0, waist : 0, body_length : 0};
+    postData.bust  = parseFloat(getIDValue('FTbust'));
+    postData.arm_length = parseFloat(getIDValue('FTarm'));
+    postData.hip = parseFloat(getIDValue('FThip'));
+    postData.waist  = parseFloat(getIDValue('FTwaist'));
+    postData.body_length= parseFloat(getIDValue('FTbody'));
+    return postData;
+}
+
+function getFemaleBottomValues() {
+    postData = { outseam : 0, inseam : 0, hip : 0, waist : 0, thigh : 0, calf : 0, knee :0 }
+    postData.outseam = parseFloat(getIDValue('FBoutseam'));
+    postData.inseam = parseFloat(getIDValue('FBinseam'));
+    postData.waist = parseFloat(getIDValue('FBwaist'));
+    postData.thigh = parseFloat(getIDValue('FBthigh'));
+    postData.hip = parseFloat(getIDValue('FBhip'));
+    postData.calf = parseFloat(getIDValue('FBcalf'));
+    postData.knee = parseFloat(getIDValue('FBknee'));
+    return postData;
+
+}
 // Updating or Deleting
-function writeNewPost() {
-    var uid = 'abc';
-    var username = 'vinh'; //!
-    var gender  = document.getElementById('gender').value;
-    var brand = document.getElementById('brand').value;
-    var measurement = document.getElementById('measurement').value;
-    // This works
-    var data = {
-        author: username,
-        uid: uid,
-        gender: gender,
-        type: type,
-        brand: brand,
-        shoulder: document.getElementById('shoulder').value,
-        chest: document.getElementById('chest').value,
-        back: document.getElementById('back').value,
-        waist: document.getElementById('waist').value,
-        sleeve: document.getElementById('sleeve').value,
-        backLength: document.getElementById('backlength').value
-    }
-    firebase.database().ref('users/test3/').set(data);
-    // End
+function writeNewPost(uid, gender, brand, type, measurement) {
+    var postData = { };
     if (gender == 'male') {
         if (type == 'top') { //MALE_TOP DEFAULT
-            if (measurement == 'inches') {
-                // A post entry.
-                var data = {
-                    author: username,
-                    uid: uid,
-                    gender: gender,
-                    type: type,
-                    brand: brand,
-                    shoulder: $('#shoulder').value(),
-                    chest: $('#chest').value(),
-                    back: $('#back').value(),
-                    waist: $('#waist').value(),
-                    sleeve: $('#sleeve').value(),
-                    backLength: $('#backlength').value()
-                }
-                database.ref('users/').push(data);
+            postData = getMaleTopValues();
+            if (measurement == 'inch') {
+                //do nothing.
             } else { //MALE_TOP CONVERT
-                var shoulder = centi_converter($('#shoulder').value());
-                var chest = centi_converter($('#chest').value());
-                var back = centi_converter($('#back').value());
-                var waist = centi_converter($('#waist').value());
-                var sleeve = centi_converter($('#sleeve').value());
-                var backLength = centi_converter($('#backlength').value());
-                firebase.database().ref('users/' + uid).set({
-                    author: username,
-                    uid: uid,
-                    gender: gender,
-                    type: type,
-                    brand: brand,
-                    shoulder: shoulder,
-                    chest: chest,
-                    back: back,
-                    waist: waist,
-                    sleeve: sleeve,
-                    backLength: backLength
-                });
+                postData = centi_converter(postData);
             }
         } else {
-            if (measurement == 'inches') {
-                // A post entry.
-                firebase.database().ref('users/' + uid).set({
-                    author: username,
-                    uid: uid,
-                    gender: gender,
-                    type: type,
-                    brand: brand,
-                    hip: $('#hip').value(),
-                    outseam: $('#outseam').value(),
-                    inseam: $('#inseam').value(),
-                    waist: $('#waist').value(),
-                    knee: $('#knee').value(),
-                    thigh: $('#thigh').value(),
-                    calf: $('#calf').value()
-                });
+            postData = getMaleBottomValues();
+            if (measurement == 'inch') {
+                //Do nothing
             } else { //MALE_BOTTOM CONVERT
-                var converted_hip = centi_converter($('#hip').value());
-                var converted_outseam = centi_converter($('#outseam').value());
-                var converted_inseam = centi_converter($('#inseam').value());
-                var converted_waist = centi_converter($('#waist').value());
-                var converted_knee = centi_converter($('#knee').value());
-                var converted_thigh = centi_converter($('#thigh').value());
-                var converted_calf = centi_converter($('#calf').value());
-                firebase.database().ref('users/' + uid).set({
-                    author: username,
-                    uid: uid,
-                    gender: gender,
-                    type: type,
-                    brand: brand,
-                    hip: converted_hip,
-                    outseam: converted_outseam,
-                    inseam: converted_inseam,
-                    waist: converted_waist,
-                    knee: converted_knee,
-                    thigh: converted_thigh,
-                    calf: converted_calf
-                });
+                postData = centi_converter(postData);
             }
         }
     } else { //Females
         if (type == 'top') { //FEMALE_TOP DEFAULT
-            if (measurement == 'inches') {
-                firebase.database().ref('users/' + uid).set({
-                    author: username,
-                    uid: uid,
-                    gender: gender,
-                    type: type,
-                    brand: brand,
-                    bust: $('#bust').value(),
-                    armLength: $('#armLength').value(),
-                    hip: $('#hip').value(),
-                    waist: $('#waist').value(),
-                    bodyLength: $('#bodylength').value()
-                });
-            } else { //CONVERT FEMALE_TOP
-                var bust = centi_converter($('#bust').value());
-                var armLength = centi_converter($('#armLength').value());
-                var hip = centi_converter($('#hip').value());
-                var waist = centi_converter($('#waist').value());
-                var bodyLength = centi_converter($('#bodylength').value());
-                firebase.database().ref('users/' + uid).set({
-                    author: username,
-                    uid: uid,
-                    gender: gender,
-                    type: type,
-                    brand: brand,
-                    bust: bust,
-                    armLength: armLength,
-                    hip: hip,
-                    waist: waist,
-                    bodyLength: bodyLength,
-                });
+            postData = getFemaleTopValues();
+			if (measurement == 'inch') {
 
-            }
+			} else { //CONVERT FEMALE_TOP
+                postData = centi_converter(postData);
+			}
         } else { //FEMALE_BOTTOM DEFAULT
-            if(measurement == 'inches') {
-                firebase.database().ref('users/' + uid).set({
-                    author: username,
-                    uid: uid,
-                    gender: gender,
-                    type: type,
-                    brand: brand,
-                    outseam: $('#outseam').value(),
-                    inseam: $('#inseam').value(),
-                    hip: $('#hip').value(),
-                    waist: $('#waist').value(),
-                    thigh: $('#thigh').value(),
-                    calf: $('#calf').value(),
-                    knee: $('#knee').value()
-                });
-            } else { //CONVERT FEMALE_BOTTOM
-                var	outseam = centi_converter($('#outseam').value());
-                var	inseam = centi_converter($('#inseam').value());
-                var	hip = centi_converter($('#hip').value());
-                var	waist = centi_converter($('#waist').value());
-                var	thigh = centi_converter($('#thigh').value());
-                var	calf = centi_converter($('#calf').value());
-                var	knee = centi_converter($('#knee').value());
-                firebase.database().ref('users/' + uid).set({
-                    author: username,
-                    uid: uid,
-                    gender: gender,
-                    type: type,
-                    brand: brand,
-                    outseam: outseam,
-                    inseam: inseam,
-                    hip: hip,
-                    waist: waist,
-                    thigh: thigh,
-                    calf: calf,
-                    knee: knee
-                });
-            }
-        }
-    }
+            postData = getFemaleBottomValues();
+			if(measurement == 'inch') {
 
-    // Get a key for a new Post.
-    //var newPostKey = firebase.database().ref().child('posts').push().key;
+			} else { //CONVERT FEMALE_BOTTOM
+                postData = centi_converter(postData);
+			}
+		}
+	}
 
+    // Get a key for a new Post. NADA AQUI!
     // Write the new post's data simultaneously in the posts list and the user's post list.
-    //var updates = {};
-    //updates['/posts/' + newPostKey] = postData;
-    //updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+   // var newPostKey = firebase.database().ref().child('posts').push().key;
+   console.log(postData + "at 176");
+    var usersRef = database.ref().child('users/'+uid);
+    var sizesRef = database.ref().child('sizes/'+uid);
+    usersRef.set(postData);
+    sizesRef.set(postData);
+    //return firebase.database().ref().set(updates);
 
-    //return firebase.database().ref().update(updates);
-}
+
+    /*var updates = {};
+    updates['/posts/' + newPostKey] = postData;
+    updates['/user-posts/' + uid + '/' + newPostKey] = postData;*/
+
+    }
