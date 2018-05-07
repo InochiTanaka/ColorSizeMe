@@ -74,8 +74,8 @@ function execute(id)
 	}
 	else if(id == "login")//execute when pushed Log in button
 	{			
-		firebase.auth().signInWithEmailAndPassword(email, password)
-		.catch(function(error) {
+		firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+			}).catch(function(error) {
 			alert('Failed to Login : ' + error.message);
 		});	
 	}
@@ -92,5 +92,9 @@ function execute(id)
 			});
 			}
 		});
+	}
+	else if(id == "close")//execute when pushed Log in button
+	{			
+		window.open('about:blank','_self').close();
 	}
 }

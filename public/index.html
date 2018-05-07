@@ -15,21 +15,26 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script> 
     <link rel="stylesheet" href="/common/css/style.css" type="text/css">
+   	<script type="text/javascript" src="FirebaseInitialScript.js"></script>
+   	<script type="text/javascript" src="JS/Style.js"></script>
 	 <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
 	 <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
-	<style media="screen">
-</style>
-  </head>
+	 <style media="screen">
+	</style>
+	<script>
+	</script>
+	</head>
   <body>
   		<header>
 		 	<div id="menu-box">
 			  <div id="toggle"><a href="#">menu</a></div>
 			   <h1>ColorSizeMe</h1>
+			   <div id="messageText"><p> </p></div>
 			  <ul id="menu" class="">
 					<li><a href="/input.html">Inputs</a></li>
 					<li><a href="#">Second</a></li>
 					<li><a href="#">Third</a></li>
-					<li><a href="/login.html">login</a></li>
+					<li><a id="loginState" onclick="loginFunction(document.getElementById('loginState').innerHTML)"> </a></li>
 				</ul>
 			</div>
 		</header>	
