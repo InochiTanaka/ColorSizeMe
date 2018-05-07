@@ -4,25 +4,37 @@
   <title>User Inputs</title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="JS/Style.js"></script>
-  <script src="JS/Converter.js"></script>
-    <script src="JS/ninput.js"></script>
-    <script src="projects/web\ design/in.out/public/app.js"></script>
-    <script src="projects/web\ design/in.out/public/maincontroller.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAggze2rZ60EcMihQwYTEoIjRyBqyYVkgA",
-            authDomain: "colorsizeme-demo.firebaseapp.com",
-            databaseURL: "https://colorsizeme-demo.firebaseio.com",
-            projectId: "colorsizeme-demo",
-            storageBucket: "colorsizeme-demo.appspot.com",
-            messagingSenderId: "838251688484"
-        };
-        firebase.initializeApp(config);
+        $(function() {
+            // Initialize Firebase
+            const config = {
+                apiKey: "AIzaSyAggze2rZ60EcMihQwYTEoIjRyBqyYVkgA",
+                authDomain: "colorsizeme-demo.firebaseapp.com",
+                databaseURL: "https://colorsizeme-demo.firebaseio.com",
+                projectId: "colorsizeme-demo",
+                storageBucket: "colorsizeme-demo.appspot.com",
+                messagingSenderId: "838251688484"
+            };
+            firebase.initializeApp(config);
+
+            $('.input-form').on('submit', event => {
+                event.preventDefault();
+                const gender = $('#gender').val();
+                const type = $('#type').val();
+                cosnt brand = $('#brand').val();
+                const measurement = $('#measurement').val();
+                console.log(gender, type, brand, measurement);
+                firebase.database().ref('users/thisistest').push({gender, type, brand, measurement})
+            });
+        });
     </script>
+    <script src="JS/Style.js"></script>
+    <script src="JS/Converter.js"></script>
+    <script src="JS/read_write.js"></script>
+    <script src="JS/ninput.js"></script>
+
 </head>
 <body>
     <div id="status">
@@ -31,98 +43,101 @@
         <button type="button" onclick="update_size()"> Update Size </button>
     </div>
     <div id="wrapper">
-      <div>
-        <span>Gender </span>
-        <span>
-          <select id = "gender" onchange="display()" size="1">
-            <option disabled selected value> -- select an option -- </option>
-            <option value="male">Male</option>
-            <option value="female" >Female</option>
-          </select>
-        </span>
-      </div>
+        <form class="input-form">
+              <div>
+                <span>Gender </span>
+                <span>
+                  <select id = "gender" onchange="display()" size="1">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="male">Male</option>
+                    <option value="female" >Female</option>
+                  </select>
+                </span>
+              </div>
 
-      <div>
-        <span>Type of Clothes </span>
-        <span>
-          <select id = "type" onchange="display()" size="1">
-            <option disabled selected value> -- select an option -- </option>
-            <option value="top">Top</option>
-            <option value="bottom">Bottom</option>
-          </select>
-        </span>
-      </div>
+              <div>
+                <span>Type of Clothes </span>
+                <span>
+                  <select id = "type" onchange="display()" size="1">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                  </select>
+                </span>
+              </div>
 
-      <div id = "brand" class="toggle" style="display: none;">
-        <span>Brand </span>
-        <span>
-          <select size="1">
-            <option disabled selected value> -- select an option -- </option>
-            <option value="zara">Zara</option>
-            <option value="hnm">H&M</option>
-          </select>
-        </span>
-      </div>
+              <div id = "brand" class="toggle" style="display: none;">
+                <span>Brand </span>
+                <span>
+                  <select id="select-brand" size="1">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="zara">Zara</option>
+                    <option value="hnm">H&M</option>
+                  </select>
+                </span>
+              </div>
 
-      <div id = "measurement" class="toggle" style="display: none;">
-        <span>Measurement </span>
-        <span>
-          <select size="1">
-            <option disabled selected value> -- select an option -- </option>
-            <option value="centimeter">cm</option>
-            <option value="inch">inch</option>
-          </select>
-          </span>
-      </div>
+              <div id = "measurement" class="toggle" style="display: none;">
+                <span>Measurement </span>
+                <span>
+                  <select id="select-measurement" size="1">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="centimeter">cm</option>
+                    <option value="inches">inch</option>
+                  </select>
+                  </span>
+              </div>
 
-      <div class="inputDiv" id = "femaletop" class="toggle" style="display: none;">
-            <form action="/action_page.php">
-                  <label>Bust:</label> <input type="text" name="bust" value="0"></br>
-                  <label>Arm Length:</label> <input type="text" name="arm" value="0"></br>
-                  <label>Hip:</label> <input type="text" name="hip" value="0"></br>
-                  <label>Waist:</label> <input type="text" name="waist" value="0"></br>
-                  <label>Body Length:</label> <input type="text" name="body" value="0"></br>
-                  <input type="submit" value="Submit" onclick="update_size()">
-            </form>
-      </div>
+              <div class="inputDiv" id = "femaletop" class="toggle" style="display: none;">
 
-      <div class="inputDiv" id = "femalebottom" class="toggle" style="display: none;">
-            <form action="/action_page.php">
-                <label>Outseam:</label> <input type="text" name="outseam" value="0"></br>
-                <label>Inseam:</label> <input type="text" name="inseam" value="0"></br>
-                <label>Hip:</label> <input type="text" name="hip" value="0"></br>
-                <label>Waist:</label> <input type="text" name="waist" value="0"></br>
-                <label>Thigh:</label> <input type="text" name="thigh" value="0"></br>
-                <label>Calf:</label> <input type="text" name="calf" value="0"></br>
-                <label>Knee:</label> <input type="text" name="knee" value="0"></br>
-                <input type="submit" value="Submit" onclick="update_size()">
-            </form>
-      </div>
+                          <label>Bust:</label> <input type="text" name="bust" value="0"></br>
+                          <label>Arm Length:</label> <input type="text" name="arm" value="0"></br>
+                          <label>Hip:</label> <input type="text" name="hip" value="0"></br>
+                          <label>Waist:</label> <input type="text" name="waist" value="0"></br>
+                          <label>Body Length:</label> <input type="text" name="body" value="0"></br>
+              </div>
 
-      <div class="inputDiv" id = "maletop" class="toggle" style="display: none;">
-            <form action="/action_page.php">
-                <label>Shoulder:</label> <input type="text" name="shoulder" value="0"><br>
-                <label>Chest:</label> <input type="text" name="chest" value="0"><br>
-                <label>Back:</label> <input type="text" name="back" value="0"><br>
-                <label>Waist:</label> <input type="text" name="waist" value="0"><br>
-                <label>Sleeve:</label> <input type="text" name="sleeve" value="0"><br>
-                <label>Back Length:</label> <input type="text" name="backlength" value="0"><br>
-                <input type="submit" value="Submit" onclick="update_size()">
-            </form>
-      </div>
+              <div class="inputDiv" id = "femalebottom" class="toggle" style="display: none;">
 
-      <div class="inputDiv" id = "malebottom" class="toggle" style="display: none;">
-            <form action="/action_page.php" >
-                <label>Hip:</label> <input type="text" name="hip" value="0"><br>
-                <label>Outseam:</label> <input type="text" name="outseam" value="0"><br>
-                <label>Inseam:</label> <input type="text" name="inseam" value="0"><br>
-                <label>Waist:</label> <input type="text" name="waist" value="0"><br>
-                <label>Knee:</label> <input type="text" name="knee" value="0"><br>
-                <label>Thigh:</label> <input type="text" name="thigh" value="0"><br>
-                <label>Calf:</label> <input type="text" name="calf" value="0"><br>
-                <input type="submit" value="Submit" onclick="update_size()">
-            </form>
-      </div>
+                        <label>Outseam:</label> <input type="text" name="outseam" value="0"></br>
+                        <label>Inseam:</label> <input type="text" name="inseam" value="0"></br>
+                        <label>Hip:</label> <input type="text" name="hip" value="0"></br>
+                        <label>Waist:</label> <input type="text" name="waist" value="0"></br>
+                        <label>Thigh:</label> <input type="text" name="thigh" value="0"></br>
+                        <label>Calf:</label> <input type="text" name="calf" value="0"></br>
+                        <label>Knee:</label> <input type="text" name="knee" value="0"></br>
+
+
+              </div>
+
+              <div class="inputDiv" id = "maletop" class="toggle" style="display: none;">
+
+                        <label>Shoulder:</label> <input type="text" name="shoulder" value="0"><br>
+                        <label>Chest:</label> <input type="text" name="chest" value="0"><br>
+                        <label>Back:</label> <input type="text" name="back" value="0"><br>
+                        <label>Waist:</label> <input type="text" name="waist" value="0"><br>
+                        <label>Sleeve:</label> <input type="text" name="sleeve" value="0"><br>
+                        <label>Back Length:</label> <input type="text" name="backlength" value="0"><br>
+
+
+              </div>
+
+              <div class="inputDiv" id = "malebottom" class="toggle" style="display: none;">
+
+                        <label>Hip:</label> <input type="text" name="hip" value="0"><br>
+                        <label>Outseam:</label> <input type="text" name="outseam" value="0"><br>
+                        <label>Inseam:</label> <input type="text" name="inseam" value="0"><br>
+                        <label>Waist:</label> <input type="text" name="waist" value="0"><br>
+                        <label>Knee:</label> <input type="text" name="knee" value="0"><br>
+                        <label>Thigh:</label> <input type="text" name="thigh" value="0"><br>
+                        <label>Calf:</label> <input type="text" name="calf" value="0"><br>
+
+
+              </div>
+            <button id="submit">Submit</button>
+        </form>
     </div>
+
+
 </body>
 </html>
