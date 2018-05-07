@@ -8,12 +8,16 @@ window.onload = function()
 		{		
 			if(user.emailVerified)
 			{
-				loginState.textContent = "Log Out";
+				document.getElementById("logout").style.display="inline";
+				document.getElementById("login").style.display="none";
+				document.getElementById("signIn").style.display="none";
 				messageText.textContent = "Welcome, "+user.email+" ! ";	
 			}
 			else
 			{
-				loginState.textContent = "Log Out";
+				document.getElementById("logout").style.display="inline";
+				document.getElementById("login").style.display="none";
+				document.getElementById("signIn").style.display="none";
 				messageText.textContent = "Please activate your account on Valification Email. Or, please Sign in another account";	
 				//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 			}		
@@ -21,12 +25,15 @@ window.onload = function()
 		else
 		{			
 			messageText.textContent = "";	
+			document.getElementById("logout").style.display="none";
+			document.getElementById("login").style.display="inline";
+			document.getElementById("signIn").style.display="inline";
 			loginState.textContent = "Log In";						
 		}	
 	});		
 }
 
-function loginFunction(state)
+function loginFunction()
 {			
 	firebase.auth().onAuthStateChanged(function(user)
 	{
@@ -34,10 +41,6 @@ function loginFunction(state)
 		{		
 			if(user.emailVerified)
 			{
-				if(state == "Log Out")
-				{
-					logOutConf();
-				}	
 			}
 			else
 			{
@@ -47,14 +50,14 @@ function loginFunction(state)
 		}		
 		else
 		{			
-			login = window.open("/login.html","Log In","width=960,height=600,scrollbars=yes,status=no,toolbar=no,location=no,menubar=no,directories=no,resizable=yes");
+			login = window.open("/login.html","Log In","width=300dp,height=400dp,scrollbars=yes,status=no,toolbar=no,location=no,menubar=no,directories=no,resizable=yes");
 			login.focus();
 		}	
 	});						
 }
 
 
-function logOutConf()
+function logoutFunction()
 {
 	if(window.confirm('Do you log out?')){
 		firebase.auth().onAuthStateChanged(function(user) {

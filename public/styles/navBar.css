@@ -1,13 +1,18 @@
-﻿
+﻿header
+{
+	
+}
+
 #menu{
   width: 100%;
   margin: 0 auto;
   padding: 0;
   background: #fff;
   background-color: #333;
+  display: inline-block;
 }
 #menu li{
-  display: block;
+  display: inline-block;
   float: left;
   width: 12.5%;
   margin: 0;
@@ -32,10 +37,36 @@
  display: none;
 }
 
+.loginTable
+{
+	width: auto;
+	display: table;
+	float: right;
+	border-collapse: collapse;
+}
+
 #messageText {
-	  text-align: right;
-	  margin: 0 auto;
-	  padding: 10px; 
+	display: table-cell;
+	width: 300px;
+	margin-left: auto;
+	text-align: right;
+}
+
+#login, #logout, #signIn
+{
+	display: table-cell;
+	text-align: center;
+	width: 80px;
+	color: #fff;
+	background-color: #333;
+	cursor : pointer;
+	padding: 5px;
+	border: 3px solid white;
+	display : none;
+}
+
+#login:hover, #logout:hover, #signIn:hover{
+  background: #444;
 }
 
 
