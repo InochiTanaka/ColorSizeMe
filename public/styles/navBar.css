@@ -48,7 +48,7 @@
 #messageText {
 	display: table-cell;
 	width: 300px;
-	margin-left: auto;
+	margin-left: auto8
 	text-align: right;
 }
 
@@ -60,9 +60,11 @@
 	color: #fff;
 	background-color: #333;
 	cursor : pointer;
+	margin: 5px;
 	padding: 5px;
 	border: 3px solid white;
 	display : none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1); 
 }
 
 #login:hover, #logout:hover, #signIn:hover{
