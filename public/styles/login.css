@@ -1,29 +1,29 @@
-#email
+﻿#menu #email
 {
 	display: none;
 }
 
-#password
+#menu #password
 {
 	display: none;
 }
 
-#login
+#menu #login
 {
 	display: none;
 }
 
-#logout
+#menu #logout
 {
 	display: none;
 }
 
-#newuser
+#menu #newuser
 {
 	display: none;
 }
 
-#userID
+#menu #userID
 {
 	display: none;
 }
