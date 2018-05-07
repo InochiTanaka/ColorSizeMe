@@ -10,15 +10,15 @@ window.onload = function()
 			{
 				document.getElementById("logout").style.display="inline";
 				document.getElementById("login").style.display="none";
-				document.getElementById("signIn").style.display="none";
+				document.getElementById("signup").style.display="none";
 				messageText.textContent = "Welcome, "+user.email+" ! ";	
 			}
 			else
 			{
 				document.getElementById("logout").style.display="inline";
 				document.getElementById("login").style.display="none";
-				document.getElementById("signIn").style.display="none";
-				messageText.textContent = "Please activate your account on Valification Email. Or, please Sign in another account";	
+				document.getElementById("signup").style.display="none";
+				messageText.textContent = "Please activate your account on Valification Email. Or, please Sign un another account";	
 				//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 			}		
 		}		
@@ -27,7 +27,7 @@ window.onload = function()
 			messageText.textContent = "";	
 			document.getElementById("logout").style.display="none";
 			document.getElementById("login").style.display="inline";
-			document.getElementById("signIn").style.display="inline";
+			document.getElementById("signup").style.display="inline";
 			loginState.textContent = "Log In";						
 		}	
 	});		
@@ -50,7 +50,7 @@ function loginFunction()
 		}		
 		else
 		{			
-			login = window.open("/login.html","Log In","width=300dp,height=400dp,scrollbars=yes,status=no,toolbar=no,location=no,menubar=no,directories=no,resizable=yes");
+			login = window.open("/login.html","Log In","width=500dp,height=400dp,scrollbars=yes,status=no,toolbar=no,location=no,menubar=no,directories=no,resizable=yes");
 			login.focus();
 		}	
 	});						
@@ -71,6 +71,21 @@ function logoutFunction()
 			}
 		});
 	}
+}
+
+function signupFunction()
+{			
+	firebase.auth().onAuthStateChanged(function(user)
+	{
+		if(user) 
+		{			
+		}		
+		else
+		{			
+			login = window.open("/registration.html","Sign up","width=500dp,height=400dp,scrollbars=yes,status=no,toolbar=no,location=no,menubar=no,directories=no,resizable=yes");
+			login.focus();
+		}	
+	});						
 }
 
 function display(){
