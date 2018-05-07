@@ -1,36 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <title>User Inputs</title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="JS/Style.js"></script>
+  <!--<script src="JS/ninput.js"></script>-->
+
+  <script src="JS/style.js"></script>
   <script src="JS/Converter.js"></script>
-    <script src="JS/ninput.js"></script>
+
     <script src="projects/web\ design/in.out/public/app.js"></script>
     <script src="projects/web\ design/in.out/public/maincontroller.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAggze2rZ60EcMihQwYTEoIjRyBqyYVkgA",
-            authDomain: "colorsizeme-demo.firebaseapp.com",
-            databaseURL: "https://colorsizeme-demo.firebaseio.com",
-            projectId: "colorsizeme-demo",
-            storageBucket: "colorsizeme-demo.appspot.com",
-            messagingSenderId: "838251688484"
-        };
-        firebase.initializeApp(config);
-    </script>
+
+    <script src="JS/read_write.js"></script>
 </head>
 <body>
-    <div id="status">
-        <button type="button" onclick="new_user()"> New User</button>
-        <button type="button" onclick="update_user()"> Update User </button>
-        <button type="button" onclick="update_size()"> Update Size </button>
-    </div>
-    <div id="wrapper">
+  <div id="status"> 
+		<button type="button" onclick="new_user()"> New User</button>
+		<button type="button" onclick="update_user()"> Update User </button>
+		<button type="button" onclick="update_size()"> Update Size </button>
+  </div>
+  <div id="wrapper">
       <div>
         <span>Gender </span>
         <span>
@@ -56,7 +49,7 @@
       <div id = "brand" class="toggle" style="display: none;">
         <span>Brand </span>
         <span>
-          <select size="1">
+          <select id="leBrand" onchange="display()" size="1">
             <option disabled selected value> -- select an option -- </option>
             <option value="zara">Zara</option>
             <option value="hnm">H&M</option>
@@ -67,7 +60,7 @@
       <div id = "measurement" class="toggle" style="display: none;">
         <span>Measurement </span>
         <span>
-          <select size="1">
+          <select id="measure" onchange="display()" size="1">
             <option disabled selected value> -- select an option -- </option>
             <option value="centimeter">cm</option>
             <option value="inch">inch</option>
@@ -76,53 +69,53 @@
       </div>
 
       <div class="inputDiv" id = "femaletop" class="toggle" style="display: none;">
-            <form action="/action_page.php">
-                  <label>Bust:</label> <input type="text" name="bust" value="0"></br>
-                  <label>Arm Length:</label> <input type="text" name="arm" value="0"></br>
-                  <label>Hip:</label> <input type="text" name="hip" value="0"></br>
-                  <label>Waist:</label> <input type="text" name="waist" value="0"></br>
-                  <label>Body Length:</label> <input type="text" name="body" value="0"></br>
-                  <input type="submit" value="Submit" onclick="update_size()">
+            <form onsubmit="submitForm()">
+				          <label>Bust:</label> <input type="number" step="0.01" id="FTbust" value="0"></br>
+                  <label>Arm Length:</label> <input type="number" step="0.01" id="FTarm" value="0"></br>
+                  <label>Hip:</label> <input type="number" step="0.01" id="FThip" value="0"></br>
+                  <label>Waist:</label> <input type="number" step="0.01" id="FTwaist" value="0"></br>
+                  <label>Body Length:</label> <input type="number" step="0.01" id="FTbody" value="0"></br>					  
+				  <input type="submit" value="Submit">
             </form>
       </div>
 
       <div class="inputDiv" id = "femalebottom" class="toggle" style="display: none;">
-            <form action="/action_page.php">
-                <label>Outseam:</label> <input type="text" name="outseam" value="0"></br>
-                <label>Inseam:</label> <input type="text" name="inseam" value="0"></br>
-                <label>Hip:</label> <input type="text" name="hip" value="0"></br>
-                <label>Waist:</label> <input type="text" name="waist" value="0"></br>
-                <label>Thigh:</label> <input type="text" name="thigh" value="0"></br>
-                <label>Calf:</label> <input type="text" name="calf" value="0"></br>
-                <label>Knee:</label> <input type="text" name="knee" value="0"></br>
-                <input type="submit" value="Submit" onclick="update_size()">
+            <form onsubmit="submitForm()">
+                <label>Outseam:</label> <input type="number" step="0.01" id="FBoutseam" value="0"></br>
+                <label>Inseam:</label> <input type="number" step="0.01" id="FBinseam" value="0"></br>
+                <label>Hip:</label> <input type="number" step="0.01" id="FBhip" value="0"></br>
+                <label>Waist:</label> <input type="number" step="0.01" id="FBwaist" value="0"></br>
+                <label>Thigh:</label> <input type="number" step="0.01" id="FBthigh" value="0"></br>
+                <label>Calf:</label> <input type="number" step="0.01" id="FBcalf" value="0"></br>
+                <label>Knee:</label> <input type="number" step="0.01" id="FBknee" value="0"></br>
+                <input type="submit" value="Submit">
             </form>
       </div>
 
       <div class="inputDiv" id = "maletop" class="toggle" style="display: none;">
-            <form action="/action_page.php">
-                <label>Shoulder:</label> <input type="text" name="shoulder" value="0"><br>
-                <label>Chest:</label> <input type="text" name="chest" value="0"><br>
-                <label>Back:</label> <input type="text" name="back" value="0"><br>
-                <label>Waist:</label> <input type="text" name="waist" value="0"><br>
-                <label>Sleeve:</label> <input type="text" name="sleeve" value="0"><br>
-                <label>Back Length:</label> <input type="text" name="backlength" value="0"><br>
-                <input type="submit" value="Submit" onclick="update_size()">
+            <form onsubmit="submitForm()">				
+				<label>Shoulder:</label> <input type="number" step="0.01" id="MTshoulder" value="0"><br>
+                <label>Chest:</label> <input type="number" step="0.01" id="MTchest" value="0"><br>
+                <label>Back:</label> <input type="number" step="0.01" id="MTback" value="0"><br>
+                <label>Waist:</label> <input type="number" step="0.01" id="MTwaist" value="0"><br>
+                <label>Sleeve:</label> <input type="number" step="0.01" id="MTsleeve" value="0" id="msleeve"><br>
+                <label>Back Length:</label> <input type="number" step="0.01" id="MTbacklength" value="0"><br>
+                <input type="submit" value="Submit">
             </form>
       </div>
 
       <div class="inputDiv" id = "malebottom" class="toggle" style="display: none;">
-            <form action="/action_page.php" >
-                <label>Hip:</label> <input type="text" name="hip" value="0"><br>
-                <label>Outseam:</label> <input type="text" name="outseam" value="0"><br>
-                <label>Inseam:</label> <input type="text" name="inseam" value="0"><br>
-                <label>Waist:</label> <input type="text" name="waist" value="0"><br>
-                <label>Knee:</label> <input type="text" name="knee" value="0"><br>
-                <label>Thigh:</label> <input type="text" name="thigh" value="0"><br>
-                <label>Calf:</label> <input type="text" name="calf" value="0"><br>
-                <input type="submit" value="Submit" onclick="update_size()">
-            </form>
+          <form onsubmit="submitForm()">
+				        <label>Hip:</label> <input type="number" step="0.01" id="MBhip" value="0"><br>
+                <label>Outseam:</label> <input type="number" step="0.01" id="MBoutseam" value="0"><br>
+                <label>Inseam:</label> <input type="number" step="0.01" id="MBinseam" value="0"><br>
+                <label>Waist:</label> <input type="number" step="0.01" id="MBwaist" value="0"><br>
+                <label>Knee:</label> <input type="number" step="0.01" id="MBknee" value="0"><br>
+                <label>Thigh:</label> <input type="number" step="0.01" id="MBthigh" value="0"><br>
+                <label>Calf:</label> <input type="number" step="0.01" id="MBcalf" value="0"><br>
+                <input type="submit" value="Submit">
+          </form>
       </div>
-    </div>
+  </div>
 </body>
 </html>
