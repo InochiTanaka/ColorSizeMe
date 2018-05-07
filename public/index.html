@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>ColorSizeMe</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -25,19 +25,24 @@
 	</script>
 	</head>
   <body>
-  		<header>
-		 	<div id="menu-box">
-			  <div id="toggle"><a href="#">menu</a></div>
-			   <h1>ColorSizeMe</h1>
-			   <div id="messageText"><p> </p></div>
-			  <ul id="menu" class="">
-					<li><a href="/input.html">Inputs</a></li>
-					<li><a href="#">Second</a></li>
-					<li><a href="#">Third</a></li>
-					<li><a id="loginState" onclick="loginFunction(document.getElementById('loginState').innerHTML)"> </a></li>
-				</ul>
-			</div>
+    	<header>
+			<ul class="loginTable">
+				<li id="messageText"><p></p></li>
+				<li a id="login" onclick="loginFunction()">Log In</a></li>
+				<li a id="logout" onclick="logoutFunction()">Log Out</a></li>
+				<li a id="signIn" onclick="">Sign In</a></li>
+			</ul>
 		</header>	
+		<div id="menu-box">
+		  <div id="toggle"><a href="#">menu</a></div>
+
+		  <ul id="menu" class="">
+				<li><a href="/input.html">Inputs</a></li>
+				<li><a href="#">Second</a></li>
+				<li><a href="#">Third</a></li>
+				<li><a href="#">Firth</a></li>
+			</ul>
+		</div>
 		<br>
     	
     <div id="message">
