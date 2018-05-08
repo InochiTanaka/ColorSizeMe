@@ -13,9 +13,27 @@ var diffe = 0.39370;
 
 /*Restricts input number boxes to a max 2 decimal places doc onLoad()*/
 $(document).ready(() => {	
-	$('input[type="number"]').on('click', () => {
+    /*$('form[id=MT]').find('input[type=number]').attr( {
+        maxlength : 5,
+
+                 $('form[id=2]') // get the form with id = 2
+                .find('input[name=message]') // locate the input element with attribute name = message
+                /.val()
+                .attr("value"); //  get the attribute = value
+    });*/
+
+    $('input[type=number]').attr( {
+        step : 0.01,
+        min : 10,
+        max : 500,
+        maxlength : 5,
+        value : 0
+    });
+
+	$('input[type="number"]').on('input', () => {
         this.value = parseFloat(this.value).toFixed(2);
     });
+
 });
 
 
