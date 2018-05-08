@@ -15,7 +15,7 @@ window.onload = function()
 					document.getElementById("email").style.display="none";
 					document.getElementById("password").style.display="none";
 					document.getElementById("messageText").style.display="inline";
-					document.getElementById("logout").style.display="inline";
+					document.getElementById("logout").style.display="none";
 					document.getElementById("login").style.display="none";
 					document.getElementById("newuser").style.display="none";
 					messageText.textContent = "Welcome, "+user.email+" ! ";	
@@ -34,12 +34,13 @@ window.onload = function()
 			}		
 			else
 			{			
-				document.getElementById("email").style.display="inline";
-				document.getElementById("password").style.display="inline";
+				document.getElementById("email").style.display="block";
+				document.getElementById("password").style.display="block";
 				document.getElementById("messageText").style.display="none";
 				document.getElementById("logout").style.display="none";
-				document.getElementById("login").style.display="inline";
-				document.getElementById("newuser").style.display="inline";
+				document.getElementById("login").style.display="block";
+				document.getElementById("newuser").style.display="block";
+				document.getElementById("close").style.display="block";
 				messageText.textContent = "";							
 			}	
 	});
