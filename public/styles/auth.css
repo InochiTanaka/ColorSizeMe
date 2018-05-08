@@ -1,7 +1,11 @@
 ﻿body
 {
 	margin: 0 auto; 
-	
+}
+
+#authTitle
+{
+	display: none;
 }
 
 #email
@@ -14,27 +18,27 @@
 	display: none;
 }
 
-#login
+#reload
 {
 	display: none;
 }
 
-#logout
+#regist
 {
 	display: none;
 }
 
-#newuser
+#valify
 {
 	display: none;
 }
 
-#userID
+#reload
 {
 	display: none;
 }
 
-#close
+#cancel
 {
 	display: none;
 }

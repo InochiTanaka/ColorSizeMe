@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login/Register form</title>
+    <title>Register Email and Password</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -16,8 +16,8 @@
     <script defer src="/__/firebase/init.js"></script>
 	
 		 <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="styles/login.css" />
-		<script type="text/javascript" src="JS/Login.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="styles/auth.css" />
+		<script type="text/javascript" src="JS/auth.js"></script>
 		<script type="text/javascript" src="JS/common.js"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
@@ -25,16 +25,18 @@
   </head>
   
 <body>
-    <h2>Login</h2>
+    <h2 id="authTitle">Register Email and Password</h2>
 	<div id="input-area">
 
 		<p id="messageText"></p>
 		<input id="email" type="email" placeholder="Email:" required/>
 		<input id="password" type="password" placeholder="Password:" required/>
 		
-		<button id="login" onclick="execute(id)">Log in</button>	
-		<button id="logout" onclick="execute(id)">Log out</button>			
-		<button id="close" onclick="if (/Chrome/i.test(navigator.userAgent)) { window.close(); } else { window.open('about:blank', '_self').close(); }">Close</button>
+		<button id="valify" onclick="execute(id)">Send Verification Email</button>
+		<button id="reload" onclick="execute(id)">Varified</button>
+		<button id="regist" onclick="execute(id)">Register Your Personal Data</button>
+		
+		<button id="cancel" onclick="moveToIndex()">Cancel</button>
 	</div>
  </body>
   
