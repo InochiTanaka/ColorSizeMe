@@ -28,13 +28,14 @@
     <h2>Login</h2>
 	<div id="input-area">
 
-		<p id="messageText"></p>
+		<p id="messageText0"></p>
+		<p id="messageText1"></p>
+
 		<input id="email" type="email" placeholder="Email:" required/>
 		<input id="password" type="password" placeholder="Password:" required/>
 		
-		<button id="login" onclick="execute(id)">Log in</button>	
-		<button id="logout" onclick="execute(id)">Log out</button>			
-		<button id="close" onclick="if (/Chrome/i.test(navigator.userAgent)) { window.close(); } else { window.open('about:blank', '_self').close(); }">Close</button>
+		<button id="login" onclick="login()">Log in</button>	
+		<button id="close" onclick="closeAndreload()">Close</button>
 	</div>
  </body>
   
