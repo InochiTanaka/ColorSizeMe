@@ -184,19 +184,31 @@ function writeNewPost(uid, gender, brand, type, measurement) {
 		}
 	}
 
-    // Get a key for a new Post. NADA AQUI!
-    // Write the new post's data simultaneously in the posts list and the user's post list.
-   // var newPostKey = firebase.database().ref().child('posts').push().key;
-   console.log(postData + "at 176");
-    var usersRef = database.ref().child('users/'+uid);
+    console.log(postData + "at 176");
+	
+	//Set data into sizes/uid {measurements}and market/citytown {measurements, uid : userid}
     var sizesRef = database.ref().child('sizes/'+uid);
-    usersRef.set(postData);
-    sizesRef.set(postData);
+	
+	//get geo-location of user
+	var citytown, country;
+	var usersRef = db.ref().child('users/' + uid + '/public_use').once('value')
+	.then(function(snapshot) {
+		citytown = snapshot.val().citytown;
+		country = snapshot.val().country;
+	});
+	var lastMeasuresRef = db.ref().child('users/' + uid +'/recent_measures');
+	var geoRef = db.ref().child('users/' + country + '/' citytown);
+	
+	var time = Firebase.ServerValue.TIMESTAMP;
+	
+	//push data to specified paths.
+    lastMeasuresRef.set(postData);
+    sizesRef.push(postData, uid);
+	geoRef.push(postData, uid, time);
+	
     //return firebase.database().ref().set(updates);
-
 
     /*var updates = {};
     updates['/posts/' + newPostKey] = postData;
     updates['/user-posts/' + uid + '/' + newPostKey] = postData;*/
-
-    }
+}
