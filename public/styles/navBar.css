@@ -41,7 +41,7 @@
 
 .loginTable
 {
-	width: 700dp;
+	width: 700vh;
 	display: table;
 	float: right;
 	border-collapse: collapse;
@@ -49,7 +49,7 @@
 
 #messageText {
 	display: table-cell;
-	margin-left: auto8
+	margin-left: auto;
 	text-align: right;
 }
 
