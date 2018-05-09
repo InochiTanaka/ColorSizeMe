@@ -197,7 +197,7 @@ function writeNewPost(uid, gender, brand, type, measurement) {
 		country = snapshot.val().country;
 	});
 	var lastMeasuresRef = db.ref().child('users/' + uid +'/recent_measures');
-	var geoRef = db.ref().child('users/' + country + '/' citytown);
+	var geoRef = db.ref().child('market/' + country + '/' citytown);
 	
 	var time = Firebase.ServerValue.TIMESTAMP;
 	
