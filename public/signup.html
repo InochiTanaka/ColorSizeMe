@@ -21,7 +21,7 @@
   <label class="col-sm-4 control-label" for="fname">First Name</label>  
   <div class="col-sm-4">
   <input id="fname" name="fname" type="text" placeholder="placeholder" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_fname">Type letters of first name only</span>  
+  <span class="help-block" id="invalid_fname" style="color:red">Invalid name.</span>  
   </div>
 </div>
 
@@ -30,7 +30,7 @@
   <label class="col-sm-4 control-label" for="Last Name">Last Name</label>  
   <div class="col-sm-4">
   <input id="lname" name="Last Name" type="text" placeholder="placeholder" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_lname">Type letters of last name only</span>  
+  <span class="help-block" id="invalid_lname" style="color:red">Invalid name.</span>  
   </div>
 </div>
 
@@ -54,7 +54,7 @@
   <label class="col-sm-4 control-label" for="textinput">Email</label>  
   <div class="col-sm-4">
   <input id="emailAd" name="EmailAddress" type="text" placeholder="your_email@host.domain" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_email">help</span>  
+  <span class="help-block" id="invalid_email" style="color:red">Invalid email.</span>  
   </div>
 </div>
 
@@ -63,7 +63,7 @@
   <label class="col-sm-4 control-label" for="textinput">Username</label>  
   <div class="col-sm-4">
   <input id="user" name="username" type="text" placeholder="yves-st-laurent" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_username">help</span>  
+  <span class="help-block" id="invalid_username" style="color:red">Invalid username.</span>  
   </div>
 </div>
 
@@ -72,7 +72,6 @@
   <label class="col-sm-4 control-label" for="Password">Password</label>
   <div class="col-sm-4">
     <input id="Password1" name="Password" type="password" placeholder="Minimum six aLph@ num3rs" class="form-control input-sm" required="">
-    <span class="help-block" id="invalid_pass1">help</span>
   </div>
 </div>
 
@@ -81,7 +80,7 @@
   <label class="col-sm-4 control-label" for="passwordinput">Password </label>
   <div class="col-sm-4">
     <input id="Password2" name="Password" type="password" placeholder="Type password again" class="form-control input-sm" required="">
-    <span class="help-block" id="invalid_pass2">help</span>
+    <span class="help-block" id="invalid_pass" style="color:red">Passwords must be same</span>
   </div>
 </div>
 
@@ -98,7 +97,7 @@
   <label class="col-sm-4 control-label" for="towncity">City/Town</label>  
   <div class="col-sm-4">
   <input id="towncity" name="towncity" type="text" placeholder="Burnaby" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_loc1">Type in city/town</span>  
+  <span class="help-block" id="invalid_loc1" style="color:red">Type in city/town</span>  
   </div>
 </div>
 
@@ -107,7 +106,7 @@
   <label class="col-sm-4 control-label" for="country">Country</label>  
   <div class="col-sm-4">
   <input id="country" name="country" type="text" placeholder="Canada" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_loc2">Type in country</span>  
+  <span class="help-block" id="invalid_loc2" style="color:red">Type in country</span>  
   </div>
 </div>
 
@@ -126,14 +125,16 @@
     //Sorted by class name of names! -or- A-Za-z
     $("#fname").keyup( function() {
         if (!(/^[A-Za-z]+$/.test(this.value)))
-			$("#invalid_fname").show();
-		$("#invalid_fname").hide();
+          $("#invalid_fname").show();
+        else
+          $("#invalid_fname").hide();
     });
     
     $("#lname").keyup( function() {
         if (!(/^[A-Za-z]+$/.test(this.value)))
-			$("#invalid_lname").show();
-		$("#invalid_lname").hide();
+          $("#invalid_lname").show();
+        else
+          $("#invalid_lname").hide();
     });
 
 	
@@ -141,9 +142,10 @@
     $("#emailAd").keyup( function() {
 	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var valid = re.test(this.value);
-        if(valid) 
-			$("#invalid_email").show();
-		$("#invalid_email").hide();
+        if (!valid) 
+          $("#invalid_email").show();
+        else
+          $("#invalid_email").hide();
     });
 
     //Auto geolocation. Requires permission. Pick this because SSL is required, which Google has
@@ -159,16 +161,17 @@
 	$("#Password1, #Password2").keyup( function() {
 		function checkPasswordsNow() {
 			if( !$("#Password1").val() && !$("#Password2").val() ) {
-				alert("Type passwords to both fields");
+				alert("Password field cannot be empty.");
 			}		
 			else if($("#Password1").val() != $("#Password2").val()) {
-				alert("Passwords must be same");
+				$("#invalid_pass").show();
 			}
+      else
+        $("#invalid_pass").hide();
 		}
 		setTimeout(checkPasswordsNow,3000);
 		/*Add password strength validation?*/
 	});
-
 
 </script>
 </html> 
