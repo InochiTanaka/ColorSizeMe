@@ -12,34 +12,41 @@ window.onload = function()
 			{		
 				if(user.emailVerified)
 				{
+					document.getElementById("authTitle").style.display="block";
 					document.getElementById("email").style.display="none";
 					document.getElementById("password").style.display="none";
 					document.getElementById("messageText").style.display="inline";
-					document.getElementById("logout").style.display="none";
-					document.getElementById("login").style.display="none";
-					document.getElementById("close").style.display="block";
+					document.getElementById("valify").style.display="none";
+					document.getElementById("reload").style.display="none";
+					document.getElementById("regist").style.display="block";
+					document.getElementById("cancel").style.display="block";
 					messageText.textContent = "Welcome, "+user.email+" ! ";	
 				}
 				else
 				{
+					document.getElementById("authTitle").style.display="block";
 					document.getElementById("messageText").style.display="block";
 					document.getElementById("email").style.display="none";
 					document.getElementById("password").style.display="none";
-					document.getElementById("logout").style.display="inline";
-					document.getElementById("login").style.display="none";
-					document.getElementById("close").style.display="block";
-					messageText.textContent = "Please activate your account on Valification Email. Or, please Sign in another account";	
+					document.getElementById("valify").style.display="none";
+					document.getElementById("reload").style.display="block";
+					document.getElementById("regist").style.display="none";
+					document.getElementById("cancel").style.display="none";
+					authTitle.textContent = "Please activate your account from Valification Email";
+					messageText.textContent = "Then, pleased push \"valified\".";	
 					//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 				}		
 			}		
 			else
 			{			
+				document.getElementById("authTitle").style.display="block";
 				document.getElementById("email").style.display="block";
 				document.getElementById("password").style.display="block";
 				document.getElementById("messageText").style.display="none";
-				document.getElementById("logout").style.display="none";
-				document.getElementById("login").style.display="block";
-				document.getElementById("close").style.display="block";
+				document.getElementById("valify").style.display="block";
+				document.getElementById("reload").style.display="none";
+				document.getElementById("regist").style.display="none";
+				document.getElementById("cancel").style.display="block";
 				messageText.textContent = "";							
 			}	
 	});
@@ -53,12 +60,8 @@ function execute(id)
 	var password = document.getElementById('password').value;
 	var messageText = document.getElementById('messageText');
 	
-	if(id == "newuser")//execute when pushed Sign in button
+	if(id == "valify")//execute when pushed Sign in button
 	{
-		
-		location.href = "/registration.html" ;
-		
-		/*
 		firebase.auth().createUserWithEmailAndPassword(email, password)
 		 .then(user => {
 
@@ -75,31 +78,13 @@ function execute(id)
 		  }, err => {
 			alert(err);
 		  });
-		  */
 	}
-	else if(id == "login")//execute when pushed Log in button
+	else if(id == "regist")//execute when pushed Log in button
 	{			
-		firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-			}).catch(function(error) {
-			alert('Failed to Login : ' + error.message);
-		});	
+		location.href = "/registration.html";
 	}
-	else if(id == "logout")//execute when pushed Log out button
-	{
-		//Check login/logout
-		firebase.auth().onAuthStateChanged(function(user) {
-			if(user) {	
-				location.reload();			
-				firebase.auth().signOut().then(user => {
-					location.reload();
-				 }, err => {
-				alert(err);
-			});
-			}
-		});
-	}
-	else if(id == "close")//execute when pushed Log in button
+	else if(id == "cancel")//execute when pushed Log in button
 	{			
-		window.open('about:blank','_self').close();
+		location.href = "/index.html";
 	}
 }
