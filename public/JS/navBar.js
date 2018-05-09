@@ -8,7 +8,7 @@ window.onload = function()
 		{		
 			if(user.emailVerified)
 			{
-				document.getElementById("logout").style.display="inline";
+				document.getElementById("accountMenu").style.display="inline";
 				document.getElementById("login").style.display="none";
 				document.getElementById("signup").style.display="none";
 				messageText.textContent = "Welcome, "+user.uid+" ! ";	
@@ -23,7 +23,7 @@ window.onload = function()
 			}
 			else
 			{
-				document.getElementById("logout").style.display="none";
+				document.getElementById("accountMenu").style.display="none";
 				document.getElementById("login").style.display="inline";
 				document.getElementById("signup").style.display="inline";
 				messageText.textContent = "";	
@@ -32,11 +32,10 @@ window.onload = function()
 		}		
 		else
 		{			
-			messageText.textContent = "";	
-			document.getElementById("logout").style.display="none";
+			document.getElementById("accountMenu").style.display="none";
 			document.getElementById("login").style.display="inline";
+			messageText.textContent = "or";	
 			document.getElementById("signup").style.display="inline";
-			loginState.textContent = "Log In";						
 		}	
 	});		
 }
@@ -70,12 +69,13 @@ function logoutFunction()
 	if(window.confirm('Do you log out?')){
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {	
-				//location.reload();			
-				firebase.auth().signOut().then(user => {
+				firebase.auth().signOut().then(function() {
+					
 					location.reload();
-				 }, err => {
-				alert(err);
-			});
+				
+				}).catch(function(error) {
+					alert('Failed to Logout : ' + error.message);
+				});
 			}
 		});
 	}

@@ -20,7 +20,7 @@
 <div class="form-group">
   <label class="col-sm-4 control-label" for="fname">First Name</label>  
   <div class="col-sm-4">
-  <input id="fname" name="fname" type="text" placeholder="placeholder" class="form-control input-sm" required="">
+  <input id="fname" name="fname" type="text" placeholder="John" class="form-control input-sm" required="">
   <span class="help-block" id="invalid_fname" style="color:red">Invalid name.</span>  
   </div>
 </div>
@@ -29,7 +29,7 @@
 <div class="form-group">
   <label class="col-sm-4 control-label" for="Last Name">Last Name</label>  
   <div class="col-sm-4">
-  <input id="lname" name="Last Name" type="text" placeholder="placeholder" class="form-control input-sm" required="">
+  <input id="lname" name="Last Name" type="text" placeholder="Doe" class="form-control input-sm" required="">
   <span class="help-block" id="invalid_lname" style="color:red">Invalid name.</span>  
   </div>
 </div>
@@ -53,7 +53,7 @@
 <div class="form-group">
   <label class="col-sm-4 control-label" for="textinput">Email</label>  
   <div class="col-sm-4">
-  <input id="emailAd" name="EmailAddress" type="text" placeholder="your_email@host.domain" class="form-control input-sm" required="">
+  <input id="emailAd" name="EmailAddress" type="text" placeholder="johndoe87@host.domain" class="form-control input-sm" required="">
   <span class="help-block" id="invalid_email" style="color:red">Invalid email.</span>  
   </div>
 </div>
@@ -62,7 +62,7 @@
 <div class="form-group">
   <label class="col-sm-4 control-label" for="textinput">Username</label>  
   <div class="col-sm-4">
-  <input id="user" name="username" type="text" placeholder="yves-st-laurent" class="form-control input-sm" required="">
+  <input id="user" name="username" type="text" placeholder="jdoe87" class="form-control input-sm" required="">
   <span class="help-block" id="invalid_username" style="color:red">Invalid username.</span>  
   </div>
 </div>
@@ -111,6 +111,10 @@
 </div>
 
 </fieldset>
+
+<!-- Submit button-->
+<input type="submit" value="Create Profile">
+
 </form>
 
 
@@ -147,6 +151,14 @@
         else
           $("#invalid_email").hide();
     });
+    
+    //Username Regex
+    $("#user").keyup( function() {
+      if (!(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/.test(this.value))) 
+        $("#invalid_username").show();
+      else
+        $("#invalid_username").hide();
+    });
 
     //Auto geolocation. Requires permission. Pick this because SSL is required, which Google has
     //verify geo location https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
@@ -160,12 +172,8 @@
 	
 	$("#Password1, #Password2").keyup( function() {
 		function checkPasswordsNow() {
-			if( !$("#Password1").val() && !$("#Password2").val() ) {
-				alert("Password field cannot be empty.");
-			}		
-			else if($("#Password1").val() != $("#Password2").val()) {
+			if($("#Password1").val() != $("#Password2").val())
 				$("#invalid_pass").show();
-			}
       else
         $("#invalid_pass").hide();
 		}
