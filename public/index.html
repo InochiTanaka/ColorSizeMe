@@ -1,8 +1,7 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html>
-  <head>
+	<head>
 		<meta charset="utf-8">
-	  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>ColorSizeMe</title>
 
@@ -14,44 +13,39 @@
 		<script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
 		<script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
 		<!-- initialize the SDK after all desired features are loaded -->
-		<script defer src="/__/firebase/init.js"></script>
-
-	  	<!-- Bootstrap -->
-	  	<link href="styles/bootstrap.min.css" rel="stylesheet">
-
-		<link rel="stylesheet" href="/common/css/style.css" type="text/css">
-		<script type="text/javascript" src="FirebaseInitialScript.js"></script>
+		<script defer src="/__/firebase/init.js"></script> 
+		<script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
 		<script type="text/javascript" src="JS/Style.js"></script>
 		<script type="text/javascript" src="JS/navBar.js"></script>
-		 <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
-		 <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
-		 <style media="screen">
-		</style>
-		<script>
-		</script>
+		<link rel="stylesheet" href="/common/css/style.css" type="text/css">
+		<link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
+		<style media="screen"></style>
 	</head>
   <body>
-    	<header>
-			<ul class="loginTable">
-				<li id="messageText"><p></p></li>
-				<li a id="login" onclick="loginFunction()">Log In</a></li>
-				<li a id="logout" onclick="logoutFunction()">Log Out</a></li>
-				<li a id="signup" onclick="signupFunction()">Sign up</a></li>
-			</ul>
-		</header>	
-		<div id="menu-box">
-		  <div id="toggle"><a href="#">menu</a></div>
+	<header>
+		<ul class="loginTable">
+			<li a id="login" onclick="loginFunction()">Log In</a></li>
+			<li id="messageText"><p></p></li>
+			<li id="accountMenu" onclick="logoutFunction()"><img class="accountImage" src="/images/sampleHumanIcon.jpg"><div class="dropDownSign"></li>
+			<li a id="signup" onclick="signupFunction()">Sign Up</a></li>
+		</ul>
+	</header>	
 
-		  <ul id="menu" class="">
-				<li><a href="/input.html">Inputs</a></li>
-				<li><a href="#">Second</a></li>
-				<li><a href="#">Third</a></li>
-				<li><a href="#">Firth</a></li>
-			</ul>
-		</div>
-		<br>
+	<div id="menu-box">
+	  <div id="toggle"><a href="#">menu</a></div>
+
+	  <ul id="menu" class="">
+			<li><a href="/input.html">Inputs</a></li>
+			<li><a href="#">Second</a></li>
+			<li><a href="#">Third</a></li>
+			<li><a href="#">Firth</a></li>
+		</ul>
+	</div>
+	<br>
     	
-    <div id="message">
+    <div id="message">	
       <h2>Welcome</h2>
       <h1>Firebase Hosting Setup Complete</h1>
       <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
