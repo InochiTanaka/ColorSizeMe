@@ -72,6 +72,7 @@
   <label class="col-sm-4 control-label" for="Password">Password</label>
   <div class="col-sm-4">
     <input id="Password1" name="Password" type="password" placeholder="Minimum six aLph@ num3rs" class="form-control input-sm" required="">
+    <span class="help-block" id="invalid_pass1" style="color:red">Passwords must be minimum 6 characters.</span>
   </div>
 </div>
 
@@ -80,7 +81,7 @@
   <label class="col-sm-4 control-label" for="passwordinput">Password </label>
   <div class="col-sm-4">
     <input id="Password2" name="Password" type="password" placeholder="Type password again" class="form-control input-sm" required="">
-    <span class="help-block" id="invalid_pass" style="color:red">Passwords must be same</span>
+    <span class="help-block" id="invalid_pass2" style="color:red">Passwords must be same</span>
   </div>
 </div>
 
@@ -145,8 +146,7 @@
     $("input:checkbox").on('click', function() {
       var $box = $(this);
       var group = "input:checkbox[name='" + $box.attr("name") + "']";
-      if ($box.is(":checked")) {
-        
+      if ($box.is(":checked")) {        
         $(group).prop("checked", false);
         $(group).prop("required", false);
         $box.prop("checked", true);
@@ -187,10 +187,15 @@
 	
 	$("#Password1, #Password2").keyup( function() {
 		function checkPasswordsNow() {
-			if($("#Password1").val() != $("#Password2").val())
-				$("#invalid_pass").show();
+      if($("#Password1").val().length < 6)
+        $("#invalid_pass1").show();
       else
-        $("#invalid_pass").hide();
+        $("#invalid_pass1").hide();  
+              
+			if($("#Password1").val() != $("#Password2").val())
+				$("#invalid_pass2").show();
+      else
+        $("#invalid_pass2").hide();
 		}
 		setTimeout(checkPasswordsNow,3000);
 		/*Add password strength validation?*/
