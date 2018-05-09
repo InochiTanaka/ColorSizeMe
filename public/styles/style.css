@@ -50,6 +50,11 @@
   padding-top: 50px;
 }
 
+.form-horizontal input[type=submit] {
+  display: block;
+  margin: auto;
+}
+
 /*Firebase default setting*/
 body { 
 	background: #ECEFF1; 
