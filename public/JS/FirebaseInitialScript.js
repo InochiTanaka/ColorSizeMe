@@ -1,4 +1,4 @@
-window.onload = function fire_base_load() {
+window.onload = function () {
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyAggze2rZ60EcMihQwYTEoIjRyBqyYVkgA",

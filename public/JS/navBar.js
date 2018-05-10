@@ -24,7 +24,7 @@ window.onload = function()
 					document.getElementById("login").style.display="none";
 					document.getElementById("logout").style.display="none";
 					document.getElementById("signup").style.display="none";
-					messageText0.textContent = "Welcome, "+user.uid+" ! ";	
+					messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
 					
 					/*name = user.displayName;
 					  email = user.email;
@@ -106,7 +106,7 @@ function signupFunction()
 		}		
 		else
 		{	*/		
-			location.href = "/authentication.html" ;		
+			location.href = "/auth.html" ;		
 		/*}	
 	});	*/					
 }
