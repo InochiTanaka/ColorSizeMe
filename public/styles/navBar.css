@@ -1,4 +1,4 @@
-﻿header{
+﻿﻿header{
 	  color: #000;
 	  background: #fff;
 	  float: right;
@@ -60,7 +60,7 @@
 {
 	display: table-cell;
 	vertical-align: middle;
-	width: 60px;
+	width: 70px;
 	color: #fff;
 	text-align: center;
 	background-color: #333;
