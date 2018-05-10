@@ -73,8 +73,7 @@ function loginFunction()
 		}		
 		else
 		{			
-			login = window.open("/login.html","Log In","width=500dp,height=400dp,scrollbars=yes,status=no,toolbar=no,location=no,menubar=no,directories=no,resizable=yes");
-			login.focus();
+			location.href = "/login.html" ;	
 		}	
 	});						
 }
@@ -86,9 +85,7 @@ function logoutFunction()
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {	
 				firebase.auth().signOut().then(function() {
-					
-					location.reload();
-				
+									
 				}).catch(function(error) {
 					alert('Failed to Logout : ' + error.message);
 				});
