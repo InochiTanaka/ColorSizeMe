@@ -1,7 +1,6 @@
 ﻿﻿header{
 	  color: #000;
 	  background: #fff;
-	  width: 700px;
 	  float: right;
 } 
 
@@ -36,52 +35,53 @@
 }
 
 #toggle{ 
- display: none;
+	display: none;
+ 	vertical-align: middle;
 }
 
 .loginTable
 {
-	width: 700dp;
+	width: auto;
 	display: table;
 	float: right;
 	border-collapse: collapse;
 	list-style:none;
 	margin-right: 10px;
-	text-align: center;
+	vertical-align: middle;
 }
 
-#messageText {
+#messageText0, #messageText1 {
 	display: table-cell;
 	vertical-align: middle;
+	margin: 5px;
 }
 
 #login, #logout, #signup
 {
 	display: table-cell;
-	text-align: center;
-	width: 90px;
+	vertical-align: middle;
+	width: 70px;
 	color: #fff;
+	text-align: center;
 	background-color: #333;
 	cursor : pointer;
 	margin: 5px;
 	padding: 5px;
-	border: 3px solid white;
-	display : none;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1); 
+	display: none;
 }
 
 #accountMenu
 {
 	cursor : pointer;
-	margin: 5px;
 	display : none;
+	vertical-align: middle;
 }
 
 .accountImage
 {
 	display: table-cell;
 	height: 30px;
-	display : inline;
+	vertical-align: middle;
 }
 
 #login:hover, #logout:hover, #signup:hover{
