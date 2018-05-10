@@ -5,7 +5,7 @@ function moveToIndex(){
 
 function closeAndreload()
 {
-	window.opener.location.reload();
+	window.opener.location.reload(false);
 	
 	if (/Chrome/i.test(navigator.userAgent)) 
 	{ 
