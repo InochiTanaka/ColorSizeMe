@@ -46,7 +46,3 @@ function display(){
         $("#femaletop").hide();               
     }
 }
-
-var navigation = responsiveNav("#nav", {
-    customToggle: "#nav-toggle"
-});
