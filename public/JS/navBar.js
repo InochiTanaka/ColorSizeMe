@@ -11,7 +11,7 @@ window.onload = function()
 				document.getElementById("accountMenu").style.display="inline";
 				document.getElementById("login").style.display="none";
 				document.getElementById("signup").style.display="none";
-				messageText.textContent = "Welcome, "+user.uid+" ! ";	
+				//messageText.textContent = "Welcome, "+user.uid+" ! ";
 				
 				/*name = user.displayName;
 				  email = user.email;
