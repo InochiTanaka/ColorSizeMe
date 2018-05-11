@@ -19,6 +19,7 @@ h1
 
 #loginPic
 {
+	color : red;
 	display:none;
 	height: 150px;
 	padding: 10px;

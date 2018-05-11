@@ -25,6 +25,7 @@
         <link rel="stylesheet" href="styles/style.css" type="text/css">
         <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="styles/dropdownMenu.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
         <style media="screen"></style>
 	</head>
@@ -36,9 +37,13 @@
 			<li a id="signup" onclick="signupFunction()">Sign Up</a></li>
 			<li id="messageText1"><p></p></li>
 			<li a id="logout" onclick="logoutFunction()">Log Out</a></li>
-			<li id="accountMenu" onclick="logoutFunction()"><img id="accountImage" src=""><div class="dropDownSign"/></li>
+			<li>
+				<div id="accountMenu" onclick="logoutFunction()"><img id="accountImage" src=""><div class="dropDownSign"/>
+			</li>
 		</ul>
-	</header>	
+	</header>
+	
+
 
 	<!--
 	<div id="menu-box">
@@ -52,7 +57,7 @@
 		</ul>
 	</div>
 	<br>
-	-->
+	-->	
     	
     <div id="message">	
       <h2>Welcome</h2>
@@ -61,7 +66,6 @@
       <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
     </div>
     <p id="load">Firebase SDK Loading&hellip;</p>
-
     <br>
 
     <script>
@@ -86,5 +90,18 @@
         }
       });
     </script>
+	<footer>
+	<div>
+		<p>Switching User role :</p>
+		<select id ="userRole" onchange="switchRole()">
+		  <option value="user">User</option>
+		  <option value="manager">Manager</option>
+		  <option value="retailer">Retailer</option>
+		  <option value="admin">Admin</option>
+		</select>
+	</div>
+	
+
+	</footer>
   </body>
 </html>

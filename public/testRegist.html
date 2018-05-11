@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="JS/signup.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/dropdownMenu.css" />
   
   <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
 	<script>
@@ -25,6 +26,17 @@
 	</script>
 </head>
 <body>
+	<ul class="menu">
+		<li class="menu__single">
+			<a href="#" class="init-bottom">Menu single</a>
+			<ul class="menu__second-level">
+				<li><a href="#">Child Menu</a></li>
+				<li><a href="#">Child Menu</a></li>
+				<li><a href="#">Child Menu</a></li>
+			</ul>
+		</li>
+		<!-- 他グローバルナビメニュー省略 -->
+	</ul>
 
  <input type="text" id="user" size="30" maxlength="20">
  <button onclick = "create(user)">Create<button>

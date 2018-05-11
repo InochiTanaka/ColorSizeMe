@@ -46,3 +46,11 @@ function display(){
         $("#femaletop").hide();               
     }
 }
+
+// Temp Switching user role function
+
+function switchRole()
+{
+	var role = document.getElementById('userRole').value;
+	alert(role);
+}
