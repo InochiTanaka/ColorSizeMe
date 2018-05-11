@@ -1,32 +1,32 @@
-[debug] [2018-05-10T01:32:13.430Z] ----------------------------------------------------------------------
-[debug] [2018-05-10T01:32:13.433Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
-[debug] [2018-05-10T01:32:13.433Z] CLI Version:   3.18.4
-[debug] [2018-05-10T01:32:13.433Z] Platform:      darwin
-[debug] [2018-05-10T01:32:13.433Z] Node Version:  v9.8.0
-[debug] [2018-05-10T01:32:13.433Z] Time:          Wed May 09 2018 18:32:13 GMT-0700 (PDT)
-[debug] [2018-05-10T01:32:13.433Z] ----------------------------------------------------------------------
+[debug] [2018-05-11T17:43:51.117Z] ----------------------------------------------------------------------
+[debug] [2018-05-11T17:43:51.119Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-05-11T17:43:51.119Z] CLI Version:   3.18.4
+[debug] [2018-05-11T17:43:51.119Z] Platform:      darwin
+[debug] [2018-05-11T17:43:51.119Z] Node Version:  v9.8.0
+[debug] [2018-05-11T17:43:51.119Z] Time:          Fri May 11 2018 10:43:51 GMT-0700 (PDT)
+[debug] [2018-05-11T17:43:51.119Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-05-10T01:32:13.452Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-05-10T01:32:13.452Z] > authorizing via signed-in user
-[debug] [2018-05-10T01:32:13.455Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/colorsizeme-demo  
+[debug] [2018-05-11T17:43:51.134Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-05-11T17:43:51.135Z] > authorizing via signed-in user
+[debug] [2018-05-11T17:43:51.137Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/colorsizeme-demo  
   
- Wed May 09 2018 18:32:13 GMT-0700 (PDT)
-[debug] [2018-05-10T01:32:13.858Z] <<< HTTP RESPONSE 200
-[debug] [2018-05-10T01:32:13.859Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/colorsizeme-demo/tokens  
+ Fri May 11 2018 10:43:51 GMT-0700 (PDT)
+[debug] [2018-05-11T17:43:51.609Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-11T17:43:51.610Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/colorsizeme-demo/tokens  
   
- Wed May 09 2018 18:32:13 GMT-0700 (PDT)
-[debug] [2018-05-10T01:32:14.213Z] <<< HTTP RESPONSE 200
-[debug] [2018-05-10T01:32:14.214Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/colorsizeme-demo  
+ Fri May 11 2018 10:43:51 GMT-0700 (PDT)
+[debug] [2018-05-11T17:43:51.972Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-11T17:43:51.973Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/colorsizeme-demo  
   
- Wed May 09 2018 18:32:14 GMT-0700 (PDT)
-[debug] [2018-05-10T01:32:14.462Z] <<< HTTP RESPONSE 200
+ Fri May 11 2018 10:43:51 GMT-0700 (PDT)
+[debug] [2018-05-11T17:43:52.219Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/Users/test/Sites/ColorSizeMe2'...
 [info] 
-[debug] [2018-05-10T01:32:14.464Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/838251688484/clients/_:getWebAppConfig  
+[debug] [2018-05-11T17:43:52.222Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/838251688484/clients/_:getWebAppConfig  
   
- Wed May 09 2018 18:32:14 GMT-0700 (PDT)
-[debug] [2018-05-10T01:32:14.964Z] <<< HTTP RESPONSE 200
+ Fri May 11 2018 10:43:52 GMT-0700 (PDT)
+[debug] [2018-05-11T17:43:52.757Z] <<< HTTP RESPONSE 200
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
 
