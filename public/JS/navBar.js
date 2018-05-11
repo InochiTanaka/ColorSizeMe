@@ -15,7 +15,7 @@ window.onload = function()
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("accountMenu").style.display="none";
 					messageText0.textContent = "Please continue your Sign Up process ";
-					messageText1.textContent = "or";					
+					messageText1.textContent = "or";	
 					
 				}
 				else
@@ -26,6 +26,14 @@ window.onload = function()
 					document.getElementById("signup").style.display="none";
 					messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
 					
+					if(user.photoURL == null)
+					{
+						document.images["accountImage"].src = "../images/sampleHumanIcon.jpg";
+					}
+					else
+					{
+						document.getElementById("accountImage").src=(user.photoURL).src;
+					}
 					/*name = user.displayName;
 					  email = user.email;
 					  photoUrl = user.photoURL;
@@ -81,7 +89,7 @@ function loginFunction()
 
 function logoutFunction()
 {
-	if(window.confirm('Do you log out?')){
+	if(window.confirm('Do you want to log out?')){
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {	
 				firebase.auth().signOut().then(function() {
