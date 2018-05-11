@@ -4,10 +4,13 @@ window.onload = function()
 
 	firebase.auth().onAuthStateChanged(function(user)
 	{
+		// If user auth data is exixts
 		if(user) 
 		{		
+			//If email verifying is done:
 			if(user.emailVerified)
 			{
+				//If user.displayName is null(means not registered yet)
 				if(user.displayName == null)
 				{
 					document.getElementById("login").style.display="none";
@@ -15,17 +18,25 @@ window.onload = function()
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("accountMenu").style.display="none";
 					messageText0.textContent = "Please continue your Sign Up process ";
-					messageText1.textContent = "or";					
+					messageText1.textContent = "or";	
 					
 				}
-				else
+				else //If user.displayName is not null(means registered already)
 				{
 					document.getElementById("accountMenu").style.display="inline-block";
 					document.getElementById("login").style.display="none";
 					document.getElementById("logout").style.display="none";
 					document.getElementById("signup").style.display="none";
-					messageText0.textContent = "Welcome, "+user.uid+" ! ";	
+					messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
 					
+					if(user.photoURL == null)
+					{
+						document.images["accountImage"].src = "../images/sampleHumanIcon.jpg";
+					}
+					else
+					{
+						document.images["accountImage"].src = user.photoURL;
+					}
 					/*name = user.displayName;
 					  email = user.email;
 					  photoUrl = user.photoURL;
@@ -35,7 +46,7 @@ window.onload = function()
 									   // you have one. Use User.getToken() instead.*/
 				}
 			}
-			else
+			else //If email verrifying is not done:
 			{
 				document.getElementById("accountMenu").style.display="none";
 				document.getElementById("login").style.display="inline-block";
@@ -44,7 +55,7 @@ window.onload = function()
 				//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 			}		
 		}		
-		else
+		else //If user auth data is not exists and logout:
 		{			
 			document.getElementById("accountMenu").style.display="none";
 			document.getElementById("login").style.display="inline-block";
@@ -73,8 +84,7 @@ function loginFunction()
 		}		
 		else
 		{			
-			login = window.open("/login.html","Log In","width=500dp,height=400dp,scrollbars=yes,status=no,toolbar=no,location=no,menubar=no,directories=no,resizable=yes");
-			login.focus();
+			location.href = "/login.html" ;	
 		}	
 	});						
 }
@@ -82,13 +92,11 @@ function loginFunction()
 
 function logoutFunction()
 {
-	if(window.confirm('Do you log out?')){
+	if(window.confirm('Do you want to log out?')){
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {	
 				firebase.auth().signOut().then(function() {
-					
-					location.reload();
-				
+									
 				}).catch(function(error) {
 					alert('Failed to Logout : ' + error.message);
 				});
@@ -106,7 +114,7 @@ function signupFunction()
 		}		
 		else
 		{	*/		
-			location.href = "/authentication.html" ;		
+			location.href = "/auth.html" ;		
 		/*}	
 	});	*/					
 }
