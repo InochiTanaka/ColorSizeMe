@@ -70,20 +70,63 @@ body {
 	margin: 0; 
 	padding: 0; 
 }
-   
+
+@media (max-width: 500px) {
+
+    body {
+        height: 100%;
+        margin:0;
+        padding:0;
+    }
+
+    body #header {
+        width: 100%;
+        height: 10%;
+        background: #0f0f0f;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        color: #ffffff;
+        position: absolute;
+    }
+
+    body #header a.home {
+        width: 20%;
+        height:100%;
+        text-align: center;
+        padding-left: 20px;
+        font-size: 25px;
+    }
+
+    body #input {
+        position: relative;
+        padding-top: 300px;
+        text-align: center;
+    }
+
+    body #input input {
+        width: 80px;
+        height: 35px;
+        background: #2aabd2;
+    }
+
+    body ul .loginTable {
+        padding-top: 10px;
+    }
+
+    body #footer {
+        position:absolute;
+        bottom:0;
+        width:100%;
+        background: #0f0f0f;
+        color: #ffffff;
+    }
+}
+
 #message { 
 	background: white; 
 	max-width: 360px; 
 	margin: 100px auto 16px; 
 	padding: 32px 24px; 
 	border-radius: 3px; 
-}
-   
-#message h2 { 
-	color: #ffa100; 
-	font-weight: bold; 
-	font-size: 16px; 
-	margin: 0 0 8px; 
 }
 
 #message h1 { 
@@ -126,12 +169,8 @@ body {
 		background: white; 
 		box-shadow: none; 
 	}
-  
-	body { 
-		border-top: 16px solid #ffa100; 
-	}
 	
 	#menu {
- 		background-color: #333;
+ 		background-color: #333333;
   }	
 }
