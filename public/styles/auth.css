@@ -18,6 +18,11 @@
 	display: none;
 }
 
+#password
+{
+	display: none;
+}
+
 #reload
 {
 	display: none;

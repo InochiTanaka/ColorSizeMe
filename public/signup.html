@@ -72,6 +72,7 @@
   <label class="col-sm-4 control-label" for="Password">Password</label>
   <div class="col-sm-4">
     <input id="Password1" name="Password" type="password" placeholder="Minimum six aLph@ num3rs" class="form-control input-sm" required="">
+    <span class="help-block" id="invalid_pass1" style="color:red">Passwords must be minimum 6 characters.</span>
   </div>
 </div>
 
@@ -80,7 +81,7 @@
   <label class="col-sm-4 control-label" for="passwordinput">Password </label>
   <div class="col-sm-4">
     <input id="Password2" name="Password" type="password" placeholder="Type password again" class="form-control input-sm" required="">
-    <span class="help-block" id="invalid_pass" style="color:red">Passwords must be same</span>
+    <span class="help-block" id="invalid_pass2" style="color:red">Passwords must be same</span>
   </div>
 </div>
 
@@ -117,36 +118,57 @@
 
 </form>
 
-
 </body>
 <script>
+  var condition1 = false;
+  var condition2 = false;
+  var condition3 = false;
+  var condition4 = false;
+  var condition5 = false;
+  var condition6 = false;
+  
 	$("span").hide();
-    
+  $(':input[type="submit"]').prop('disabled', true);
+  
+  function validate() {
+    if (condition1 && condition2 && condition3 && condition4 && condition5 && condition6)
+      $(':input[type="submit"]').prop('disabled', false);
+    else
+      $(':input[type="submit"]').prop('disabled', true);
+  }
+  
 	$("input[type=text]").attr( {
 		maxlength : 50
     }); 
 
     //Sorted by class name of names! -or- A-Za-z
     $("#fname").keyup( function() {
-        if (!(/^[A-Za-z]+$/.test(this.value)))
+        if (!(/^[A-Za-z]+$/.test(this.value))) {
+          condition1 = false;
           $("#invalid_fname").show();
-        else
+        } else {
+          condition1 = true;
           $("#invalid_fname").hide();
+        }
+        validate();
     });
     
     $("#lname").keyup( function() {
-        if (!(/^[A-Za-z]+$/.test(this.value)))
+        if (!(/^[A-Za-z]+$/.test(this.value))) {
+          condition2 = false;
           $("#invalid_lname").show();
-        else
+        } else {
+          condition2 = true;
           $("#invalid_lname").hide();
+        }
+        validate();
     });
 
     //Gender Selection
     $("input:checkbox").on('click', function() {
       var $box = $(this);
       var group = "input:checkbox[name='" + $box.attr("name") + "']";
-      if ($box.is(":checked")) {
-        
+      if ($box.is(":checked")) {        
         $(group).prop("checked", false);
         $(group).prop("required", false);
         $box.prop("checked", true);
@@ -160,19 +182,27 @@
     $("#emailAd").keyup( function() {
 	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         var valid = re.test(this.value);
-        if (!valid) 
+        if (!valid) { 
+          condition3 = false;
           $("#invalid_email").show();
-        else
+        } else {
+          condition3 = true;
           $("#invalid_email").hide();
+        }
+        validate();
     });
     
     
     //Username Regex
     $("#user").keyup( function() {
-      if (!(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/.test(this.value))) 
+      if (!(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/.test(this.value))) {
+        condition4 = false;
         $("#invalid_username").show();
-      else
+      } else {
+        condition4 = true;
         $("#invalid_username").hide();
+      }
+      validate();
     });
 
     //Auto geolocation. Requires permission. Pick this because SSL is required, which Google has
@@ -187,13 +217,26 @@
 	
 	$("#Password1, #Password2").keyup( function() {
 		function checkPasswordsNow() {
-			if($("#Password1").val() != $("#Password2").val())
-				$("#invalid_pass").show();
-      else
-        $("#invalid_pass").hide();
+      if($("#Password1").val().length < 6) {
+        condition5 = false;
+        $("#invalid_pass1").show();
+      } else {
+        condition5 = true;
+        $("#invalid_pass1").hide();  
+      }
+              
+			if($("#Password1").val() != $("#Password2").val()) {
+        condition6 = false;
+				$("#invalid_pass2").show();
+      } else {
+        condition6 = true;
+        $("#invalid_pass2").hide();
+      }
 		}
 		setTimeout(checkPasswordsNow,3000);
 		/*Add password strength validation?*/
+    
+    validate();
 	});
     
 </script>

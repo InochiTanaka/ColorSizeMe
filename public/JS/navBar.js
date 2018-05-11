@@ -8,24 +8,38 @@ window.onload = function()
 		{		
 			if(user.emailVerified)
 			{
-				document.getElementById("accountMenu").style.display="inline";
-				document.getElementById("login").style.display="none";
-				document.getElementById("signup").style.display="none";
-				//messageText.textContent = "Welcome, "+user.uid+" ! ";
-				
-				/*name = user.displayName;
-				  email = user.email;
-				  photoUrl = user.photoURL;
-				  emailVerified = user.emailVerified;
-				  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-								   // this value to authenticate with your backend server, if
-								   // you have one. Use User.getToken() instead.*/
+				if(user.displayName == null)
+				{
+					document.getElementById("login").style.display="none";
+					document.getElementById("signup").style.display="inline-block";
+					document.getElementById("logout").style.display="inline-block";
+					document.getElementById("accountMenu").style.display="none";
+					messageText0.textContent = "Please continue your Sign Up process ";
+					messageText1.textContent = "or";					
+					
+				}
+				else
+				{
+					document.getElementById("accountMenu").style.display="inline-block";
+					document.getElementById("login").style.display="none";
+					document.getElementById("logout").style.display="none";
+					document.getElementById("signup").style.display="none";
+					messageText0.textContent = "Welcome, "+user.uid+" ! ";	
+					
+					/*name = user.displayName;
+					  email = user.email;
+					  photoUrl = user.photoURL;
+					  emailVerified = user.emailVerified;
+					  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+									   // this value to authenticate with your backend server, if
+									   // you have one. Use User.getToken() instead.*/
+				}
 			}
 			else
 			{
 				document.getElementById("accountMenu").style.display="none";
-				document.getElementById("login").style.display="inline";
-				document.getElementById("signup").style.display="inline";
+				document.getElementById("login").style.display="inline-block";
+				document.getElementById("signup").style.display="inline-block";
 				messageText.textContent = "";	
 				//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 			}		
@@ -33,9 +47,11 @@ window.onload = function()
 		else
 		{			
 			document.getElementById("accountMenu").style.display="none";
-			document.getElementById("login").style.display="inline";
-			messageText.textContent = "or";	
-			document.getElementById("signup").style.display="inline";
+			document.getElementById("login").style.display="inline-block";
+			document.getElementById("logout").style.display="none";
+			messageText0.textContent = "or";	
+			messageText1.textContent = "";	
+			document.getElementById("signup").style.display="inline-block";
 		}	
 	});		
 }
