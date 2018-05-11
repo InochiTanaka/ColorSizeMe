@@ -8,20 +8,32 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="JS/userdata.js"></script>
+   
+  <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+       
 </head>
 <body>
-<form class="form-horizontal" onsubmit="myFunction()">
+<form class="form-horizontal" onsubmit="new_user()" action="index.html">
 <fieldset>
 
 <!-- Form Name -->
-<legend>Form Name</legend>
+<legend>Create Your Profile</legend>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-sm-4 control-label" for="fname">First Name</label>  
   <div class="col-sm-4">
   <input id="fname" name="fname" type="text" placeholder="John" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_fname" style="color:red">Invalid name.</span>  
+  <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>  
   </div>
 </div>
 
@@ -30,31 +42,7 @@
   <label class="col-sm-4 control-label" for="Last Name">Last Name</label>  
   <div class="col-sm-4">
   <input id="lname" name="Last Name" type="text" placeholder="Doe" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_lname" style="color:red">Invalid name.</span>  
-  </div>
-</div>
-
-<!-- Multiple Checkboxes (inline) -->
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="_Gender">Gender</label>
-  <div class="col-sm-4">
-    <label class="checkbox-inline" for="_Gender-0">
-      <input type="checkbox" name="_Gender" id="_Gender-0" value="male" required>
-      Male
-    </label>
-    <label class="checkbox-inline" for="_Gender-1">
-      <input type="checkbox" name="_Gender" id="_Gender-1" value="female" required>
-      Female
-    </label>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="textinput">Email</label>  
-  <div class="col-sm-4">
-  <input id="emailAd" name="EmailAddress" type="text" placeholder="johndoe87@host.domain" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_email" style="color:red">Invalid email.</span>  
+  <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>  
   </div>
 </div>
 
@@ -63,25 +51,7 @@
   <label class="col-sm-4 control-label" for="textinput">Username</label>  
   <div class="col-sm-4">
   <input id="user" name="username" type="text" placeholder="jdoe87" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_username" style="color:red">Invalid username.</span>  
-  </div>
-</div>
-
-<!-- Password input-->
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="Password">Password</label>
-  <div class="col-sm-4">
-    <input id="Password1" name="Password" type="password" placeholder="Minimum six aLph@ num3rs" class="form-control input-sm" required="">
-    <span class="help-block" id="invalid_pass1" style="color:red">Passwords must be minimum 6 characters.</span>
-  </div>
-</div>
-
-<!-- Password input-->
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="passwordinput">Password </label>
-  <div class="col-sm-4">
-    <input id="Password2" name="Password" type="password" placeholder="Type password again" class="form-control input-sm" required="">
-    <span class="help-block" id="invalid_pass2" style="color:red">Passwords must be same</span>
+  <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>  
   </div>
 </div>
 
@@ -98,7 +68,7 @@
   <label class="col-sm-4 control-label" for="towncity">City/Town</label>  
   <div class="col-sm-4">
   <input id="towncity" name="towncity" type="text" placeholder="Burnaby" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_loc1" style="color:red">Type in city/town</span>  
+  <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>  
   </div>
 </div>
 
@@ -107,31 +77,36 @@
   <label class="col-sm-4 control-label" for="country">Country</label>  
   <div class="col-sm-4">
   <input id="country" name="country" type="text" placeholder="Canada" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_loc2" style="color:red">Type in country</span>  
+  <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>  
   </div>
 </div>
 
 </fieldset>
 
-<!-- Submit button-->
-<input type="submit" value="Create Profile">
+<!-- Buttons-->
+<div id="buttons">
+  <div class="row">
+    <div class="cell">
+      <input type="submit" value="Create Profile">
+      <input type="button" value="Cancel" onclick="window.location='index.html';">
+    </div>
+  </div>
+</div>
 
 </form>
 
 </body>
+
 <script>
   var condition1 = false;
   var condition2 = false;
   var condition3 = false;
-  var condition4 = false;
-  var condition5 = false;
-  var condition6 = false;
-  
-	$("span").hide();
+
   $(':input[type="submit"]').prop('disabled', true);
   
+  //Validate the inputs
   function validate() {
-    if (condition1 && condition2 && condition3 && condition4 && condition5 && condition6)
+    if (condition1 && condition2 && condition3)
       $(':input[type="submit"]').prop('disabled', false);
     else
       $(':input[type="submit"]').prop('disabled', true);
@@ -163,82 +138,67 @@
         }
         validate();
     });
+       
+  //Username Regex
+  $("#user").keyup( function() {
+    if (!(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/.test(this.value))) {
+      condition3 = false;
+      document.getElementById("invalid_username").innerHTML = "Username can only contain alphabetic, numeric and -,_ characters. ";
+      document.getElementById("invalid_username").style.color = "red";
+      $("#invalid_username").show();
+      $("#symbol").hide();
+    } else        
+      checkIfNew(this.value)
+        
+                
+    validate();
+  });
 
-    //Gender Selection
-    $("input:checkbox").on('click', function() {
-      var $box = $(this);
-      var group = "input:checkbox[name='" + $box.attr("name") + "']";
-      if ($box.is(":checked")) {        
-        $(group).prop("checked", false);
-        $(group).prop("required", false);
-        $box.prop("checked", true);
-      } else {
-        $box.prop("checked", false);
-        $(group).prop("required", true);
-      }
-    });
-    
-    //Email Regex
-    $("#emailAd").keyup( function() {
-	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        var valid = re.test(this.value);
-        if (!valid) { 
-          condition3 = false;
-          $("#invalid_email").show();
-        } else {
-          condition3 = true;
-          $("#invalid_email").hide();
-        }
-        validate();
-    });
-    
-    
-    //Username Regex
-    $("#user").keyup( function() {
-      if (!(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/.test(this.value))) {
-        condition4 = false;
-        $("#invalid_username").show();
-      } else {
-        condition4 = true;
-        $("#invalid_username").hide();
-      }
-      validate();
-    });
-
-    //Auto geolocation. Requires permission. Pick this because SSL is required, which Google has
-    //verify geo location https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+  //Auto geolocation. Requires permission. Pick this because SSL is required, which Google has
+  //verify geo location https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
 	$("#towncity").click(()=> {
 		$.getJSON('https://ipinfo.io/json', function(json) {
-			alert(JSON.stringify(json));
+			//alert(JSON.stringify(json));
 			$("#towncity").val(json.city);
 			$("#country").val(json.country);
 		});
 	});
-	
-	$("#Password1, #Password2").keyup( function() {
-		function checkPasswordsNow() {
-      if($("#Password1").val().length < 6) {
-        condition5 = false;
-        $("#invalid_pass1").show();
-      } else {
-        condition5 = true;
-        $("#invalid_pass1").hide();  
-      }
-              
-			if($("#Password1").val() != $("#Password2").val()) {
-        condition6 = false;
-				$("#invalid_pass2").show();
-      } else {
-        condition6 = true;
-        $("#invalid_pass2").hide();
-      }
-		}
-		setTimeout(checkPasswordsNow,3000);
-		/*Add password strength validation?*/
-    
-    validate();
-	});
-    
+	  
+  /*
+    Checks if username is available. Returns TRUE if username already exists. False otherwise
+  */
+  function checkIfNew(dusername) {
+    var username_avb;
+    firebase.database().ref().child("users")
+            .orderByChild("username").equalTo(dusername).on('value', function(snapshot) {
+        if (snapshot.exists()) {
+            document.getElementById("invalid_username").innerHTML = "This user name is already taken. ";
+            document.getElementById("invalid_username").style.color = "red";
+            document.getElementById("symbol").style.color = "red";
+            $("#symbol").html('&#10008;');
+            $("#symbol").show();
+            $("#invalid_username").show();
+            
+            username_avb = false;
+            condition3 = false;
+        } else {        
+            document.getElementById("invalid_username").innerHTML = "This user name is available. "; 
+            document.getElementById("invalid_username").style.color = "green";
+            document.getElementById("symbol").style.color = "green";
+            $("#symbol").html('&#10004;');
+            $("#symbol").show();
+            $("#invalid_username").show();
+            
+            username_avb = true;
+            condition3 = true;
+        }
+    });
+    return username_avb;
+  }
+
+  function new_user() {  
+    alert("Profile created successfully!");
+  }
 </script>
 </html> 
  
