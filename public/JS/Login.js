@@ -16,18 +16,22 @@ window.onload = function()
 					document.getElementById("password").style.display="none";
 					document.getElementById("messageText0").style.display="inline";
 					document.getElementById("messageText1").style.display="inline";
+					document.getElementById("repairPassword").style.display="none";
 					document.getElementById("login").style.display="none";
-					document.getElementById("close").style.display="block";
+					document.getElementById("cancel").style.display="block";
+					cancel.textContent = "Back to Home Screen";
 					messageText0.textContent = "Welcome, "+user.email+" ! ";
-					messageText1.textContent = "This window will be closed on later.";					
+					messageText1.textContent = "The screen will back to home on 5 seconds later.";					
 				}
 				else
 				{
-					document.getElementById("messageText").style.display="block";
+					document.getElementById("messageText0").style.display="block";
+					document.getElementById("messageText1").style.display="none";
+					document.getElementById("repairPassword").style.display="none";
 					document.getElementById("email").style.display="none";
 					document.getElementById("password").style.display="none";
 					document.getElementById("login").style.display="none";
-					document.getElementById("close").style.display="block";
+					document.getElementById("cancel").style.display="block";
 					messageText0.textContent = "Please activate your account on Valification Email. Or, please Sign in another account";	
 					messageText1.textContent = "";	
 					//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
@@ -39,8 +43,9 @@ window.onload = function()
 				document.getElementById("password").style.display="block";
 				document.getElementById("messageText0").style.display="none";
 				document.getElementById("messageText1").style.display="none";
+				document.getElementById("repairPassword").style.display="block";
 				document.getElementById("login").style.display="block";
-				document.getElementById("close").style.display="block";
+				document.getElementById("cancel").style.display="block";
 				messageText0.textContent = "";
 				messageText1.textContent = "";											
 			}	
@@ -53,12 +58,10 @@ function login()
 	//Get email and password from UI
 	var email = document.getElementById('email').value;
 	var password = document.getElementById('password').value;
-	var messageText = document.getElementById('messageText');
 	
 	firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
 		
-		setTimeout("window.opener.location.reload()",5000);
-		setTimeout("if (/Chrome/i.test(navigator.userAgent)) { window.close(); } else { window.open('about:blank', '_self').close(); }",5100);
+		setTimeout("location.href = \"/index.html\"",5000);
 		
 		}).catch(function(error) {
 		alert('Failed to Login : ' + error.message);

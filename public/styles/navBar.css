@@ -41,13 +41,14 @@
 
 .loginTable
 {
+	height: 30px;
 	width: auto;
 	display: table;
 	float: right;
 	border-collapse: collapse;
 	list-style:none;
+	margin-top: 10px;
 	margin-right: 10px;
-	vertical-align: middle;
 }
 
 #messageText0, #messageText1 {
@@ -60,6 +61,7 @@
 {
 	display: table-cell;
 	vertical-align: middle;
+	height: 30px;
 	width: 70px;
 	color: #fff;
 	text-align: center;
@@ -74,12 +76,11 @@
 {
 	cursor : pointer;
 	display : none;
-	vertical-align: middle;
+	text-align: center;
 }
 
-.accountImage
+#accountImage
 {
-	display: table-cell;
 	height: 30px;
 	vertical-align: middle;
 }

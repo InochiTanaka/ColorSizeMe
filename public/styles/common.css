@@ -4,6 +4,6 @@
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid black;
-  display: inline;
-  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
 }

@@ -81,7 +81,8 @@ function execute(id)
 	  if (user) {
 		if(id == "regist" && user.displayName == null)//execute when pushed Log in button
 		{			
-			location.href = "/registration.html";
+			//location.href = "/signup.html";
+			location.href = "/testRegist.html";
 		}
 	  } else {
 		if(id == "valify")//execute when pushed Sign in button
