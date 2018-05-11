@@ -4,10 +4,13 @@ window.onload = function()
 
 	firebase.auth().onAuthStateChanged(function(user)
 	{
+		// If user auth data is exixts
 		if(user) 
 		{		
+			//If email verifying is done:
 			if(user.emailVerified)
 			{
+				//If user.displayName is null(means not registered yet)
 				if(user.displayName == null)
 				{
 					document.getElementById("login").style.display="none";
@@ -18,7 +21,7 @@ window.onload = function()
 					messageText1.textContent = "or";	
 					
 				}
-				else
+				else //If user.displayName is not null(means registered already)
 				{
 					document.getElementById("accountMenu").style.display="inline-block";
 					document.getElementById("login").style.display="none";
@@ -32,7 +35,7 @@ window.onload = function()
 					}
 					else
 					{
-						document.getElementById("accountImage").src=(user.photoURL).src;
+						document.images["accountImage"].src = user.photoURL;
 					}
 					/*name = user.displayName;
 					  email = user.email;
@@ -43,7 +46,7 @@ window.onload = function()
 									   // you have one. Use User.getToken() instead.*/
 				}
 			}
-			else
+			else //If email verrifying is not done:
 			{
 				document.getElementById("accountMenu").style.display="none";
 				document.getElementById("login").style.display="inline-block";
@@ -52,7 +55,7 @@ window.onload = function()
 				//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 			}		
 		}		
-		else
+		else //If user auth data is not exists and logout:
 		{			
 			document.getElementById("accountMenu").style.display="none";
 			document.getElementById("login").style.display="inline-block";

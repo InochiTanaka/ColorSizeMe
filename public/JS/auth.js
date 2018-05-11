@@ -34,8 +34,8 @@ window.onload = function()
 					document.getElementById("reload").style.display="block";
 					document.getElementById("regist").style.display="none";
 					document.getElementById("cancel").style.display="none";
-					authTitle.textContent = "Please activate your account from Valification Email";
-					messageText.textContent = "Then, please push \"valified\".";	
+					authTitle.textContent = "Please activate your account from Verification Email";
+					messageText.textContent = "Then, please push \"verified\".";	
 					//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 				}		
 			}		
@@ -81,8 +81,8 @@ function execute(id)
 	  if (user) {
 		if(id == "regist" && user.displayName == null)//execute when pushed Log in button
 		{			
-			//location.href = "/signup.html";
-			location.href = "/testRegist.html";
+			location.href = "/signup.html";
+			//location.href = "/testRegist.html";
 		}
 	  } else {
 		if(id == "valify")//execute when pushed Sign in button

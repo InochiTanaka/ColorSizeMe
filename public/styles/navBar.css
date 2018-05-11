@@ -39,7 +39,7 @@
  	vertical-align: middle;
 }
 
-.loginTable
+#loginTable
 {
 	height: 30px;
 	width: auto;
@@ -61,7 +61,6 @@
 {
 	display: table-cell;
 	vertical-align: middle;
-	height: 30px;
 	width: 70px;
 	color: #fff;
 	text-align: center;

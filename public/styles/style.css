@@ -50,9 +50,16 @@
   padding-top: 50px;
 }
 
-.form-horizontal input[type=submit] {
-  display: block;
-  margin: auto;
+#buttons {
+  display: table;
+  border-collapse: separate;
+  margin: 0px auto;
+}
+
+.row { display:table-row; }
+
+.cell {
+  display:table-cell;
 }
 
 /*Firebase default setting*/
