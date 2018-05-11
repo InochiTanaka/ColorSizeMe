@@ -12,40 +12,46 @@ window.onload = function()
 			{		
 				if(user.emailVerified)
 				{
+					document.images["loginPic"].src = "../images/keyrock1.png";	
+					document.getElementById("loginPic").style.display="block";	
 					document.getElementById("email").style.display="none";
 					document.getElementById("password").style.display="none";
-					document.getElementById("messageText0").style.display="inline";
-					document.getElementById("messageText1").style.display="inline";
+					document.getElementById("messageText0").style.display="block";
+					document.getElementById("messageText1").style.display="block";
 					document.getElementById("repairPassword").style.display="none";
 					document.getElementById("login").style.display="none";
-					document.getElementById("cancel").style.display="block";
-					cancel.textContent = "Back to Home Screen";
-					messageText0.textContent = "Welcome, "+user.email+" ! ";
+					document.getElementById("cancel").style.display="inline-block";
+					cancel.textContent = "Back to Home";
+					messageText0.textContent = "Welcome, "+user.displayName+" ! ";
 					messageText1.textContent = "The screen will back to home on 5 seconds later.";					
 				}
 				else
 				{
+					document.images["loginPic"].src = "../images/keyrocko.png";	
+					document.getElementById("loginPic").style.display="block";	
 					document.getElementById("messageText0").style.display="block";
 					document.getElementById("messageText1").style.display="none";
 					document.getElementById("repairPassword").style.display="none";
 					document.getElementById("email").style.display="none";
 					document.getElementById("password").style.display="none";
 					document.getElementById("login").style.display="none";
-					document.getElementById("cancel").style.display="block";
-					messageText0.textContent = "Please activate your account on Valification Email. Or, please Sign in another account";	
-					messageText1.textContent = "";	
+					document.getElementById("cancel").style.display="inline-block";
+					messageText0.textContent = "Please activate your account on Valification Email.";	
+					messageText1.textContent = "Or, please Sign in another account";	
 					//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 				}		
 			}		
 			else
-			{			
+			{		
+				document.images["loginPic"].src = "../images/keyrock0.png";	
+				document.getElementById("loginPic").style.display="block";				
 				document.getElementById("email").style.display="block";
 				document.getElementById("password").style.display="block";
 				document.getElementById("messageText0").style.display="none";
 				document.getElementById("messageText1").style.display="none";
 				document.getElementById("repairPassword").style.display="block";
-				document.getElementById("login").style.display="block";
-				document.getElementById("cancel").style.display="block";
+				document.getElementById("login").style.display="inline-block";
+				document.getElementById("cancel").style.display="inline-block";
 				messageText0.textContent = "";
 				messageText1.textContent = "";											
 			}	
