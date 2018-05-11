@@ -1,6 +1,35 @@
 ﻿body
 {
-	margin: 0 auto; 
+	text-align: center;
+}
+
+#content-area
+{
+	background-color: #cccccc ;
+	height: 400px;
+	width: 400px;
+	margin: 0 auto;
+
+}
+
+h1
+{
+	padding-top: 20px;
+}
+
+#loginPic
+{
+	color : red;
+	display:none;
+	height: 150px;
+	padding: 10px;
+	margin: 0 auto;
+}
+
+input{
+	width: 200px;
+	padding: 2px;
+	margin: 3px auto;
 }
 
 #email
@@ -11,6 +40,12 @@
 #password
 {
 	display: none;
+}
+
+button
+{
+	width: 120px;
+	margin-top:10px;
 }
 
 #login
@@ -35,5 +70,24 @@
 
 #cancel
 {
+	display: none;
+}
+
+#messageText0
+{
+	font-Size: 20px;
+} 
+
+#messageText1
+{
+	
+}
+
+#repairPassword
+{
+	color: #323232;
+	font-weight: 500;
+	font-size: 15px;
+	padding-top: 20px;
 	display: none;
 }
