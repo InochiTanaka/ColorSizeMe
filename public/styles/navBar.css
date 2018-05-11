@@ -74,7 +74,7 @@
 }
 @media only screen and (max-width: 480px) {
   #menu{
-    display: none;
+    display: inline;
   }
   #menu li{
     width: 100%;
