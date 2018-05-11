@@ -8,7 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="JS/userdata.js"></script>
    
   <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -98,6 +97,7 @@
 </body>
 
 <script>
+
   var condition1 = false;
   var condition2 = false;
   var condition3 = false;
@@ -149,8 +149,7 @@
       $("#symbol").hide();
     } else        
       checkIfNew(this.value)
-        
-                
+                       
     validate();
   });
 
@@ -170,7 +169,7 @@
   function checkIfNew(dusername) {
     var username_avb;
     firebase.database().ref().child("users")
-            .orderByChild("username").equalTo(dusername).on('value', function(snapshot) {
+            .orderByChild("user_name").equalTo(dusername).on('value', function(snapshot) {
         if (snapshot.exists()) {
             document.getElementById("invalid_username").innerHTML = "This user name is already taken. ";
             document.getElementById("invalid_username").style.color = "red";
@@ -196,9 +195,58 @@
     return username_avb;
   }
 
-  function new_user() {  
-    alert("Profile created successfully!");
-  }
+  /*
+    Adds user to database. Puts generated/uploaded picture onto storage.
+  */
+  function new_user() {
+    var db = firebase.database();
+    var user = $("#user").val();
+    var isAvailable = checkIfNew(user);
+    
+    if (isAvailable) {		
+      var uid = firebase.auth().currentUser.uid;       
+      var fn = $("#fname").val();
+      var ln = $("#lname").val();
+      
+      public_use = {
+        firstname : fn,
+        lastname : ln,
+        username : user,           
+        citytown : $("#towncity").val(),
+        country : $("#country").val()
+      }
+		
+      private_use = {			
+        username : user,		
+      }
+		
+      var visibility = 'public'; //default value on profile creation
+      var user_name = user;
+      var usersRef = db.ref().child('users/' + uid); //data node for public-visibility
+      
+      usersRef.set({
+        private_use,
+        public_use,
+        visibility,
+        user_name
+      });
+		
+      var geoRef = db.ref().child('market/' + $("#country").val() + '/' + uid); //Geomaps the user	
+      geoRef.set(public_use);		
+    } else {
+        /* RETURN? Sorry, USERNAME USED / Email is USED!*/
+		//event.preventDefault();
+		alert("Username is not available. Please try again");
+    }
+    /*PROMISE HERE*/
+    /*ERROR-HANDLING*/
+    
+    $("#symbol").hide();
+    $("#invalid_username").hide();
+    alert("Profile created successfully.");
+}
+  
 </script>
+
 </html> 
  
