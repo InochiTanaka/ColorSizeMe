@@ -21,7 +21,7 @@
        
 </head>
 <body>
-<form class="form-horizontal" onsubmit="new_user()" action="index.html">
+<form class="form-horizontal" onsubmit="new_user()">
 <fieldset>
 
 <!-- Form Name -->
@@ -56,9 +56,9 @@
 
 <!-- File Button --> 
 <div class="form-group">
-  <label class="col-sm-4 control-label" for="Profile Picture">File Button</label>
+  <label class="col-sm-4 control-label" for="Profile Picture" >File Button</label>
   <div class="col-sm-4">
-    <input id="Profile Picture" name="Profile Picture" class="input-file" type="file">
+    <input id="pic" name="Profile Picture" class="input-file" type="file">
   </div>
 </div>
 
@@ -97,7 +97,9 @@
 </body>
 
 <script>
-
+  var photoURL;
+  var file;
+  
   var condition1 = false;
   var condition2 = false;
   var condition3 = false;
@@ -204,14 +206,22 @@
     var isAvailable = checkIfNew(user);
     
     if (isAvailable) {		
-      var uid = firebase.auth().currentUser.uid;       
+      var uid = firebase.auth().currentUser.uid;   
+      var picture = $("#pic").val();      
       var fn = $("#fname").val();
       var ln = $("#lname").val();
+      
+      /*Process photo first, then define object below for database*/
+      if (!file)  //check if user attached personal pic
+        photoURL = "gs://colorsizeme-demo.appspot.com/profilePictures/anonymous-avatar-sm.jpg"
+      else	      
+        uploadPhoto();
       
       public_use = {
         firstname : fn,
         lastname : ln,
-        username : user,           
+        username : user,
+        photoPATH : photoURL,        
         citytown : $("#towncity").val(),
         country : $("#country").val()
       }
@@ -232,19 +242,42 @@
       });
 		
       var geoRef = db.ref().child('market/' + $("#country").val() + '/' + uid); //Geomaps the user	
-      geoRef.set(public_use);		
+      geoRef.set(public_use);	
+      
+      $("#symbol").hide();
+      $("#invalid_username").hide();
+      alert("Profile created successfully.");      
     } else {
         /* RETURN? Sorry, USERNAME USED / Email is USED!*/
 		//event.preventDefault();
 		alert("Username is not available. Please try again");
     }
     /*PROMISE HERE*/
-    /*ERROR-HANDLING*/
+    /*ERROR-HANDLING*/       
+  }
+  
+  /*
+    Stores photo on cloud storage.
+  */
+   
+  //Get Elements
+  var fileButton = document.getElementById('pic');
+
+  //Listen for file 
+  fileButton.onchange = function(event) {
     
-    $("#symbol").hide();
-    $("#invalid_username").hide();
-    alert("Profile created successfully.");
-}
+    //Get File
+    file = fileButton.files[0];   
+  }
+
+  function uploadPhoto() {
+    //Create a Storage Ref
+    var storageRef = firebase.storage().ref('profilePictures/' + file.name);
+
+    //Upload file
+    var task = storageRef.put(file);
+    photoURL =  storageRef.toString();
+  }
   
 </script>
 
