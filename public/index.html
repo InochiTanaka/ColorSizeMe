@@ -3,7 +3,7 @@
 	<head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
         <title>ColorSizeMe</title>
 
         <!-- update the version number as needed -->
@@ -25,20 +25,41 @@
         <link rel="stylesheet" href="styles/style.css" type="text/css">
         <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="styles/dropdownMenu.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
         <style media="screen"></style>
 	</head>
   <body>
-	<header>
+	<header id="header">
 		<ul id="loginTable">
 			<li a id="login" onclick="loginFunction()">Log In</a></li>
 			<li id="messageText0"><p></p></li>
 			<li a id="signup" onclick="signupFunction()">Sign Up</a></li>
 			<li id="messageText1"><p></p></li>
 			<li a id="logout" onclick="logoutFunction()">Log Out</a></li>
-			<li id="accountMenu" onclick="logoutFunction()"><img id="accountImage" src=""><div class="dropDownSign"/></li>
+			<li>
+				<div id="accountMenu" onclick="logoutFunction()"><img id="accountImage" src=""><div class="dropDownSign"/>
+				<!--<ul id="menu">
+					<li>
+						<a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
+						<a href="#">Categories</a>
+						<ul>
+							<li><a href="#">CSS</a></li>
+							<li><a href="#">Graphic design</a></li>
+							<li><a href="#">Development tools</a></li>
+							<li><a href="#">Web design</a></li>
+						</ul>
+					</li>
+				</ul>
+				-->
+			</li>
 		</ul>
-	</header>	
+	</header>
+
+
+    <div class="inputs">
+        <a class="input" href="input.html">Inputs</a>
+    </div>
 
 	<!--
 	<div id="menu-box">
@@ -52,7 +73,7 @@
 		</ul>
 	</div>
 	<br>
-	-->
+	-->	
     	
     <div id="message">	
       <h2>Welcome</h2>
@@ -61,7 +82,6 @@
       <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
     </div>
     <p id="load">Firebase SDK Loading&hellip;</p>
-
     <br>
 
     <script>
@@ -86,5 +106,19 @@
         }
       });
     </script>
+	<footer>
+	<div>
+		<p>Switching User role :</p>
+		<select id ="userRole" onchange="switchRole()">
+		  <option value="user">User</option>
+		  <option value="manager">Manager</option>
+		  <option value="retailer">Retailer</option>
+		  <option value="admin">Admin</option>
+		</select>
+	</div>
+	 <div id="footer">
+      <div><p>About Us</p></div>
+	</div>
+	</footer>
   </body>
 </html>
