@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Profile Page</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+  <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+       
+</head>
+<body>
+
+<img src="" alt="Avatar" width="200" height="200" id="avatar" style="display: none;">
+<div id ="name"></div>
+<div id ="username"></div>
+<div id ="city"></div>
+<div id ="country"></div>
+<br>
+<button onclick="loadProfile()">View Profile Page</button>
+
+<script>
+
+function loadProfile() {
+  var db = firebase.database();
+  var uid = firebase.auth().currentUser.uid; 
+  var storageRef = firebase.storage().ref();
+
+  db.ref('/users/' + uid + '/public_use').once('value').then(function(snapshot) {
+    var firstname = snapshot.val().firstname;
+    var lastname = snapshot.val().lastname;
+    var username = snapshot.val().username;
+    var photo = snapshot.val().profilepic;
+    var city = snapshot.val().citytown;
+    var country = snapshot.val().country;
+    
+    document.getElementById("name").innerHTML = firstname + ' ' + lastname;
+    document.getElementById("username").innerHTML = "Username: " + username;
+    document.getElementById("city").innerHTML = "City/Town" + city;
+    document.getElementById("country").innerHTML = "Country: " + country;
+    
+    if (photo == "yes") {
+      storageRef.child('profilePictures/' + uid + '.jpg').getDownloadURL().then(function(url) { 
+        var path = url;
+        document.getElementById("avatar").src = path;
+      }).catch(function(error) { });
+    } else {
+      storageRef.child('profilePictures/anonymous-avatar-sm.jpg').getDownloadURL().then(function(url) {
+        var path = url;
+        document.getElementById("avatar").src = path;
+      }).catch(function(error) { });
+    }
+    
+    $("#avatar").show();
+  });
+}
+
+</script>
+
+</body>
+
+</html> 
+ 

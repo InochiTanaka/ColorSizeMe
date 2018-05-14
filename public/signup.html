@@ -97,13 +97,12 @@
 </body>
 
 <script>
-  var photoURL;
+  var photoUploaded;
   var file;
   
   var condition1 = false;
   var condition2 = false;
   var condition3 = false;
-
   $(':input[type="submit"]').prop('disabled', true);
   
   //Validate the inputs
@@ -117,7 +116,6 @@
 	$("input[type=text]").attr( {
 		maxlength : 50
     }); 
-
     //Sorted by class name of names! -or- A-Za-z
     $("#fname").keyup( function() {
         if (!(/^[A-Za-z]+$/.test(this.value))) {
@@ -154,7 +152,6 @@
                        
     validate();
   });
-
   //Auto geolocation. Requires permission. Pick this because SSL is required, which Google has
   //verify geo location https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
 	$("#towncity").click(()=> {
@@ -196,7 +193,6 @@
     });
     return username_avb;
   }
-
   /*
     Adds user to database. Puts generated/uploaded picture onto storage.
   */
@@ -213,7 +209,7 @@
       
       /*Process photo first, then define object below for database*/
       if (!file)  //check if user attached personal pic
-        photoURL = "gs://colorsizeme-demo.appspot.com/profilePictures/anonymous-avatar-sm.jpg"
+        photoUploaded = "no";
       else	      
         uploadPhoto();
       
@@ -221,7 +217,7 @@
         firstname : fn,
         lastname : ln,
         username : user,
-        photoPATH : photoURL,        
+        profilepic : photoUploaded,        
         citytown : $("#towncity").val(),
         country : $("#country").val()
       }
@@ -262,24 +258,24 @@
    
   //Get Elements
   var fileButton = document.getElementById('pic');
-
   //Listen for file 
   fileButton.onchange = function(event) {
     
     //Get File
     file = fileButton.files[0];   
   }
-
+  
   function uploadPhoto() {
+    var uid = firebase.auth().currentUser.uid; 
+    
     //Create a Storage Ref
-    var storageRef = firebase.storage().ref('profilePictures/' + file.name);
-
+    var storageRef = firebase.storage().ref('profilePictures/' + uid + '.jpg');
+    
     //Upload file
     var task = storageRef.put(file);
-    photoURL =  storageRef.toString();
+    photoUploaded =  "yes";
   }
-  
+    
 </script>
 
 </html> 
- 
