@@ -100,7 +100,7 @@ body {
     body .inputs {
         position: relative;
         top: 50%;
-        left: 50%;
+        left: 15%;
         text-align: center;
         algin-content: center;
     }
@@ -112,15 +112,8 @@ body {
         text-align: center;
         display:inline-block;
         text-decoration: none !important;
-        margin:0 auto;
         background: #2aabd2;
         color: #000000;
-
-        -webkit-transition: all 0.2s ease-in-out;
-        -moz-transition: all 0.2s ease-in-out;
-        -ms-transition: all 0.2s ease-in-out;
-        -o-transition: all 0.2s ease-in-out;
-        transition: all 0.2s ease-in-out;
     }
 
     body ul .loginTable {
