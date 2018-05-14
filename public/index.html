@@ -26,7 +26,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
 		<link rel="stylesheet" type="text/css" media="screen" href="styles/dropdownMenu.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
         <style media="screen"></style>
 	</head>
   <body>
@@ -59,37 +59,36 @@
 		</ul>
 	</header>
 
+    <div id="wrapper">
+        <div class="inputs">
+            <a class="input" href="input.html">Search</a>
+        </div>
 
-    <div class="inputs">
-        <a class="input" href="input.html">Search</a>
+        <!--
+        <div id="menu-box">
+          <div id="toggle"><a href="#">menu</a></div>
+
+          <ul id="menu" class="">
+                <li><a href="input.html">Inputs</a></li>
+                <li><a href="#">Second</a></li>
+                <li><a href="#">Third</a></li>
+                <li><a href="#">Firth</a></li>
+            </ul>
+        </div>
+        <br>
+        -->
+        <div>
+            <p>Switching User role :</p>
+            <select id ="userRole" onchange="switchRole()">
+                <option value="user">User</option>
+                <option value="manager">Manager</option>
+                <option value="retailer">Retailer</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
     </div>
-
-	<!--
-	<div id="menu-box">
-	  <div id="toggle"><a href="#">menu</a></div>
-
-	  <ul id="menu" class="">
-			<li><a href="input.html">Inputs</a></li>
-			<li><a href="#">Second</a></li>
-			<li><a href="#">Third</a></li>
-			<li><a href="#">Firth</a></li>
-		</ul>
-	</div>
-	<br>
-	-->
-    <div>
-        <p>Switching User role :</p>
-        <select id ="userRole" onchange="switchRole()">
-            <option value="user">User</option>
-            <option value="manager">Manager</option>
-            <option value="retailer">Retailer</option>
-            <option value="admin">Admin</option>
-        </select>
+    <div class="footer">
+        © 2018 Copyright:
     </div>
-	<footer>
-	 <div id="footer">
-      <div><p>About Us</p></div>
-	</div>
-	</footer>
   </body>
 </html>
