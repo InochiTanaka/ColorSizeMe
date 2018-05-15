@@ -22,28 +22,78 @@
     <script defer src="/__/firebase/init.js"></script>
 
     <!-- Bootstrap -->
-    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
     <script type="text/javascript" src="JS/Style.js"></script>
+    <script type="text/javascript" src="JS/navBar.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="styles/style.css" type="text/css">
-    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/dropdownMenu.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
+    <style media="screen"></style>
     <script src="JS/read_write.js"></script>
     <style media="screen"></style>
 </head>
 <body>
-    <header id="header">
-        <a onclick="window.open.href='index.html'">Color Size Me</a>
-    </header>
-    <div id="status">
-        <button type="button" onclick="new_user()"> New User</button>
-        <button type="button" onclick="update_user()"> Update User </button>
-        <button type="button" onclick="update_size()"> Update Size </button>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">ColorSizeMe</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <ul id="loginTable" class="nav navbar-nav navbar-right">
+                <li><a id="login" onclick="loginFunction()">Log In</a></li>
+                <li id="messageText0"><p></p></li>
+                <li a id="signup" onclick="signupFunction()">Sign Up</a></li>
+                <li id="messageText1"><p></p></li>
+                <li a id="logout" onclick="logoutFunction()">Log Out</a></li>
+                <li>
+                    <div id="accountMenu" onclick="logoutFunction()">
+                        <img id="accountImage" src="">
+                        <div class="dropDownSign"></div>
+                        <!--<ul id="menu">
+                            <li>
+                                <a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
+                                <a href="#">Categories</a>
+                                <ul>
+                                    <li><a href="#">CSS</a></li>
+                                    <li><a href="#">Graphic design</a></li>
+                                    <li><a href="#">Development tools</a></li>
+                                    <li><a href="#">Web design</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        -->
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="wrapper">
-        <fomr>
+</nav>
+<div class="full wrap">
+    <div class="container main">
+        <div id="status">
+            <button class="btn" type="button" onclick="new_user()"> New User</button>
+            <button class="btn" type="button" onclick="update_user()"> Update User </button>
+            <button class="btn" type="button" onclick="update_size()"> Update Size </button>
+        </div>
+        <form>
             <label>Cloth Type</label>
             <div id="swear-gender">
                 <label class="radio-inline"> <input type="radio" name="optradio" value="male">Menswear</label>
@@ -73,11 +123,13 @@
                 <label class="radio-inline"><input type="radio" name="optradio" value="inches">Inches</label>
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
-        </fomr>
+        </form>
     </div>
-    <div class="footer">
-        © 2018 Copyright:
-    </div>
-
+</div>
+    <footer class="navbar navbar-fixed-bottom">
+        <div class="container">
+            <p> © 2018 Copyright:</p>
+        </div>
+    </footer>
 </body>
 </html>

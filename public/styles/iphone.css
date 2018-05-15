@@ -1,131 +1,53 @@
-@media (max-width: 500px) {
-
-    body {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        position: absolute;
-    }
-
-    body #header {
-        width: 100%;
-        height: 10%;
-        background: #0f0f0f;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        color: #ffffff;
-        position: relative;
-    }
-
-    body #header a.home {
-        width: 20%;
-        height:100%;
-        text-align: center;
-        padding-left: 20px;
-        font-size: 25px;
-    }
-
-    body #wrapper {
-        width: 100%;
-        height: 80%;
-    }
-
-    body .inputs {
-        position: relative;
-        top: 50%;
-        text-align: center;
-        algin-content: center;
-    }
-
-    body .inputs a.input {
-        width: 80px;
-        height: 35px;
-        padding:1em;
-        text-align: center;
-        display:inline-block;
-        text-decoration: none !important;
-        background: #2aabd2;
-        color: #000000;
-    }
-
-    body ul .loginTable {
-        padding-top: 10px;
-    }
-
-    body .footer {
-        position: static;
-        padding-top: 5%;
-        left:0;
-        bottom:0;
-        width:100%;
-        text-align: center;
-        height: 10%;
-        background: #0f0f0f;
-        color: #ffffff;
-    }
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: #0d1318;
+    color: #ffffff;
 }
 
-@media (min-width: 700px) and (max-width: 1199px) {
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.content {height: 450px}
 
-    body {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        position: absolute;
-    }
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+}
 
-    body #header {
-        width: 100%;
-        height: 15%;
-        background: #0f0f0f;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        color: #ffffff;
-        position: relative;
-    }
+body .inputs {
+    position: relative;
+    top: 50%;
+    text-align: center;
+    algin-content: center;
+}
 
-    body #header a.home {
-        width: 20%;
-        height:100%;
-        text-align: center;
-        padding-left: 20px;
-        font-size: 25px;
-    }
+body .inputs a.input {
+    width: 80px;
+    height: 35px;
+    text-align: center;
+    display:inline-block;
+    text-decoration: none !important;
+    background: #2aabd2;
+    color: #000000;
+}
 
-    body .inputs {
-        position: absolute;
-        top: 50%;
-        text-align: center;
-        algin-content: center;
-    }
+body .content {
+    align-content: center;
+}
 
-    body .inputs a.input {
-        width: 80px;
-        height: 35px;
-        padding:1em;
-        text-align: center;
-        display:inline-block;
-        text-decoration: none !important;
-        background: #2aabd2;
-        color: #000000;
-    }
+.main {
+    overflow: auto;
+    padding-bottom: 80px;
+}
 
-    body #wrapper {
-        width: 100%;
-        height: 80%;
-    }
+.wrap {
+    min-height: 100%;
+}
 
-    body ul .loginTable {
-        padding-top: 10px;
-    }
-
-    body .footer {
-        position: relative;
-        margin-top: 5%;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 5%;
-        text-align: center;
-        background: #0f0f0f;
-        color: #ffffff;
-    }
+footer {
+    width: 100%;
+    background-color: #000000;
+    color: white;
 }
