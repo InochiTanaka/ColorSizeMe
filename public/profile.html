@@ -28,14 +28,24 @@
 <body>
 
 <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display: none;">
+
 <div id ="name"></div>
 <div id ="username"></div>
 <div id ="city"></div>
 <div id ="country"></div>
+<br>
+<button>Edit</button>
+<br>
+<button type="submit" value="Save">Save</button>
+<br>
+<button type="button" value="Cancel" onclick="window.location='index.html';">Cancel</button>
 
 <script>
 
-window.setInterval(loadProfile, 50);
+var refreshIntervalId  = window.setInterval(loadProfile, 50);
+
+if (typeof firebase != 'undefined')
+  clearInterval(refreshIntervalId);
 
 function loadProfile() {
   var db = firebase.database();
@@ -69,6 +79,9 @@ function loadProfile() {
     
     $("#avatar").show();
   });
+}
+ function edit() {
+  
 }
 
 </script>

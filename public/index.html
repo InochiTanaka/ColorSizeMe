@@ -55,12 +55,12 @@
                             <li id="messageText0"><p></p></li>
                             <li a id="signup" onclick="signupFunction()">Sign Up</a></li>
                             <li id="messageText1"><p></p></li>
-                            <li a id="logout" onclick="logoutFunction()">Log Out</a></li>
                             <li>
-                                <div id="accountMenu" onclick="logoutFunction()">
+                                <div id="accountMenu" onclick="">
                                     <img id="accountImage" src="">
+									<!--
                                     <div class="dropDownSign"></div>
-                                    <!--<ul id="menu">
+                                    <ul id="menu">
                                         <li>
                                             <a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
                                             <a href="#">Categories</a>
@@ -72,7 +72,7 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                    -->
+                                  -->
                                 </div>
                             </li>
                         </ul>
@@ -85,6 +85,9 @@
                 <div class="content">
                     <div class="col-xs-12" id="main">
                         <h1>Welcome</h1>
+						
+									<button id="logout" onclick="logoutFunction()">Log Out</button>
+									
                         <p>Some Text</p>
                         <br>
                         <div class="inputs">
