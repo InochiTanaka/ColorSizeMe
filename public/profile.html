@@ -18,7 +18,7 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-       
+      
 </head>
 <body>
 
@@ -27,10 +27,10 @@
 <div id ="username"></div>
 <div id ="city"></div>
 <div id ="country"></div>
-<br>
-<button onclick="loadProfile()">View Profile Page</button>
 
 <script>
+
+window.setInterval(loadProfile, 50);
 
 function loadProfile() {
   var db = firebase.database();
@@ -47,7 +47,7 @@ function loadProfile() {
     
     document.getElementById("name").innerHTML = firstname + ' ' + lastname;
     document.getElementById("username").innerHTML = "Username: " + username;
-    document.getElementById("city").innerHTML = "City/Town" + city;
+    document.getElementById("city").innerHTML = "City/Town: " + city;
     document.getElementById("country").innerHTML = "Country: " + country;
     
     if (photo == "yes") {

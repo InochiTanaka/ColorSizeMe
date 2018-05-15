@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="JS/signup.js"></script>
    
   <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -18,9 +19,11 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+    
        
 </head>
 <body>
+ 
 <form class="form-horizontal" onsubmit="new_user()" action="index.html">
 <fieldset>
 
@@ -49,7 +52,7 @@
 <div class="form-group">
   <label class="col-sm-4 control-label" for="textinput">Username</label>  
   <div class="col-sm-4">
-  <input id="user" name="username" type="text" placeholder="jdoe87" class="form-control input-sm" required="">
+  <input id="username" name="Username" type="text" placeholder="jdoe87" class="form-control input-sm" required="">
   <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>  
   </div>
 </div>
@@ -94,6 +97,7 @@
 
 </form>
 
+ 
 </body>
 
 <script>
@@ -140,7 +144,7 @@
     });
        
   //Username Regex
-  $("#user").keyup( function() {
+  $("#username").keyup( function() {
     if (!(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/.test(this.value))) {
       condition3 = false;
       document.getElementById("invalid_username").innerHTML = "Username can only contain alphabetic, numeric and -,_ characters. ";
@@ -198,8 +202,8 @@
   */
   function new_user() {
     var db = firebase.database();
-    var user = $("#user").val();
-    var isAvailable = checkIfNew(user);
+    var un = $("#username").val();
+    var isAvailable = checkIfNew(un);
     
     if (isAvailable) {		
       var uid = firebase.auth().currentUser.uid;   
@@ -216,18 +220,18 @@
       public_use = {
         firstname : fn,
         lastname : ln,
-        username : user,
+        username : un,
         profilepic : photoUploaded,        
         citytown : $("#towncity").val(),
         country : $("#country").val()
       }
 		
       private_use = {			
-        username : user,		
+        username : un		
       }
 		
       var visibility = 'public'; //default value on profile creation
-      var user_name = user;
+      var user_name = un;
       var usersRef = db.ref().child('users/' + uid); //data node for public-visibility
       
       usersRef.set({
@@ -240,8 +244,11 @@
       var geoRef = db.ref().child('market/' + $("#country").val() + '/' + uid); //Geomaps the user	
       geoRef.set(public_use);	
       
+      
       $("#symbol").hide();
       $("#invalid_username").hide();
+      
+      create(un);
       alert("Profile created successfully.");      
     } else {
         /* RETURN? Sorry, USERNAME USED / Email is USED!*/

@@ -14,7 +14,7 @@ function create(data)
 		if(user)
 		{
 			user.updateProfile({
-			  displayName: $(data).val(),
+			  displayName: data,
 			  //photoURL: "https://example.com/jane-q-user/profile.jpg"
 			}).then(function() {
 			  // Update successful.
