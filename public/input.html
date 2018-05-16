@@ -2,120 +2,134 @@
 
 <html lang="en">
 <head>
-  <title>User Inputs</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!--<script src="JS/ninput.js"></script>-->
+    <title>User Inputs</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
 
-  <script src="JS/style.js"></script>
-  <script src="JS/Converter.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--<script src="JS/ninput.js"></script>-->
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
 
-    <script src="projects/web\ design/in.out/public/app.js"></script>
-    <script src="projects/web\ design/in.out/public/maincontroller.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
+    <script type="text/javascript" src="JS/Style.js"></script>
+    <script type="text/javascript" src="JS/navBar.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/dropdownMenu.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
+    <style media="screen"></style>
     <script src="JS/read_write.js"></script>
+    <style media="screen"></style>
 </head>
 <body>
-  <div id="status"> 
-		<button type="button" onclick="new_user()"> New User</button>
-		<button type="button" onclick="update_user()"> Update User </button>
-		<button type="button" onclick="update_size()"> Update Size </button>
-  </div>
-  <div id="wrapper">
-      <div>
-        <span>Gender </span>
-        <span>
-          <select id = "gender" onchange="display()" size="1">
-            <option disabled selected value> -- select an option -- </option>
-            <option value="male">Male</option>
-            <option value="female" >Female</option>
-          </select>
-        </span>
-      </div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">ColorSizeMe</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <ul id="loginTable" class="nav navbar-nav navbar-right">
+                <li><a id="login" onclick="loginFunction()">Log In</a></li>
+                <li id="messageText0"><p></p></li>
+                <li a id="signup" onclick="signupFunction()">Sign Up</a></li>
+                <li id="messageText1"><p></p></li>
+                <li a id="logout" onclick="logoutFunction()">Log Out</a></li>
+                <li>
+                    <div id="accountMenu" onclick="logoutFunction()">
+                        <img id="accountImage" src="">
+                        <div class="dropDownSign"></div>
+                        <!--<ul id="menu">
+                            <li>
+                                <a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
+                                <a href="#">Categories</a>
+                                <ul>
+                                    <li><a href="#">CSS</a></li>
+                                    <li><a href="#">Graphic design</a></li>
+                                    <li><a href="#">Development tools</a></li>
+                                    <li><a href="#">Web design</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="full wrap">
+    <div class="container main">
+        <div id="status">
+            <button class="btn btn-default" type="button" onclick="new_user()"> New User</button>
+            <button class="btn btn-default" type="button" onclick="update_user()"> Update User </button>
+            <button class="btn btn-default" type="button" onclick="update_size()"> Update Size </button>
+        </div>
+        <form>
+            <label>Cloth Type</label>
+            <div id="swear-gender">
+                <label class="radio-inline"> <input type="radio" name="optradio" value="male">Menswear</label>
+                <label class="radio-inline"> <input type="radio" name="optradio" value="female">Womenswear</label>
+            </div>
 
-      <div>
-        <span>Type of Clothes </span>
-        <span>
-          <select id = "type" onchange="display()" size="1">
-            <option disabled selected value> -- select an option -- </option>
-            <option value="top">Top</option>
-            <option value="bottom">Bottom</option>
-          </select>
-        </span>
-      </div>
+            <div class="form-group">
+                <label for="sel1">Brand:</label>
+                <select class="form-control" id="sel1">
+                    <option value="zara">Zara</option>
+                    <option value="hm">H&M</option>
+                </select>
+            </div>
 
-      <div id = "brand" class="toggle" style="display: none;">
-        <span>Brand </span>
-        <span>
-          <select id="leBrand" onchange="display()" size="1">
-            <option disabled selected value> -- select an option -- </option>
-            <option value="zara">Zara</option>
-            <option value="hnm">H&M</option>
-          </select>
-        </span>
-      </div>
 
-      <div id = "measurement" class="toggle" style="display: none;">
-        <span>Measurement </span>
-        <span>
-          <select id="measure" onchange="display()" size="1">
-            <option disabled selected value> -- select an option -- </option>
-            <option value="centimeter">cm</option>
-            <option value="inch">inch</option>
-          </select>
-          </span>
-      </div>
+            <div class="form-group">
+                <label for="sel1">Type of Clothes </label>
+                <select class="form-control" id="sel2">
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                </select>
+            </div>
 
-      <div class="inputDiv" id = "femaletop" class="toggle" style="display: none;">
-            <form onsubmit="submitForm()">
-				          <label>Bust:</label> <input type="number" step="0.01" id="FTbust" value="0"></br>
-                  <label>Arm Length:</label> <input type="number" step="0.01" id="FTarm" value="0"></br>
-                  <label>Hip:</label> <input type="number" step="0.01" id="FThip" value="0"></br>
-                  <label>Waist:</label> <input type="number" step="0.01" id="FTwaist" value="0"></br>
-                  <label>Body Length:</label> <input type="number" step="0.01" id="FTbody" value="0"></br>					  
-				          <input type="submit" value="Submit">
-            </form>
-      </div>
-
-      <div class="inputDiv" id = "femalebottom" class="toggle" style="display: none;">
-            <form onsubmit="submitForm()">
-                <label>Outseam:</label> <input type="number" step="0.01" id="FBoutseam" value="0"></br>
-                <label>Inseam:</label> <input type="number" step="0.01" id="FBinseam" value="0"></br>
-                <label>Hip:</label> <input type="number" step="0.01" id="FBhip" value="0"></br>
-                <label>Waist:</label> <input type="number" step="0.01" id="FBwaist" value="0"></br>
-                <label>Thigh:</label> <input type="number" step="0.01" id="FBthigh" value="0"></br>
-                <label>Calf:</label> <input type="number" step="0.01" id="FBcalf" value="0"></br>
-                <label>Knee:</label> <input type="number" step="0.01" id="FBknee" value="0"></br>
-                <input type="submit" value="Submit">
-            </form>
-      </div>
-
-      <div class="inputDiv" id = "maletop" class="toggle" style="display: none;">
-            <form onsubmit="submitForm()" id="MT">				
-				<label>Shoulder:</label> <input type="number" id="MTshoulder"><br>
-                <label>Chest:</label> <input type="number" id="MTchest"><br>
-                <label>Back:</label> <input type="number"  id="MTback" ><br>
-                <label>Waist:</label> <input type="number" id="MTwaist"><br>
-                <label>Sleeve:</label> <input type="number" id="MTsleeve" id="msleeve"><br>
-                <label>Back Length:</label> <input type="number" id="MTbacklength" ><br>
-                <input type="submit" value="Submit">
-            </form>
-      </div>
-
-      <div class="inputDiv" id = "malebottom" class="toggle" style="display: none;">
-          <form onsubmit="submitForm()">
-				        <label>Hip:</label> <input type="number" step="0.01" id="MBhip" value="0"><br>
-                <label>Outseam:</label> <input type="number" step="0.01" id="MBoutseam" value="0"><br>
-                <label>Inseam:</label> <input type="number" step="0.01" id="MBinseam" value="0"><br>
-                <label>Waist:</label> <input type="number" step="0.01" id="MBwaist" value="0"><br>
-                <label>Knee:</label> <input type="number" step="0.01" id="MBknee" value="0"><br>
-                <label>Thigh:</label> <input type="number" step="0.01" id="MBthigh" value="0"><br>
-                <label>Calf:</label> <input type="number" step="0.01" id="MBcalf" value="0"><br>
-                <input type="submit" value="Submit">
-          </form>
-      </div>
-  </div>
+            <div id = "measurement" class="toggle" style="display: none;">
+                <label>Measurement Units</label>
+                <label class="radio-inline"><input type="radio" name="optradio" value="centimeter">Cm</label>
+                <label class="radio-inline"><input type="radio" name="optradio" value="inches">Inches</label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>
+    <footer class="navbar navbar-fixed-bottom">
+        <div class="container">
+            <p> © 2018 Copyright:</p>
+        </div>
+    </footer>
 </body>
 </html>

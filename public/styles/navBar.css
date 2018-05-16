@@ -1,41 +1,61 @@
-﻿
-#menu{
-  width: 100%;
-  margin: 0 auto;
-  padding: 0;
-  background: #fff;
-  background-color: #333;
-}
-#menu li{
-  display: block;
-  float: left;
-  width: 12.5%;
-  margin: 0;
-  padding: 0; 
-  cursor : pointer;
-}
-  
-#menu li a{
-  display: block;
-  padding: 12px 0 10px;
-  background: #333;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-}
-
-#menu li a:hover{
-  background: #444;
-}
+﻿﻿header{
+	  color: #000;
+	  background: #fff;
+	  float: right;
+} 
 
 #toggle{ 
- display: none;
+	display: none;
+ 	vertical-align: middle;
 }
 
-#messageText {
-	  text-align: right;
-	  margin: 0 auto;
-	  padding: 10px; 
+#loginTable
+{
+	height: 30px;
+	width: auto;
+	display: table;
+	float: right;
+	border-collapse: collapse;
+	list-style:none;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+#messageText0, #messageText1 {
+	display: table-cell;
+	vertical-align: middle;
+	margin: 5px;
+}
+
+#login, #logout, #signup
+{
+	display: table-cell;
+	vertical-align: middle;
+	width: 70px;
+	color: #fff;
+	text-align: center;
+	background-color: #333;
+	cursor : pointer;
+	margin: 5px;
+	padding: 5px;
+	display: none;
+}
+
+#accountMenu
+{
+	cursor : pointer;
+	display : none;
+	text-align: center;
+}
+
+#accountImage
+{
+	height: 30px;
+	vertical-align: middle;
+}
+
+#login:hover, #logout:hover, #signup:hover{
+  background: #444;
 }
 
 
@@ -54,7 +74,7 @@
 }
 @media only screen and (max-width: 480px) {
   #menu{
-    display: none;
+    display: inline;
   }
   #menu li{
     width: 100%;

@@ -1,4 +1,5 @@
-<<<<<<< Updated upstream
+//<<<<< new_develop
+//<<<<< Updated upstream
 window.onload = function()
 {	
 			//alert(document.getElementById("email").value);
@@ -71,6 +72,8 @@ function logOutConf()
 	}
 }
 
+//=====
+//>>>>> develop
 function display(){
     var x = document.getElementById("gender").selectedIndex;
     var gender = document.getElementById("gender").getElementsByTagName("option")[x].value;
@@ -120,10 +123,11 @@ function display(){
     }
 }
 
+//<<<<< new_develop
 var navigation = responsiveNav("#nav", {
     customToggle: "#nav-toggle"
 });
-=======
+//=======
 /*
 	First search page method #1
 */
@@ -315,6 +319,8 @@ function displayCategories(){
 }
 
 
+/////////
+//>>>>> develop
 // Temp Switching user role function
 
 function switchRole()
@@ -322,4 +328,7 @@ function switchRole()
 	var role = document.getElementById('userRole').value;
 	alert(role);
 }
->>>>>>> Stashed changes
+//<<<<<<< new_develop
+//>>>>>>> Stashed changes
+//=======
+//>>>>>>> develop
