@@ -1,7 +1,6 @@
 window.onload = function()
 {	
 			//alert(document.getElementById("email").value);
-alert();
 	firebase.auth().onAuthStateChanged(function(user)
 	{
 		// If user auth data is exixts
@@ -17,15 +16,16 @@ alert();
 					document.getElementById("signup").style.display="inline-block";
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("accountMenu").style.display="none";
-					messageText0.textContent = "Please continue your Sign Up process ";
+					messageText0.textContent = "Please continue your \"Sign Up\" process ";
 					messageText1.textContent = "or";	
 					
 				}
 				else //If user.displayName is not null(means registered already)
 				{
+					alert("Loged in");
 					document.getElementById("accountMenu").style.display="inline-block";
 					document.getElementById("login").style.display="none";
-					document.getElementById("logout").style.display="none";
+					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("signup").style.display="none";
 					messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
 					
