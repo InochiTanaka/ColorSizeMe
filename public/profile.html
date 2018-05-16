@@ -26,9 +26,13 @@
 <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
 
 <div>
-  <button id="change" value="Change" onclick="changeAvatar()';" style="width:80px;display:none;">Change</button>
-  <button id="remove" value="Remove" onclick="removeAvatar()';" style="width:80px;display:none;">Remove</button>
+  <button id="change" value="Change" onclick="changeAvatar()" style="width:80px;display:none;">Change</button>
+  <button id="remove" value="Remove" onclick="removeAvatar()" style="width:80px;display:none;">Remove</button>
 </div>
+
+<br>
+
+<input id="pic" name="Profile Picture" class="input-file" type="file" style="display:none;">
 
 <br>
 
@@ -81,15 +85,19 @@ var photo;
 var city;
 var country;
 
+var db;
+var uid;
+var storageRef;
+
 var refreshIntervalId  = window.setInterval(loadProfile, 500);
 
 if (typeof firebase != 'undefined')
   clearInterval(refreshIntervalId);
 
 function loadProfile() {
-  var db = firebase.database();
-  var uid = firebase.auth().currentUser.uid; 
-  var storageRef = firebase.storage().ref();
+  db = firebase.database();
+  uid = firebase.auth().currentUser.uid; 
+  storageRef = firebase.storage().ref();
 
   db.ref('/users/' + uid + '/public_use').once('value').then(function(snapshot) {
     firstname = snapshot.val().firstname;
@@ -178,12 +186,25 @@ function save() {
   
   $("#change").hide();
   $("#remove").hide();
+  $("#pic").hide();
 }
 
-function changeAvatar() {
+function changeAvatar() {  
+  $("#pic").show();
 }
 
 function removeAvatar() {
+  db.ref('users/' + uid + '/public_use').update({ profilepic: "no" });
+  
+  // Create a reference to the file to delete
+  var desertRef = storageRef.child('profilePictures/' + uid + '.jpg');
+
+  // Delete the file
+  desertRef.delete().then(function() {
+    // File deleted successfully
+  }).catch(function(error) {
+    // Uh-oh, an error occurred!
+  });
 }
       
 </script>
@@ -273,6 +294,27 @@ function removeAvatar() {
         }
     });
     return username_avb;
+  }
+  
+   //Get Elements
+  var fileButton = document.getElementById('pic');
+  //Listen for file 
+  fileButton.onchange = function(event) {
+    
+    //Get File
+  var file = fileButton.files[0];   
+  uploadPhoto(file);
+  }
+  
+  function uploadPhoto(file) {
+    var uid = firebase.auth().currentUser.uid; 
+    
+    //Create a Storage Ref
+    var storageRef = firebase.storage().ref('profilePictures/' + uid + '.jpg');
+    
+    //Upload file
+    var task = storageRef.put(file);
+    db.ref('users/' + uid + '/public_use').update({ profilepic: "yes" });
   }
 </script>
 
