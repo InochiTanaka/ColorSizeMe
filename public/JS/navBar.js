@@ -1,3 +1,28 @@
+var timer = 0;
+ 
+window.onresize = function () {
+  if (timer > 0) {
+    clearTimeout(timer);
+  }
+ 
+  timer = setTimeout(function () {
+	firebase.auth().onAuthStateChanged(function(user)
+	{
+		if(user.displayName != null)
+		{
+			if(window.innerWidth < 769)
+			{
+				document.getElementById("accountMenu").style.display="none";
+			}
+			else
+			{
+				document.getElementById("accountMenu").style.display="inline-block";
+			}	
+		}
+	});	
+  }, 200);
+};
+
 window.onload = function()
 {	
 			//alert(document.getElementById("email").value);
@@ -22,8 +47,6 @@ window.onload = function()
 				}
 				else //If user.displayName is not null(means registered already)
 				{
-					alert("Loged in");
-					document.getElementById("accountMenu").style.display="inline-block";
 					document.getElementById("login").style.display="none";
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("signup").style.display="none";
@@ -117,4 +140,14 @@ function signupFunction()
 			location.href = "/auth.html" ;		
 		/*}	
 	});	*/					
+}
+
+function getWindowSize() {
+
+
+  console.log(`ウィンドウサイズの横幅`);
+  console.log(window.innerWidth);
+
+  console.log(`ウィンドウサイズの高さ`);
+  console.log(window.innerHeight);
 }
