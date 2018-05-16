@@ -24,14 +24,15 @@
 
     <!-- Bootstrap -->
     <link href="styles/bootstrap.min.css" rel="stylesheet">
-
+  
     <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
-    <script type="text/javascript" src="JS/Style.js"></script>
+    <script type="text/javascript" src="../JS/Style.js"></script>
     <link rel="stylesheet" href="styles/style.css" type="text/css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/common_ui.css"/>
 	<script defer src="JS/Style.js"></script>
+	<script defer src="JS/Search.js"></script>
     <!--<script src="JS/read_write.js"></script>-->
     <style media="screen"></style>
 </head>
@@ -39,55 +40,42 @@
     <header id="header">
         <a onclick="window.open.href='index.html'">Color Size Me</a>
     </header>
-    <div id="status">
-        <button type="button" onclick="contact_form()">Contact Us</button>
-        <button type="button" onclick="update_user()"> Update User </button>
-        <button type="button" onclick="update_size()"> Update Size </button>
-    </div>
+	<div>
+		<span class="searchparams1" id="_brand">Zara</span>
+		<span class="searchparams1" id="_sex">Men</span>
+		<span class="searchparams1" id="_tb" >Top</span>
+	</div>
     <div id="wrapper">
+	
 		<div>
-			<span>Wear</span> 
-			<span>
-				    <label class="radio-inline">
-					  <input type="radio" name="genderwear" value="men">Men
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="genderwear" value="women">Women
-					</label>
-			</span>
-		</div>
-		
-		<div>
-              <span>Brand </span>
-              <span>
-                 <select id="leBrand" size="1">
-                    <option disabled selected value> -- select an option -- </option>
-                    <option value="zara">Zara</option>
-                    <option value="hnm">H&M </option>
-                 </select>
-              </span>
-          </div>
-
-        <div>
-            <span>Clothes</span>
+            <span>Clothing Type</span>
             <span>
-				<label class="radio-inline">
-					<input type="radio" name="topORbot" value="top">Top
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="topORbot" value="bottom">Bottom
-				</label>
-				
+                <select class = "_type" size="1">
+					<option disabled selected value> -- Select Clothes -- </option>
+					<option></option>
+				</select>
             </span>
         </div>
-	
-		<div id = "submitDiv" class="toggle" style="display: none;">
-		      <input type="submit" id="submit1"value="Next">
-			  <input type= "button" value="Cancel" onclick="window.location='index.html';">
-		</div>
 		
-
-      </div>
+        <div id = "measurement" class="toggle" style="display: none;">
+            <span>Measurement </span>
+            <span>
+                <select id="measure" onchange="displaySubmit()" size="1">
+                    <option disabled selected value> -- Select Clothing Type -- </option>
+                    <option value="centimeter">cm</option>
+                    <option value="inch">inch</option>
+                </select>
+            </span>
+        </div>
+		
+		<div id = "measures" class="toggle" style="display: none;">
+		</div>
+		<div id = "submitDiv" class="toggle" style="display: none;">
+			  <input type= "button" name="whatsnext" value="Previous" onclick="window.location='ninput.html';">
+		      <input type="submit" id="submit2" name="Search" value="Search" onsubmit="search()">
+			  <input type= "button" name="whatsnext" value="Cancel" onclick="window.location='index.html';">
+		</div>
+    </div>
     <div id="footer">
         <div><p>About Us</p></div>
     </div>

@@ -88,8 +88,25 @@ function submitForm() {
     var brand = getIDValue('leBrand');
     var measurement = getIDValue('measure');
     var type = getIDValue('type');
-    console.log(uid + ' sex: ' + gender + ' brand: ' + brand + ' type: ' + type + ' meas: ' + measurement);
-    writeNewPost(uid, gender, brand, type, measurement);
+	var _type = getIDValue('_type');
+    console.log(uid + ' sex: ' + gender + ' brand: ' +
+	brand + ' type: ' + type + ' meas: ' + measurement);
+    if ((!gender) && (!brand) && (!measurement) && (!type) && (!_type))
+	{
+		
+	}
+	else 
+	{
+		/*GET MEASUREMENTS HERE!*/
+		firebase.database().ref().child("users")
+				.orderByChild("recent_measures").once('value',
+				(snapshot) => {
+				if(snapshot.exists()) {
+				writeNewPost(uid, gender, brand, type, measurement, data);
+				}
+				search(uid, gender, brand, type, type2, measurement, data)
+				}
+	}
 }
 
 function getMaleTopValues() {
@@ -139,7 +156,9 @@ function getFemaleBottomValues() {
 }
 // Updating or Deleting
 function writeNewPost(uid, gender, brand, type, measurement) {
-    var postData = { };
+    
+	
+	var postData = { };
     if (gender == 'male') {
         if (type == 'top') { //MALE_TOP DEFAULT
             postData = getMaleTopValues();
@@ -181,20 +200,22 @@ function writeNewPost(uid, gender, brand, type, measurement) {
 	
 	//get geo-location of user
 	var citytown, country;
+	/*
 	var usersRef = db.ref().child('users/' + uid + '/public_use').once('value')
 	.then(function(snapshot) {
 		citytown = snapshot.val().citytown;
 		country = snapshot.val().country;
 	});
+	*/
 	var lastMeasuresRef = db.ref().child('users/' + uid +'/recent_measures');
-	var geoRef = db.ref().child('market/' + country + '/' citytown);
+	//var geoRef = db.ref().child('market/' + country + '/' citytown);
 	
-	var time = Firebase.ServerValue.TIMESTAMP;
+	//var time = Firebase.ServerValue.TIMESTAMP;
 	
 	//push data to specified paths.
     lastMeasuresRef.set(postData);
     sizesRef.push(postData, uid);
-	geoRef.push(postData, uid, time);
+	//geoRef.push(postData, uid);
 	
     //return firebase.database().ref().set(updates);
 
