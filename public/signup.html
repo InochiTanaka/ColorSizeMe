@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <script type="text/javascript" src="JS/signup.js"></script>
+  <script type="text/javascript" src="JS/signup.js"></script>
    
   <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -171,8 +171,9 @@
   */
   function checkIfNew(dusername) {
     var username_avb;
-    firebase.database().ref().child("users")
-            .orderByChild("user_name").equalTo(dusername).on('value', function(snapshot) {
+    var uid = firebase.auth().currentUser.uid;  
+    firebase.database().ref().child("users/" + uid)
+            .orderByChild("username").equalTo(dusername).on('value', function(snapshot) {
         if (snapshot.exists()) {
             document.getElementById("invalid_username").innerHTML = "This user name is already taken. ";
             document.getElementById("invalid_username").style.color = "red";
@@ -197,6 +198,7 @@
     });
     return username_avb;
   }
+  
   /*
     Adds user to database. Puts generated/uploaded picture onto storage.
   */
@@ -231,14 +233,12 @@
       }
 		
       var visibility = 'public'; //default value on profile creation
-      var user_name = un;
       var usersRef = db.ref().child('users/' + uid); //data node for public-visibility
       
       usersRef.set({
         private_use,
         public_use,
-        visibility,
-        user_name
+        visibility
       });
 		
       var geoRef = db.ref().child('market/' + $("#country").val() + '/' + uid); //Geomaps the user	
