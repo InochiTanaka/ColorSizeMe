@@ -76,6 +76,8 @@
 <br>
 <button onclick="save()" value="Save">Save</button>
 <br>
+<br>
+<button onclick="deleteAccount()" id="delete" value="Delete" style="display:none;">Delete Account</button>
 
 <script>
 var firstname;
@@ -154,6 +156,8 @@ function edit() {
   
   $("#change").show();
   $("#remove").show();
+  
+  $("#delete").show();
 }
 
 function save() {
@@ -187,6 +191,18 @@ function save() {
   $("#change").hide();
   $("#remove").hide();
   $("#pic").hide();
+  
+  $("#delete").hide();
+}
+
+function deleteAccount() {
+  var sure = confirm("Are you sure you want to delete your account?");
+  
+  if (sure) {
+    firebase.auth().currentUser.delete();
+    alert("Profile deleted successfully.");  
+    window.location.href = 'index.html';
+  }
 }
 
 function changeAvatar() {  
@@ -207,7 +223,7 @@ function removeAvatar() {
     // Uh-oh, an error occurred!
   });
 }
-      
+
 </script>
 
 <script>
