@@ -22,7 +22,14 @@ window.onload = function()
 					document.getElementById("login").style.display="none";
 					document.getElementById("cancel").style.display="inline-block";
 					cancel.textContent = "Back to Home";
-					messageText0.textContent = "Welcome, "+user.displayName+" ! ";
+					if(user.displayName == null)
+					{
+						messageText0.textContent = "Welcome, Guest ! ";	
+					}
+					else
+					{
+						messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
+					}
 					messageText1.textContent = "The screen will back to home on 5 seconds later.";					
 				}
 				else

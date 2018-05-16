@@ -1,7 +1,7 @@
 window.onload = function()
 {	
 			//alert(document.getElementById("email").value);
-
+alert();
 	firebase.auth().onAuthStateChanged(function(user)
 	{
 		// If user auth data is exixts
