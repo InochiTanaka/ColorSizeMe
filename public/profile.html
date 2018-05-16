@@ -8,6 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="JS/signup.js"></script>
    
   <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -27,47 +28,100 @@
 </head>
 <body>
 
-<img src="" alt="Avatar" width="200" height="200" id="avatar" style="display: none;">
+<img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
 
-<div id ="name"></div>
-<div id ="username"></div>
-<div id ="city"></div>
-<div id ="country"></div>
+<div>
+  <button id="change" value="Change" onclick="changeAvatar()" style="width:80px;display:none;">Change</button>
+  <button id="remove" value="Remove" onclick="removeAvatar()" style="width:80px;display:none;">Remove</button>
+</div>
+
 <br>
-<button>Edit</button>
+
+<input id="pic" name="Profile Picture" class="input-file" type="file" style="display:none;">
+
 <br>
-<button type="submit" value="Save">Save</button>
+
+<div class="form-group">
+  <label for="fname">First Name: </label>  
+  <span id ="firstname"></span>
+  <input id="fname" name="fname" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>   
+</div>
+
+<div class="form-group">
+  <label for="lname">Last Name: </label>  
+  <span id ="lastname"></span>
+  <input id="lname" name="lname" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>   
+</div>
+
+<div class="form-group">
+  <label for="username">Username: </label>  
+  <span id ="uname"></span>
+  <input id="username" name="uname" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>   
+</div>
+
+<div class="form-group">
+  <label for="towncity">City/Town: </label>  
+  <span id ="citytown"></span>
+  <input id="towncity" name="towncity" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>    
+</div>
+
+
+<div class="form-group">
+  <label for="country">Country: </label>  
+  <span id ="ctry"></span>
+  <input id="country" name="country" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>    
+</div>
+
+<button onclick="edit()" value="Edit">Edit</button>
 <br>
-<button type="button" value="Cancel" onclick="window.location='index.html';">Cancel</button>
+<button onclick="save()" value="Save">Save</button>
+<br>
 
 <script>
+var firstname;
+var lastname;
+var username;
+var photo;
+var city;
+var country;
 
-var refreshIntervalId  = window.setInterval(loadProfile, 50);
+var db;
+var uid;
+var storageRef;
+
+var refreshIntervalId  = window.setInterval(loadProfile, 500);
 
 if (typeof firebase != 'undefined')
   clearInterval(refreshIntervalId);
 
 function loadProfile() {
-  var db = firebase.database();
-  var uid = firebase.auth().currentUser.uid; 
-  var storageRef = firebase.storage().ref();
+  db = firebase.database();
+  uid = firebase.auth().currentUser.uid; 
+  storageRef = firebase.storage().ref();
 
   db.ref('/users/' + uid + '/public_use').once('value').then(function(snapshot) {
-    var firstname = snapshot.val().firstname;
-    var lastname = snapshot.val().lastname;
-    var username = snapshot.val().username;
-    var photo = snapshot.val().profilepic;
-    var city = snapshot.val().citytown;
-    var country = snapshot.val().country;
+    firstname = snapshot.val().firstname;
+    lastname = snapshot.val().lastname;
+    username = snapshot.val().username;
+    photo = snapshot.val().profilepic;
+    city = snapshot.val().citytown;
+    country = snapshot.val().country;
     
-    document.getElementById("name").innerHTML = firstname + ' ' + lastname;
-    document.getElementById("username").innerHTML = "Username: " + username;
-    document.getElementById("city").innerHTML = "City/Town: " + city;
-    document.getElementById("country").innerHTML = "Country: " + country;
+    document.getElementById("firstname").innerHTML = firstname;
+    document.getElementById("lastname").innerHTML = lastname;
+    document.getElementById("uname").innerHTML = username;
+    document.getElementById("citytown").innerHTML = city;
+    document.getElementById("ctry").innerHTML = country;
     
     if (photo == "yes") {
       storageRef.child('profilePictures/' + uid + '.jpg').getDownloadURL().then(function(url) { 
-        var path = url;
+        var path = url;       
+        upload(path);
         document.getElementById("avatar").src = path;
       }).catch(function(error) { });
     } else {
@@ -80,10 +134,194 @@ function loadProfile() {
     $("#avatar").show();
   });
 }
- function edit() {
+
+function edit() {
+  document.getElementById("fname").value = firstname;
+  document.getElementById("lname").value = lastname;
+  document.getElementById("username").value = username;
+  document.getElementById("towncity").value = city;
+  document.getElementById("country").value = country;
+ 
+  $("#fname").show();
+  $("#firstname").hide();
   
+  $("#lname").show();
+  $("#lastname").hide();
+  
+  $("#username").show();
+  $("#uname").hide();
+  
+  $("#towncity").show();
+  $("#citytown").hide();
+  
+  $("#country").show();
+  $("#ctry").hide();
+  
+  $("#change").show();
+  $("#remove").show();
 }
 
+function save() {
+  var db = firebase.database();
+  var uid = firebase.auth().currentUser.uid;
+  
+  db.ref('users/' + uid + '/public_use').update({ firstname: $("#fname").val() });
+  db.ref('users/' + uid + '/public_use').update({ lastname: $("#lname").val() });
+  db.ref('users/' + uid + '/private_use').update({ username: $("#username").val() });
+  db.ref('users/' + uid + '/public_use').update({ username: $("#username").val() });
+  db.ref('users/' + uid + '/public_use').update({ citytown: $("#towncity").val() });
+  db.ref('users/' + uid + '/public_use').update({ country: $("#country").val() });
+  
+  $("#fname").hide();
+  $("#firstname").show();
+  
+  $("#lname").hide();
+  $("#lastname").show();
+  
+  $("#username").hide();
+  $("#uname").show();
+  $("#symbol").hide();
+  $("#invalid_username").hide();
+  
+  $("#towncity").hide();
+  $("#citytown").show();
+  
+  $("#country").hide();
+  $("#ctry").show();
+  
+  $("#change").hide();
+  $("#remove").hide();
+  $("#pic").hide();
+}
+
+function changeAvatar() {  
+  $("#pic").show();
+}
+
+function removeAvatar() {
+  db.ref('users/' + uid + '/public_use').update({ profilepic: "no" });
+  upload(null);
+  
+  // Create a reference to the file to delete
+  var desertRef = storageRef.child('profilePictures/' + uid + '.jpg');
+
+  // Delete the file
+  desertRef.delete().then(function() {
+    // File deleted successfully
+  }).catch(function(error) {
+    // Uh-oh, an error occurred!
+  });
+}
+      
+</script>
+
+<script>
+  var condition1 = false;
+  var condition2 = false;
+  var condition3 = false;
+  $(':input[type="submit"]').prop('disabled', true);
+  
+  //Validate the inputs
+  function validate() {
+    if (condition1 && condition2 && condition3)
+      $(':input[type="submit"]').prop('disabled', false);
+    else
+      $(':input[type="submit"]').prop('disabled', true);
+  }
+  
+	$("input[type=text]").attr( {
+		maxlength : 50
+    }); 
+    //Sorted by class name of names! -or- A-Za-z
+    $("#fname").keyup( function() {
+        if (!(/^[A-Za-z]+$/.test(this.value))) {
+          condition1 = false;
+          $("#invalid_fname").show();
+        } else {
+          condition1 = true;
+          $("#invalid_fname").hide();
+        }
+        validate();
+    });
+    
+    $("#lname").keyup( function() {
+        if (!(/^[A-Za-z]+$/.test(this.value))) {
+          condition2 = false;
+          $("#invalid_lname").show();
+        } else {
+          condition2 = true;
+          $("#invalid_lname").hide();
+        }
+        validate();
+    });
+       
+  //Username Regex
+  $("#username").keyup( function() {
+    if (!(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/.test(this.value))) {
+      condition3 = false;
+      document.getElementById("invalid_username").innerHTML = "Username can only contain alphabetic, numeric and -,_ characters. ";
+      document.getElementById("invalid_username").style.color = "red";
+      $("#invalid_username").show();
+      $("#symbol").hide();
+    } else        
+      checkIfNew(this.value)
+                       
+    validate();
+  });
+	  
+  /*
+    Checks if username is available. Returns TRUE if username already exists. False otherwise
+  */
+  function checkIfNew(dusername) {
+    var username_avb;
+    var uid = firebase.auth().currentUser.uid;  
+    firebase.database().ref().child("users/" + uid)
+            .orderByChild("username").equalTo(dusername).on('value', function(snapshot) {
+        if (snapshot.exists()) {
+            document.getElementById("invalid_username").innerHTML = "This user name is already taken. ";
+            document.getElementById("invalid_username").style.color = "red";
+            document.getElementById("symbol").style.color = "red";
+            $("#symbol").html('&#10008;');
+            $("#symbol").show();
+            $("#invalid_username").show();
+            
+            username_avb = false;
+            condition3 = false;
+        } else {        
+            document.getElementById("invalid_username").innerHTML = "This user name is available. "; 
+            document.getElementById("invalid_username").style.color = "green";
+            document.getElementById("symbol").style.color = "green";
+            $("#symbol").html('&#10004;');
+            $("#symbol").show();
+            $("#invalid_username").show();
+            
+            username_avb = true;
+            condition3 = true;
+        }
+    });
+    return username_avb;
+  }
+  
+   //Get Elements
+  var fileButton = document.getElementById('pic');
+  //Listen for file 
+  fileButton.onchange = function(event) {
+    
+    //Get File
+  var file = fileButton.files[0];   
+  uploadPhoto(file);
+  }
+  
+  function uploadPhoto(file) {
+    var uid = firebase.auth().currentUser.uid; 
+    
+    //Create a Storage Ref
+    var storageRef = firebase.storage().ref('profilePictures/' + uid + '.jpg');
+    
+    //Upload file
+    var task = storageRef.put(file);
+    db.ref('users/' + uid + '/public_use').update({ profilepic: "yes" });
+  }
 </script>
 
 </body>
