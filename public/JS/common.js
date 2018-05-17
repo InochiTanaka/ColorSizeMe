@@ -1,6 +1,7 @@
-function moveToIndex(){
-	
-	location.href = "/index.html";
+function jumpToLocate(param)
+{
+	param = param.substring(1);
+	location.href = param;
 }
 
 function closeAndreload()
