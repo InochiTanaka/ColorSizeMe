@@ -34,7 +34,7 @@ window.onload = function()
 				}
 				else
 				{
-					document.images["loginPic"].src = "../images/keyrocko.png";	
+					document.images["loginPic"].src = "../images/keyrock0.png";	
 					document.getElementById("loginPic").style.display="block";	
 					document.getElementById("messageText0").style.display="block";
 					document.getElementById("messageText1").style.display="none";
@@ -73,8 +73,8 @@ function login()
 	var password = document.getElementById('password').value;
 	
 	firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-		
-		setTimeout("location.href = \"/index.html\"",5000);
+	
+		setTimeout(function () {jumpToLocate(location.search)},5000);
 		
 		}).catch(function(error) {
 		alert('Failed to Login : ' + error.message);

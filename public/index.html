@@ -1,5 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<html>
 
 <head>
     <meta charset="utf-8">
@@ -43,7 +42,7 @@
                         <li><a href="#">Contact</a></li>
                     </ul>
                     <ul id="loginTable" class="nav navbar-nav navbar-right">
-                        <li id="login" onclick="loginFunction()">Log In</li>
+                        <li id="login" onclick="loginFunction(location.pathname)">Log In</li>
                         <li id="messageText0">
                             <p></p>
                         </li>
@@ -51,24 +50,7 @@
                         <li id="messageText1">
                             <p></p>
                         </li>
-                        <li>
-                            <div id="accountMenu" onclick="location.href='myprofile.html';"> <img id="accountImage" src="">
-                                <!--
-                                    <div class="dropDownSign"></div>
-                                    <ul id="menu">
-                                        <li>
-                                            <a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
-                                            <a href="#">Categories</a>
-                                            <ul>
-                                                <li><a href="#">CSS</a></li>
-                                                <li><a href="#">Graphic design</a></li>
-                                                <li><a href="#">Development tools</a></li>
-                                                <li><a href="#">Web design</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                  --></div>
-                        </li>
+                        <li id="accountMenu" onclick="window.location='myprofile.html'"><img id="accountImage" src="" /></li>
                         <li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
                     </ul>
                 </div>
@@ -111,7 +93,7 @@
     <footer class="navbar navbar-fixed-bottom">
         <div class="full">
             <div class="container">
-                <span> © 2018 Copyright:</span><a href="users.html" style="float:right;color:white;">Registered Users</a>
+                <span> © 2018 Copyright:</span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a>
             </div>
         </div>
     </footer>
