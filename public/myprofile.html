@@ -19,11 +19,6 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       
 </head>
 <body>
@@ -102,7 +97,7 @@ if (typeof firebase != 'undefined')
   clearInterval(refreshIntervalId);
 
 function loadProfile() {
-  db = firebase.database();
+  db = firebase.database(); 
   uid = firebase.auth().currentUser.uid; 
   storageRef = firebase.storage().ref();
 
@@ -232,6 +227,8 @@ function removeAvatar() {
 </script>
 
 <script>
+  var username_avb;
+
   var condition1 = false;
   var condition2 = false;
   var condition3 = false;
@@ -289,11 +286,14 @@ function removeAvatar() {
     Checks if username is available. Returns TRUE if username already exists. False otherwise
   */
   function checkIfNew(dusername) {
-    var username_avb;
+
+    var taken;
     var uid = firebase.auth().currentUser.uid;  
-    firebase.database().ref().child("users/" + uid)
-            .orderByChild("username").equalTo(dusername).on('value', function(snapshot) {
-        if (snapshot.exists()) {
+    
+    firebase.database().ref().child("takenusernames/").once('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+
+        if (childSnapshot.val() == dusername) {
             document.getElementById("invalid_username").innerHTML = "This user name is already taken. ";
             document.getElementById("invalid_username").style.color = "red";
             document.getElementById("symbol").style.color = "red";
@@ -303,7 +303,8 @@ function removeAvatar() {
             
             username_avb = false;
             condition3 = false;
-        } else {        
+            taken = true;
+        } else if (!taken) {        
             document.getElementById("invalid_username").innerHTML = "This user name is available. "; 
             document.getElementById("invalid_username").style.color = "green";
             document.getElementById("symbol").style.color = "green";
@@ -313,9 +314,11 @@ function removeAvatar() {
             
             username_avb = true;
             condition3 = true;
+            taken = false;
         }
     });
-    return username_avb;
+   });
+   return username_avb;
   }
   
    //Get Elements

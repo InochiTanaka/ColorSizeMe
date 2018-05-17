@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>Profile Page</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="JS/signup.js"></script>
+   
+  <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+      
+</head>
+<body>
+
+<img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
+
+<br>
+
+<div class="form-group">
+  <label for="fname">First Name: </label>  
+  <span id ="firstname"></span>
+  <input id="fname" name="fname" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>   
+</div>
+
+<div class="form-group">
+  <label for="lname">Last Name: </label>  
+  <span id ="lastname"></span>
+  <input id="lname" name="lname" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>   
+</div>
+
+<div class="form-group">
+  <label for="username">Username: </label>  
+  <span id ="uname"></span>
+  <input id="username" name="uname" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>   
+</div>
+
+<div class="form-group">
+  <label for="towncity">City/Town: </label>  
+  <span id ="citytown"></span>
+  <input id="towncity" name="towncity" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>    
+</div>
+
+
+<div class="form-group">
+  <label for="country">Country: </label>  
+  <span id ="ctry"></span>
+  <input id="country" name="country" type="text" value="" style="display:none;">
+  <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>    
+</div>
+
+<script>
+var firstname;
+var lastname;
+var username;
+var photo;
+var city;
+var country;
+
+var db;
+var uid;
+var storageRef;
+
+var refreshIntervalId  = window.setInterval(loadProfile, 500);
+
+if (typeof firebase != 'undefined')
+  clearInterval(refreshIntervalId);
+
+function loadProfile() {
+  db = firebase.database(); 
+  uid = document.cookie; 
+  storageRef = firebase.storage().ref();
+
+  db.ref('/users/' + uid + '/public_use').once('value').then(function(snapshot) {
+    firstname = snapshot.val().firstname;
+    lastname = snapshot.val().lastname;
+    username = snapshot.val().username;
+    photo = snapshot.val().profilepic;
+    city = snapshot.val().citytown;
+    country = snapshot.val().country;
+    
+    document.getElementById("firstname").innerHTML = firstname;
+    document.getElementById("lastname").innerHTML = lastname;
+    document.getElementById("uname").innerHTML = username;
+    document.getElementById("citytown").innerHTML = city;
+    document.getElementById("ctry").innerHTML = country;
+    
+    if (photo == "yes") {
+      storageRef.child('profilePictures/' + uid + '.jpg').getDownloadURL().then(function(url) { 
+        var path = url;       
+        upload(path);
+        document.getElementById("avatar").src = path;
+      }).catch(function(error) { });
+    } else {
+      storageRef.child('profilePictures/anonymous-avatar-sm.jpg').getDownloadURL().then(function(url) {
+        var path = url;
+        document.getElementById("avatar").src = path;
+      }).catch(function(error) { });
+    }
+    
+    $("#avatar").show();
+  });
+}
+
+</script>
+
+</body>
+
+</html> 
+ 
