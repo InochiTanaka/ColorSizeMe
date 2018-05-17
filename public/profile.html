@@ -19,6 +19,11 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       
 </head>
 <body>
@@ -26,9 +31,13 @@
 <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
 
 <div>
-  <button id="change" value="Change" onclick="changeAvatar()';" style="width:80px;display:none;">Change</button>
-  <button id="remove" value="Remove" onclick="removeAvatar()';" style="width:80px;display:none;">Remove</button>
+  <button id="change" value="Change" onclick="changeAvatar()" style="width:80px;display:none;">Change</button>
+  <button id="remove" value="Remove" onclick="removeAvatar()" style="width:80px;display:none;">Remove</button>
 </div>
+
+<br>
+
+<input id="pic" name="Profile Picture" class="input-file" type="file" style="display:none;">
 
 <br>
 
@@ -72,6 +81,8 @@
 <br>
 <button onclick="save()" value="Save">Save</button>
 <br>
+<br>
+<button onclick="deleteAccount()" id="delete" value="Delete" style="display:none;">Delete Account</button>
 
 <script>
 var firstname;
@@ -81,15 +92,19 @@ var photo;
 var city;
 var country;
 
+var db;
+var uid;
+var storageRef;
+
 var refreshIntervalId  = window.setInterval(loadProfile, 500);
 
 if (typeof firebase != 'undefined')
   clearInterval(refreshIntervalId);
 
 function loadProfile() {
-  var db = firebase.database();
-  var uid = firebase.auth().currentUser.uid; 
-  var storageRef = firebase.storage().ref();
+  db = firebase.database();
+  uid = firebase.auth().currentUser.uid; 
+  storageRef = firebase.storage().ref();
 
   db.ref('/users/' + uid + '/public_use').once('value').then(function(snapshot) {
     firstname = snapshot.val().firstname;
@@ -146,6 +161,8 @@ function edit() {
   
   $("#change").show();
   $("#remove").show();
+  
+  $("#delete").show();
 }
 
 function save() {
@@ -178,14 +195,40 @@ function save() {
   
   $("#change").hide();
   $("#remove").hide();
+  $("#pic").hide();
+  
+  $("#delete").hide();
 }
 
-function changeAvatar() {
+function deleteAccount() {
+  var sure = confirm("Are you sure you want to delete your account?");
+  
+  if (sure) {
+    firebase.auth().currentUser.delete();
+    alert("Profile deleted successfully.");  
+    window.location.href = 'index.html';
+  }
+}
+
+function changeAvatar() {  
+  $("#pic").show();
 }
 
 function removeAvatar() {
+  db.ref('users/' + uid + '/public_use').update({ profilepic: "no" });
+  upload(null);
+  
+  // Create a reference to the file to delete
+  var desertRef = storageRef.child('profilePictures/' + uid + '.jpg');
+
+  // Delete the file
+  desertRef.delete().then(function() {
+    // File deleted successfully
+  }).catch(function(error) {
+    // Uh-oh, an error occurred!
+  });
 }
-      
+
 </script>
 
 <script>
@@ -273,6 +316,27 @@ function removeAvatar() {
         }
     });
     return username_avb;
+  }
+  
+   //Get Elements
+  var fileButton = document.getElementById('pic');
+  //Listen for file 
+  fileButton.onchange = function(event) {
+    
+    //Get File
+  var file = fileButton.files[0];   
+  uploadPhoto(file);
+  }
+  
+  function uploadPhoto(file) {
+    var uid = firebase.auth().currentUser.uid; 
+    
+    //Create a Storage Ref
+    var storageRef = firebase.storage().ref('profilePictures/' + uid + '.jpg');
+    
+    //Upload file
+    var task = storageRef.put(file);
+    db.ref('users/' + uid + '/public_use').update({ profilepic: "yes" });
   }
 </script>
 

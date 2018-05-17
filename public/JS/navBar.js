@@ -1,7 +1,31 @@
+var timer = 0;
+ 
+window.onresize = function () {
+  if (timer > 0) {
+    clearTimeout(timer);
+  }
+ 
+  timer = setTimeout(function () {
+	firebase.auth().onAuthStateChanged(function(user)
+	{
+		if(user.displayName != null)
+		{
+			if(window.innerWidth < 769)
+			{
+				document.getElementById("accountMenu").style.display="none";
+			}
+			else
+			{
+				document.getElementById("accountMenu").style.display="inline-block";
+			}	
+		}
+	});	
+  }, 0);
+};
+
 window.onload = function()
 {	
 			//alert(document.getElementById("email").value);
-alert();
 	firebase.auth().onAuthStateChanged(function(user)
 	{
 		// If user auth data is exixts
@@ -17,16 +41,16 @@ alert();
 					document.getElementById("signup").style.display="inline-block";
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("accountMenu").style.display="none";
-					messageText0.textContent = "Please continue your Sign Up process ";
+					messageText0.textContent = "Please continue \"Sign Up\" ";
 					messageText1.textContent = "or";	
 					
 				}
 				else //If user.displayName is not null(means registered already)
 				{
-					document.getElementById("accountMenu").style.display="inline-block";
 					document.getElementById("login").style.display="none";
-					document.getElementById("logout").style.display="none";
+					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("signup").style.display="none";
+					document.getElementById("accountMenu").style.display="inline-block";
 					messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
 					
 					if(user.photoURL == null)

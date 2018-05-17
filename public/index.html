@@ -28,7 +28,6 @@
         <link rel="stylesheet" href="styles/style.css" type="text/css">
         <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="styles/dropdownMenu.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
         <style media="screen"></style>
 	</head>
@@ -51,9 +50,9 @@
                             <li><a href="#">Contact</a></li>
                         </ul>
                         <ul id="loginTable" class="nav navbar-nav navbar-right">
-                            <li><a id="login" onclick="loginFunction()">Log In</a></li>
-                            <li id="messageText0"><p></p></li>
-                            <li a id="signup" onclick="signupFunction()">Sign Up</a></li>
+                            <li id="login" onclick="loginFunction()">Log In</li>
+							<li id="messageText0"><p></p></li>
+                            <li id="signup" onclick="signupFunction()">Sign Up</li>
                             <li id="messageText1"><p></p></li>
                             <li>
                                 <div id="accountMenu" onclick="">
@@ -75,6 +74,7 @@
                                   -->
                                 </div>
                             </li>
+							<li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
                         </ul>
                     </div>
                 </div>
@@ -84,10 +84,7 @@
             <div class="container-fluid text-center">
                 <div class="content">
                     <div class="col-xs-12" id="main">
-                        <h1>Welcome</h1>
-						
-									<button id="logout" onclick="logoutFunction()">Log Out</button>
-									
+                        <h1>Welcome</h1>									
                         <p>Some Text</p>
                         <br>
                         <div class="inputs">
