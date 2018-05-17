@@ -2,15 +2,17 @@
 
 <html lang="en">
 <head>
-  <title>User Inputs</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="JS/signup.js"></script>
+    <title>User Inputs</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="JS/signup.js"></script>
    
-  <!-- update the version number as needed -->
+    <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
@@ -19,85 +21,144 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
+    <script type="text/javascript" src="JS/Style.js"></script>
+    <script type="text/javascript" src="JS/navBar.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/dropdownMenu.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
            
 </head>
 
 <body>
- 
-<form class="form-horizontal" onsubmit="new_user()" action="index.html">
-<fieldset>
+<div id="wrap">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">ColorSizeMe</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <ul id="loginTable" class="nav navbar-nav navbar-right">
+                    <li><a id="login" onclick="loginFunction()">Log In</a></li>
+                    <li id="messageText0"><p></p></li>
+                    <li a id="signup" onclick="signupFunction()">Sign Up</a></li>
+                    <li id="messageText1"><p></p></li>
+                    <li a id="logout" onclick="logoutFunction()">Log Out</a></li>
+                    <li>
+                        <div id="accountMenu" onclick="logoutFunction()">
+                            <img id="accountImage" src="">
+                            <div class="dropDownSign"></div>
+                            <!--<ul id="menu">
+                                <li>
+                                    <a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
+                                    <a href="#">Categories</a>
+                                    <ul>
+                                        <li><a href="#">CSS</a></li>
+                                        <li><a href="#">Graphic design</a></li>
+                                        <li><a href="#">Development tools</a></li>
+                                        <li><a href="#">Web design</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="full wrap">
+    <div class="container-fluid main">
+        <form onsubmit="new_user(); return false;" action="index.html">
+                <!-- Form Name -->
+                <label style="display: block; text-align: center; line-height: 150%; font-size: 1.3em;">Create Your Profile</label>
 
-<!-- Form Name -->
-<legend>Create Your Profile</legend>
+                <!-- Text input-->
+                <div class="col-sm-12 form-group">
+                  <label class="col-sm-4 control-label" for="fname">First Name</label>
+                  <div class="col-sm-4">
+                    <input id="fname" name="fname" type="text" placeholder="John" class="form-control input-sm" required="">
+                    <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>
+                  </div>
+                </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="fname">First Name</label>  
-  <div class="col-sm-4">
-  <input id="fname" name="fname" type="text" placeholder="John" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>  
-  </div>
-</div>
+              <!-- Text input-->
+              <div class="col-sm-12 form-group">
+                <label class="col-sm-4 control-label" for="Last Name">Last Name</label>
+                <div class="col-sm-6">
+                <input id="lname" name="Last Name" type="text" placeholder="Doe" class="form-control input-sm" required="">
+                <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>
+                </div>
+              </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="Last Name">Last Name</label>  
-  <div class="col-sm-4">
-  <input id="lname" name="Last Name" type="text" placeholder="Doe" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>  
-  </div>
-</div>
+              <!-- Text input-->
+              <div class="col-sm-12 form-group">
+                <label class="col-sm-4 control-label" for="textinput">Username</label>
+                <div class="col-sm-6">
+                <input id="username" name="Username" type="text" placeholder="jdoe87" class="form-control input-sm" required="">
+                <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>
+                </div>
+              </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="textinput">Username</label>  
-  <div class="col-sm-4">
-  <input id="username" name="Username" type="text" placeholder="jdoe87" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>  
-  </div>
-</div>
+              <!-- File Button -->
+              <div class="col-sm-12 form-group">
+                <label class="col-sm-4 control-label" for="Profile Picture" >Profile Photo</label>
+                <div class="col-sm-4">
+                  <input type="file" class="btn btn-default" id="pic" name="Profile Picture">
+                </div>
+              </div>
 
-<!-- File Button --> 
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="Profile Picture" >Profile Photo</label>
-  <div class="col-sm-4">
-    <input id="pic" name="Profile Picture" class="input-file" type="file">
-  </div>
-</div>
+              <!-- Text input-->
+              <div class="col-sm-12 form-group">
+                <label class="col-sm-4 control-label" for="towncity">City/Town</label>
+                <div class="col-sm-4">
+                <input id="towncity" name="towncity" type="text" placeholder="Burnaby" class="form-control input-sm" required="">
+                <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>
+                </div>
+              </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="towncity">City/Town</label>  
-  <div class="col-sm-4">
-  <input id="towncity" name="towncity" type="text" placeholder="Burnaby" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>  
-  </div>
-</div>
+              <!-- Text input-->
+              <div class="col-sm-12 form-group">
+                    <label class="col-sm-4 control-label" for="country">Country</label>
+                    <div class="col-sm-4">
+                    <input id="country" name="country" type="text" placeholder="Canada" class="form-control input-sm" required="">
+                    <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>
+                    </div>
+              </div>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-sm-4 control-label" for="country">Country</label>  
-  <div class="col-sm-4">
-  <input id="country" name="country" type="text" placeholder="Canada" class="form-control input-sm" required="">
-  <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>  
-  </div>
-</div>
-
-</fieldset>
-
-<!-- Buttons-->
-<div id="buttons">
-  <div class="row">
-    <div class="cell">
-      <input type="submit" value="Create Profile">
-      <input type="button" value="Cancel" onclick="window.location='index.html';">
+            <!-- Buttons-->
+            <div class="btn-group form-group col-sm-4" style="padding-top: 2%; float: left;">
+                <input type="button" class="btn btn-default " value="Create Profile">
+                <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='index.html';">
+            </div>
+        </form>
     </div>
-  </div>
+    </div>
 </div>
+    <footer class="navbar navbar-fixed-bottom">
+      <div class="container">
+        <p> © 2018 Copyright:</p>
+      </div>
+    </footer>
 
-</form>
-
- 
 </body>
 
 <script>
