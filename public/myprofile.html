@@ -133,9 +133,9 @@
   <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>    
 </div>
 
-<button onclick="edit()" value="Edit">Edit</button>
+<button id="edit" onclick="edit()" value="Edit">Edit</button>
 <br>
-<button onclick="save()" value="Save">Save</button>
+<button id="save" onclick="save()" value="Save" style="display:none;">Save</button>
 <br>
 <br>
 <button onclick="deleteAccount()" id="delete" value="Delete" style="display:none;">Delete Account</button>
@@ -209,6 +209,9 @@ function edit() {
   document.getElementById("towncity").value = city;
   document.getElementById("country").value = country;
  
+  $("#edit").hide();
+  $("#save").show();
+  
   $("#fname").show();
   $("#firstname").hide();
   
@@ -239,6 +242,9 @@ function save() {
   db.ref('users/' + uid + '/public_use').update({ citytown: $("#towncity").val() });
   db.ref('users/' + uid + '/public_use').update({ country: $("#country").val() });
   
+  $("#edit").show();
+  $("#save").hide();
+  
   $("#fname").hide();
   $("#firstname").show();
   
@@ -267,10 +273,20 @@ function save() {
 function deleteAccount() {
   var sure = confirm("Are you sure you want to delete your account?");
   
-  if (sure) {
-    firebase.auth().currentUser.delete();
-    alert("Profile deleted successfully.");  
-    window.location.href = 'index.html';
+  if (sure) {   
+    firebase.auth().currentUser.delete().then(function () {
+      //console.log('delete successful?');
+      //console.log(app.auth().currentUser);
+      
+      db.ref('/users/' + uid).remove();
+      db.ref('takenusernames/' + uid).remove();
+          
+      window.location.href = 'index.html';
+      alert("Profile deleted successfully.");  
+    }).catch(function (error) {
+      console.error({error});
+      alert("Please sign out and sign in again to delete your profile.");  
+    })
   }
 }
 
@@ -368,7 +384,7 @@ function setPrivacy(){
     var taken;
     var uid = firebase.auth().currentUser.uid;  
     
-    firebase.database().ref().child("takenusernames/").once('value', function(snapshot) {
+    db.ref().child("takenusernames/").once('value', function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
 
         if (childSnapshot.val() == dusername) {
