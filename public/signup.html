@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <title>User Inputs</title>
@@ -102,6 +103,7 @@
 <script>
   var photoUploaded;
   var file;
+  var username_avb;
   
   var condition1 = false;
   var condition2 = false;
@@ -169,11 +171,14 @@
     Checks if username is available. Returns TRUE if username already exists. False otherwise
   */
   function checkIfNew(dusername) {
-    var username_avb;
+
+    var taken;
     var uid = firebase.auth().currentUser.uid;  
-    firebase.database().ref().child("users/" + uid)
-            .orderByChild("username").equalTo(dusername).on('value', function(snapshot) {
-        if (snapshot.exists()) {
+    
+    firebase.database().ref().child("takenusernames/").once('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+
+        if (childSnapshot.val() == dusername) {
             document.getElementById("invalid_username").innerHTML = "This user name is already taken. ";
             document.getElementById("invalid_username").style.color = "red";
             document.getElementById("symbol").style.color = "red";
@@ -183,7 +188,8 @@
             
             username_avb = false;
             condition3 = false;
-        } else {        
+            taken = true;
+        } else if (!taken) {        
             document.getElementById("invalid_username").innerHTML = "This user name is available. "; 
             document.getElementById("invalid_username").style.color = "green";
             document.getElementById("symbol").style.color = "green";
@@ -193,9 +199,11 @@
             
             username_avb = true;
             condition3 = true;
+            taken = false;
         }
     });
-    return username_avb;
+   });
+   return username_avb;
   }
   
   /*
@@ -240,6 +248,9 @@
         visibility
       });
 		
+      var takenUsersRef = db.ref('takenusernames/' + uid);
+      takenUsersRef.set(un);
+      
       var geoRef = db.ref().child('market/' + $("#country").val() + '/' + uid); //Geomaps the user	
       geoRef.set(public_use);	
          

@@ -20,7 +20,7 @@ window.onresize = function () {
 			}	
 		}
 	});	
-  }, 200);
+  }, 0);
 };
 
 window.onload = function()
@@ -41,7 +41,7 @@ window.onload = function()
 					document.getElementById("signup").style.display="inline-block";
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("accountMenu").style.display="none";
-					messageText0.textContent = "Please continue your \"Sign Up\" process ";
+					messageText0.textContent = "Please continue \"Sign Up\" ";
 					messageText1.textContent = "or";	
 					
 				}
@@ -50,6 +50,7 @@ window.onload = function()
 					document.getElementById("login").style.display="none";
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("signup").style.display="none";
+					document.getElementById("accountMenu").style.display="inline-block";
 					messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
 					
 					if(user.photoURL == null)
@@ -140,14 +141,4 @@ function signupFunction()
 			location.href = "/auth.html" ;		
 		/*}	
 	});	*/					
-}
-
-function getWindowSize() {
-
-
-  console.log(`ウィンドウサイズの横幅`);
-  console.log(window.innerWidth);
-
-  console.log(`ウィンドウサイズの高さ`);
-  console.log(window.innerHeight);
 }
