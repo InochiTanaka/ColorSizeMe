@@ -38,8 +38,14 @@ window.onload = function() {
         user.setAttribute("id", "user" + count);
         document.body.appendChild(user);
         document.body.appendChild(document.createElement("BR"));
-       
-        document.getElementById("user" + count).innerHTML = childSnapshot.val();
+        
+        var uid = firebase.auth().currentUser.uid;  
+        
+        if (uid == childSnapshot.key)
+          document.getElementById("user" + count).innerHTML = childSnapshot.val() + " (You!)";
+        else
+          document.getElementById("user" + count).innerHTML = childSnapshot.val();
+          
         document.getElementById("user" + count).name = childSnapshot.key;
         document.getElementById("user" + count).href = "usersprofile.html";
         document.getElementById("user" + count).onclick = openProfile;

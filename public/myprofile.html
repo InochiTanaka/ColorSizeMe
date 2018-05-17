@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="JS/signup.js"></script>
+  <script type="text/javascript" src="JS/Style.js"></script>
+  <script type="text/javascript" src="JS/navBar.js"></script>
    
   <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -19,11 +21,70 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-      
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
+    <style media="screen"></style>
 </head>
 <body>
 
+<div id="wrap">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html">ColorSizeMe</a> </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <ul id="loginTable" class="nav navbar-nav navbar-right">
+                        <li id="login" onclick="loginFunction()">Log In</li>
+                        <li id="messageText0">
+                            <p></p>
+                        </li>
+                        <li id="signup" onclick="signupFunction()">Sign Up</li>
+                        <li id="messageText1">
+                            <p></p>
+                        </li>
+                        <li>
+                            <div id="accountMenu" onclick="location.href='myprofile.html';"> <img id="accountImage" src="">
+                                <!--
+                                    <div class="dropDownSign"></div>
+                                    <ul id="menu">
+                                        <li>
+                                            <a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
+                                            <a href="#">Categories</a>
+                                            <ul>
+                                                <li><a href="#">CSS</a></li>
+                                                <li><a href="#">Graphic design</a></li>
+                                                <li><a href="#">Development tools</a></li>
+                                                <li><a href="#">Web design</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                  --></div>
+                        </li>
+                        <li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</div>
+            
 <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
+
+<span id="privacy" style="display:none;">
+  <span style="position:relative;bottom:15px";>Private mode</span>
+  
+  <!-- Rounded switch -->
+  <label class="switch">
+    <input id="toggle" type="checkbox" onclick="setPrivacy()">
+    <span class="slider round"></span>
+  </label>
+</span>
 
 <div>
   <button id="change" value="Change" onclick="changeAvatar()" style="width:80px;display:none;">Change</button>
@@ -100,7 +161,16 @@ function loadProfile() {
   db = firebase.database(); 
   uid = firebase.auth().currentUser.uid; 
   storageRef = firebase.storage().ref();
-
+  
+  db.ref('/users/' + uid).once('value').then(function(snapshot) {
+    visibility = snapshot.val().visibility;
+    
+    if (visibility == "private")   
+      $("#toggle").prop('checked', true);
+    else
+      $("#toggle").prop('checked', false);
+  });
+  
   db.ref('/users/' + uid + '/public_use').once('value').then(function(snapshot) {
     firstname = snapshot.val().firstname;
     lastname = snapshot.val().lastname;
@@ -157,13 +227,11 @@ function edit() {
   $("#change").show();
   $("#remove").show();
   
+  $("#privacy").show();
   $("#delete").show();
 }
 
 function save() {
-  var db = firebase.database();
-  var uid = firebase.auth().currentUser.uid;
-  
   db.ref('users/' + uid + '/public_use').update({ firstname: $("#fname").val() });
   db.ref('users/' + uid + '/public_use').update({ lastname: $("#lname").val() });
   db.ref('users/' + uid + '/private_use').update({ username: $("#username").val() });
@@ -192,6 +260,7 @@ function save() {
   $("#remove").hide();
   $("#pic").hide();
   
+  $("#privacy").hide();
   $("#delete").hide();
 }
 
@@ -222,6 +291,15 @@ function removeAvatar() {
   }).catch(function(error) {
     // Uh-oh, an error occurred!
   });
+}
+
+function setPrivacy(){
+  var privatemode = document.getElementById("toggle").checked;
+                
+  if (privatemode)
+    db.ref('users/' + uid).update({ visibility: "private" });
+  else
+    db.ref('users/' + uid).update({ visibility: "public" });               
 }
 
 </script>
