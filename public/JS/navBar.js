@@ -25,7 +25,7 @@ window.onresize = function () {
 
 window.onload = function()
 {	
-			//alert(document.getElementById("email").value);
+	//alert(document.getElementById("email").value);
 	firebase.auth().onAuthStateChanged(function(user)
 	{
 		// If user auth data is exixts
@@ -91,7 +91,7 @@ window.onload = function()
 	});		
 }
 
-function loginFunction()
+function loginFunction(locate)
 {			
 	firebase.auth().onAuthStateChanged(function(user)
 	{
@@ -108,7 +108,7 @@ function loginFunction()
 		}		
 		else
 		{			
-			location.href = "/login.html" ;	
+			location.href = "/login.html?"+locate ;	
 		}	
 	});						
 }
@@ -120,6 +120,8 @@ function logoutFunction()
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {	
 				firebase.auth().signOut().then(function() {
+					
+					location.reload();
 									
 				}).catch(function(error) {
 					alert('Failed to Logout : ' + error.message);
