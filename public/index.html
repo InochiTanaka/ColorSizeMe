@@ -1,63 +1,59 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-        <title>ColorSizeMe</title>
 
-        <!-- update the version number as needed -->
-        <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
-        <!-- include only the Firebase features as you need -->
-        <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
-        <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
-        <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
-        <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
-        <!-- initialize the SDK after all desired features are loaded -->
-        <script defer src="/__/firebase/init.js"></script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>ColorSizeMe</title>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
+    <script type="text/javascript" src="JS/Style.js"></script>
+    <script type="text/javascript" src="JS/navBar.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
+    <style media="screen"></style>
+</head>
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-        <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
-        <script type="text/javascript" src="JS/Style.js"></script>
-        <script type="text/javascript" src="JS/navBar.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="styles/style.css" type="text/css">
-        <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
-        <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
-        <style media="screen"></style>
-	</head>
-  <body>
-      <div id="wrap">
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.html">ColorSizeMe</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                        <ul id="loginTable" class="nav navbar-nav navbar-right">
-                            <li id="login" onclick="loginFunction()">Log In</li>
-							<li id="messageText0"><p></p></li>
-                            <li id="signup" onclick="signupFunction()">Sign Up</li>
-                            <li id="messageText1"><p></p></li>
-                            <li>
-                                <div id="accountMenu" onclick="">
-                                    <img id="accountImage" src="">
-									<!--
+<body>
+    <div id="wrap">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html">ColorSizeMe</a> </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <ul id="loginTable" class="nav navbar-nav navbar-right">
+                        <li id="login" onclick="loginFunction()">Log In</li>
+                        <li id="messageText0">
+                            <p></p>
+                        </li>
+                        <li id="signup" onclick="signupFunction()">Sign Up</li>
+                        <li id="messageText1">
+                            <p></p>
+                        </li>
+                        <li>
+                            <div id="accountMenu" onclick="location.href='myprofile.html';"> <img id="accountImage" src="">
+                                <!--
                                     <div class="dropDownSign"></div>
                                     <ul id="menu">
                                         <li>
@@ -71,35 +67,31 @@
                                             </ul>
                                         </li>
                                     </ul>
-                                  -->
-                                </div>
-                            </li>
-							<li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
-                        </ul>
-                    </div>
+                                  --></div>
+                        </li>
+                        <li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
+                    </ul>
                 </div>
-
-            </nav>
-
-            <div class="container-fluid text-center">
-                <div class="content">
-                    <div class="col-xs-12" id="main">
-                        <h1>Welcome</h1>									
-                        <p>Some Text</p>
-                        <br>
-                        <div class="inputs">
-                            <button class="btn btn-default" type="button"  onclick="window.location='input.html'">Search</button>
-                        </div>
-                        <br>
-                        <h3>Switching User role</h3>
-                        <select class="form-control" id="sel1 userRole" onchange="switchRole()">
-                            <option value="user">User</option>
-                            <option value="manager">Manager</option>
-                            <option value="retailer">Retailer</option>
-                            <option value="admin">Admin</option>
-                        </select>
-
-                        <!--
+            </div>
+        </nav>
+        <div class="container-fluid text-center">
+            <div class="content">
+                <div class="col-xs-12" id="main">
+                    <h1>Welcome</h1>
+                    <p>Some Text</p>
+                    <br>
+                    <div class="inputs">
+                        <button class="btn btn-default" type="button" onclick="window.location='input.html'">Search</button>
+                    </div>
+                    <br>
+                    <h3>Switching User role</h3>
+                    <select class="form-control" id="sel1 userRole" onchange="switchRole()">
+                        <option value="user">User</option>
+                        <option value="manager">Manager</option>
+                        <option value="retailer">Retailer</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <!--
                         <div id="menu-box">
                           <div id="toggle"><a href="#">menu</a></div>
 
@@ -112,17 +104,17 @@
                         </div>
                         <br>
                         -->
-                        <br>
-                    </div>
-                </div>
+                    <br> </div>
             </div>
-      </div>
-      <footer class="navbar navbar-fixed-bottom">
-          <div class="full">
-              <div class="container">
-                  <p> © 2018 Copyright:</p>
-              </div>
-          </div>
-      </footer>
-  </body>
+        </div>
+    </div>
+    <footer class="navbar navbar-fixed-bottom">
+        <div class="full">
+            <div class="container">
+                <span> © 2018 Copyright:</span><a href="users.html" style="float:right;color:white;">Registered Users</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
 </html>
