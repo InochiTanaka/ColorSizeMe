@@ -193,3 +193,15 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.custom-file-upload {
+    position: relative;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: normal;   
+    background-color: #D3D3D3;
+}

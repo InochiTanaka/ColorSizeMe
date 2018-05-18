@@ -18,10 +18,10 @@ function create(data)
 			  //photoURL: "https://example.com/jane-q-user/profile.jpg"
 			}).then(function() {
 			  // Update successful.
-			  alert("Pushed displayName");
-			  location.href = "/index.html" ;	
+			  //alert("Pushed displayName");
+			  //location.href = "/index.html" ;	
 			}).catch(function(error) {
-			  alert("Mistook to push displayName");
+			  //alert("Mistook to push displayName");
 			});
 		}
 		else

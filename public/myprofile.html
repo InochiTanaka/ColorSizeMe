@@ -70,13 +70,15 @@
 </span>
 
 <div>
-  <button id="change" value="Change" onclick="changeAvatar()" style="width:80px;display:none;">Change</button>
-  <button id="remove" value="Remove" onclick="removeAvatar()" style="width:80px;display:none;">Remove</button>
+   
+  <label id="change" for="pic" class="custom-file-upload" style="display:none;">
+    Change
+  </label>
+  <input  id="pic" type="file" style="display:none;"/>
+
+  <button id="remove" class="custom-file-upload" value="Remove" onclick="removeAvatar()" style="width:90px;display:none;">Remove</button>
+
 </div>
-
-<br>
-
-<input id="pic" name="Profile Picture" class="input-file" type="file" style="display:none;">
 
 <br>
 
@@ -117,7 +119,6 @@
 </div>
 
 <button id="edit" onclick="edit()" value="Edit">Edit</button>
-<br>
 <button id="save" onclick="save()" value="Save" style="display:none;">Save</button>
 <br>
 <br>
@@ -220,10 +221,14 @@ function edit() {
 function save() {
   db.ref('users/' + uid + '/public_use').update({ firstname: $("#fname").val() });
   db.ref('users/' + uid + '/public_use').update({ lastname: $("#lname").val() });
-  db.ref('users/' + uid + '/private_use').update({ username: $("#username").val() });
-  db.ref('users/' + uid + '/public_use').update({ username: $("#username").val() });
   db.ref('users/' + uid + '/public_use').update({ citytown: $("#towncity").val() });
   db.ref('users/' + uid + '/public_use').update({ country: $("#country").val() });
+  db.ref('users/' + uid + '/private_use').update({ username: $("#username").val() });
+  db.ref('users/' + uid + '/public_use').update({ username: $("#username").val() });  
+  db.ref('takenusernames/' + uid).set($("#username").val());
+  
+  //Update display name
+  create($("#username").val());
   
   $("#edit").show();
   $("#save").hide();
@@ -251,6 +256,9 @@ function save() {
   
   $("#privacy").hide();
   $("#delete").hide();
+  
+  //refresh the page
+  //location.reload();
 }
 
 function deleteAccount() {
@@ -271,10 +279,6 @@ function deleteAccount() {
       alert("Please sign out and sign in again to delete your profile.");  
     })
   }
-}
-
-function changeAvatar() {  
-  $("#pic").show();
 }
 
 function removeAvatar() {
