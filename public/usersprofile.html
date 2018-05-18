@@ -30,71 +30,71 @@
 <body>
 
 <div id="wrap">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html">ColorSizeMe</a> </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                    <ul id="loginTable" class="nav navbar-nav navbar-right">
-                        <li id="login" onclick="loginFunction()">Log In</li>
-                        <li id="messageText0">
-                            <p></p>
-                        </li>
-                        <li id="signup" onclick="signupFunction()">Sign Up</li>
-                        <li id="messageText1">
-                            <p></p>
-                        </li>
-                        <li id="accountMenu" onclick="window.location='myprofile.html'"><img id="accountImage" src="" /></li>
-                        <li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html">ColorSizeMe</a> </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <ul id="loginTable" class="nav navbar-nav navbar-right">
+                    <li id="login" onclick="loginFunction()">Log In</li>
+                    <li id="messageText0">
+                        <p></p>
+                    </li>
+                    <li id="signup" onclick="signupFunction()">Sign Up</li>
+                    <li id="messageText1">
+                        <p></p>
+                    </li>
+                    <li id="accountMenu" onclick="window.location='myprofile.html'"><img id="accountImage" src="" /></li>
+                    <li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
+                </ul>
             </div>
-        </nav>
-</div>
+        </div>
+    </nav>
 
-<img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
+    <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
 
-<br>
+    <br>
 
-<div class="form-group">
-  <label for="fname" style="display:none;">First Name: </label>  
-  <span id ="firstname"></span>
-  <input id="fname" name="fname" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>   
-</div>
+    <div class="form-group">
+      <label for="fname" style="display:none;">First Name: </label>
+      <span id ="firstname"></span>
+      <input id="fname" name="fname" type="text" value="" style="display:none;">
+      <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>
+    </div>
 
-<div class="form-group">
-  <label for="lname" style="display:none;">Last Name: </label>  
-  <span id ="lastname"></span>
-  <input id="lname" name="lname" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>   
-</div>
+    <div class="form-group">
+      <label for="lname" style="display:none;">Last Name: </label>
+      <span id ="lastname"></span>
+      <input id="lname" name="lname" type="text" value="" style="display:none;">
+      <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>
+    </div>
 
-<div class="form-group">
-  <label id="un" for="username" style="display:none;">Username: </label>  
-  <span id ="uname"></span>
-  <input id="username" name="uname" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>   
-</div>
+    <div class="form-group">
+      <label id="un" for="username" style="display:none;">Username: </label>
+      <span id ="uname"></span>
+      <input id="username" name="uname" type="text" value="" style="display:none;">
+      <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>
+    </div>
 
-<div class="form-group">
-  <label for="towncity" style="display:none;">City/Town: </label>  
-  <span id ="citytown"></span>
-  <input id="towncity" name="towncity" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>    
-</div>
+    <div class="form-group">
+      <label for="towncity" style="display:none;">City/Town: </label>
+      <span id ="citytown"></span>
+      <input id="towncity" name="towncity" type="text" value="" style="display:none;">
+      <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>
+    </div>
 
 
-<div class="form-group">
-  <label for="country" style="display:none;">Country: </label>  
-  <span id ="ctry"></span>
-  <input id="country" name="country" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>    
+    <div class="form-group">
+      <label for="country" style="display:none;">Country: </label>
+      <span id ="ctry"></span>
+      <input id="country" name="country" type="text" value="" style="display:none;">
+      <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>
+    </div>
 </div>
 
 <footer class="navbar navbar-fixed-bottom">

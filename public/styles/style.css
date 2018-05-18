@@ -81,6 +81,10 @@ body {
     font-size: 20px;
 }
 
+body #wrap {
+    padding-bottom: 3em;
+}
+
 #message { 
 	background: white; 
 	max-width: 360px; 
