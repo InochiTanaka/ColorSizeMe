@@ -37,9 +37,11 @@ function accountDel()
 					alert(error);
 				});
 			}).catch(function(error) {
-			  // An error happened.
+			  // An error happened
 			  alert(error);
-			});			
+			});		
+
+			location.href = "/";
 		});
 	}
 }
