@@ -4,29 +4,8 @@ function accountDel()
 		
 		firebase.auth().onAuthStateChanged(function(user) {
 			
-			alert("executed");
-			//var database = firebase.database();
-			//var userId = user.uid;
+			var userId = user.uid;	
 			
-			alert(user);
-			/*
-			firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-				
-			  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-			  
-			  
-			  alert(username);
-			});*/
-			/*
-			firebase.database().ref('users/' + userId).remove().then(function()
-			{	
-				alert("Done");
-			}).catch(function(error)
-			{
-				alert(error);
-			});*/
-			
-			/*
 			var pw = document.getElementById('pw').value;
 			var credential = firebase.auth.EmailAuthProvider.credential(
 						user.email	//user.email, 
@@ -34,18 +13,33 @@ function accountDel()
 			); 
 			
 			user.reauthenticateWithCredential(credential).then(function() {
+				
+			firebase.database().ref('takenusernames/' + userId).remove().then(function()
+			{	
+				alert("Done/ takenusernames");
+			}).catch(function(error)
+			{
+				alert(error);
+			});
+			
+			firebase.database().ref('users/' + userId).remove().then(function()
+			{	
+				alert("Done/ users");
+			}).catch(function(error)
+			{
+				alert(error);
+			});
+				
 			  // User re-authenticated.
-			  	user.delete().then(function() {
+			user.delete().then(function() {
 				  alert("Your account had been deleted");
-				}).catch(function(error) {
+			}).catch(function(error) {
 					alert(error);
 				});
 			}).catch(function(error) {
 			  // An error happened.
 			  alert(error);
-			});
-			*/
-			
+			});			
 		});
 	}
 }
