@@ -19,7 +19,7 @@ function create(data)
 			}).then(function() {
 			  // Update successful.
 			  //alert("Pushed displayName");
-			  //location.href = "/index.html" ;	
+			  location.href = "/index.html" ;	
 			}).catch(function(error) {
 			  //alert("Mistook to push displayName");
 			});
