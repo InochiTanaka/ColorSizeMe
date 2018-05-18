@@ -127,7 +127,7 @@ function logoutFunction()
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {	
 				firebase.auth().signOut().then(function() {
-					location.reload();
+					location.href = "/";	
 				}).catch(function(error) {
 					alert('Failed to Logout : ' + error.message);
 				});
