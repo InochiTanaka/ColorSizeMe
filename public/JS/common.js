@@ -4,6 +4,11 @@ function jumpToLocate(param)
 	location.href = param;
 }
 
+function jumpToIndex()
+{
+	location.href = "/";
+}
+
 function closeAndreload()
 {
 	window.opener.location.reload(false);
