@@ -161,3 +161,44 @@
 [info] i  hosting: Serving hosting files from: public
 [info] ✔  hosting: Local server: http://localhost:5000
 
+[debug] [2018-05-18T00:30:16.417Z] ----------------------------------------------------------------------
+[debug] [2018-05-18T00:30:16.417Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\daohu\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-05-18T00:30:16.417Z] CLI Version:   3.18.4
+[debug] [2018-05-18T00:30:16.417Z] Platform:      win32
+[debug] [2018-05-18T00:30:16.417Z] Node Version:  v8.11.1
+[debug] [2018-05-18T00:30:16.417Z] Time:          Thu May 17 2018 17:30:16 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-05-18T00:30:16.417Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-05-18T00:30:16.463Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-05-18T00:30:16.463Z] > authorizing via signed-in user
+[debug] [2018-05-18T00:30:16.463Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-05-18T00:30:16.463Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/B5gN_89yxb9_idnt5wxrz4hRy7B2EhERogOEtZtIA7g',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Thu May 17 2018 17:30:16 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-05-18T00:30:16.719Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-18T00:30:16.781Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/colorsizeme-demo  
+  
+ Thu May 17 2018 17:30:16 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-05-18T00:30:17.297Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-18T00:30:17.297Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/colorsizeme-demo/tokens  
+  
+ Thu May 17 2018 17:30:17 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-05-18T00:30:18.199Z] <<< HTTP RESPONSE 200
+[debug] [2018-05-18T00:30:18.199Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/colorsizeme-demo  
+  
+ Thu May 17 2018 17:30:18 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-05-18T00:30:18.672Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\daohu\Desktop\ColorSizeMe-1'...
+[info] 
+[debug] [2018-05-18T00:30:36.251Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/838251688484/clients/_:getWebAppConfig  
+  
+ Thu May 17 2018 17:30:36 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-05-18T00:30:36.713Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
