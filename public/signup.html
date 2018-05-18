@@ -27,7 +27,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
     <script type="text/javascript" src="JS/Style.js"></script>
     <script type="text/javascript" src="JS/navBar.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
@@ -87,7 +86,9 @@
     </nav>
     <div class="full wrap">
     <div class="container-fluid main" style="font-size: 1.3em;">
-        <form onsubmit="new_user(); return false;" action="index.html">
+
+        <form class="form-horizontal" onsubmit="new_user();" action="index.html">
+            <fieldset>
                 <!-- Form Name -->
                 <label style="display: block; text-align: center; line-height: 150%; font-size: 1.3em;">Create Your Profile</label>
 
@@ -149,6 +150,8 @@
                 <input type="button" class="btn btn-default " value="Create Profile">
                 <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='index.html';">
             </div>
+
+            </fieldset>
         </form>
     </div>
     </div>
