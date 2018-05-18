@@ -11,6 +11,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="JS/signup.js"></script>
+    <script type="text/javascript" src="JS/Style.js"></script>
    
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -27,6 +28,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
     <script type="text/javascript" src="JS/Style.js"></script>
     <script type="text/javascript" src="JS/navBar.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
@@ -40,64 +42,42 @@
 <body>
 <div id="wrap">
     <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">ColorSizeMe</a>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html">ColorSizeMe</a> </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <ul id="loginTable" class="nav navbar-nav navbar-right">
+                        <li id="login" onclick="loginFunction(location.pathname)">Log In</li>
+                        <li id="messageText0">
+                            <p></p>
+                        </li>
+                        <li id="signup" onclick="signupFunction()">Sign Up</li>
+                        <li id="messageText1">
+                            <p></p>
+                        </li>
+                        <li id="accountMenu" onclick="window.location='myprofile.html'"><img id="accountImage" src="" /></li>
+                        <li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <ul id="loginTable" class="nav navbar-nav navbar-right">
-                    <li><a id="login" onclick="loginFunction()">Log In</a></li>
-                    <li id="messageText0"><p></p></li>
-                    <li a id="signup" onclick="signupFunction()">Sign Up</a></li>
-                    <li id="messageText1"><p></p></li>
-                    <li a id="logout" onclick="logoutFunction()">Log Out</a></li>
-                    <li>
-                        <div id="accountMenu" onclick="logoutFunction()">
-                            <img id="accountImage" src="">
-                            <div class="dropDownSign"></div>
-                            <!--<ul id="menu">
-                                <li>
-                                    <a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
-                                    <a href="#">Categories</a>
-                                    <ul>
-                                        <li><a href="#">CSS</a></li>
-                                        <li><a href="#">Graphic design</a></li>
-                                        <li><a href="#">Development tools</a></li>
-                                        <li><a href="#">Web design</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            -->
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </nav>
     <div class="full wrap">
     <div class="container-fluid main" style="font-size: 1.3em;">
-
-        <form class="form-horizontal" onsubmit="new_user();" action="index.html">
-            <fieldset>
+        <form onsubmit="new_user(); return false;" action="index.html">
                 <!-- Form Name -->
-                <label style="display: block; text-align: center; line-height: 150%; font-size: 1.3em;">Create Your Profile</label>
+                <label style="display: block;text-align: center;line-height: 150%;font-size: 1.3em;">Create Your Profile</label>
 
                 <!-- Text input-->
                 <div class="col-sm-12 form-group">
                   <label class="col-sm-4 control-label" for="fname">First Name</label>
                   <div class="col-sm-4">
                     <input id="fname" name="fname" type="text" placeholder="John" class="form-control input-sm" required="">
-                    <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>
+                    <span class="help-block" id="invalid_fname" style="color:red;display:none;font-size:15px;">Name can only contains alphabetic characters.</span>
                   </div>
                 </div>
 
@@ -106,7 +86,7 @@
                 <label class="col-sm-4 control-label" for="Last Name">Last Name</label>
                 <div class="col-sm-4">
                 <input id="lname" name="Last Name" type="text" placeholder="Doe" class="form-control input-sm" required="">
-                <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>
+                <span class="help-block" id="invalid_lname" style="color:red;display:none;font-size:15px;">Name can only contains alphabetic characters.</span>
                 </div>
               </div>
 
@@ -115,7 +95,7 @@
                 <label class="col-sm-4 control-label" for="textinput">Username</label>
                 <div class="col-sm-4">
                 <input id="username" name="Username" type="text" placeholder="jdoe87" class="form-control input-sm" required="">
-                <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>
+                <span class="help-block" id="invalid_username" style="display:inline;font-size:15px;"></span><span id="symbol" style="display:inline;"></span>
                 </div>
               </div>
 
@@ -132,7 +112,7 @@
                 <label class="col-sm-4 control-label" for="towncity">City/Town</label>
                 <div class="col-sm-4">
                 <input id="towncity" name="towncity" type="text" placeholder="Burnaby" class="form-control input-sm" required="">
-                <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>
+                <span class="help-block" id="invalid_loc1" style="color:red;display:none;font-size:15px;">Type in city/town</span>
                 </div>
               </div>
 
@@ -141,17 +121,38 @@
                     <label class="col-sm-4 control-label" for="country">Country</label>
                     <div class="col-sm-4">
                     <input id="country" name="country" type="text" placeholder="Canada" class="form-control input-sm" required="">
-                    <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>
+                    <span class="help-block" id="invalid_loc2" style="color:red;display:none;font-size:15px;">Type in country</span>
                     </div>
               </div>
-
+              
+              <!-- Multiple Checkboxes (inline) -->
+              <div class="col-sm-12 form-group">
+                    <label class="col-sm-4 control-label" for="_Gender">Gender</label>
+                    <div class="col-sm-4">
+                    <label class="checkbox-inline" for="_Gender-0">
+                      <input type="checkbox" name="_Gender" id="_Gender-0" value="male" required>
+                        Male
+                    </label>
+                    <label class="checkbox-inline" for="_Gender-1">
+                      <input type="checkbox" name="_Gender" id="_Gender-1" value="female" required>
+                        Female
+                    </label>
+                    </div>
+              </div>
+                                                     
+            <!-- Measurement inputs (Required)-->             
+            <div id = "required" class="toggle" style="display:none;padding-top:20px;">"></div>  
+            
             <!-- Buttons-->
-            <div class="btn-group form-group col-sm-4" style="padding-top: 2%; float: left;">
-                <input type="submit" class="btn btn-default " value="Create Profile">
-                <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='index.html';">
+            <div class="btn-group form-group col-sm-4" style="display:block;margin-left:35%">
+              <input type="submit" class="btn btn-default " value="Create Profile">
+              <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='index.html';">
             </div>
-
-            </fieldset>
+            <br>
+            <div id="note" style="clear:both;text-align:center;font-size:20px;padding-top:10px;display:none;">The following measurement information is optional. You can edit this later in your user profile.</div>
+            
+            <!-- Measurement inputs (Optional)-->  
+            <div id = "optional" class="toggle" style="display:none;padding-top:20px;">"></div>                         
         </form>
     </div>
     </div>
@@ -212,7 +213,7 @@
   $("#username").keyup( function() {
     if (!(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/.test(this.value))) {
       condition3 = false;
-      document.getElementById("invalid_username").innerHTML = "Username can only contain alphabetic, numeric and -,_ characters. ";
+      document.getElementById("invalid_username").innerHTML = "Username cannot contain any spaces or special characters.";
       document.getElementById("invalid_username").style.color = "red";
       $("#invalid_username").show();
       $("#symbol").hide();
@@ -221,6 +222,31 @@
                        
     validate();
   });
+  
+  //Gender Selection
+    $("input:checkbox").on('click', function() {
+      var $box = $(this);
+      var group = "input:checkbox[name='" + $box.attr("name") + "']";
+      if ($box.is(":checked")) {        
+        $(group).prop("checked", false);
+        $(group).prop("required", false);
+        $box.prop("checked", true);
+      } else {
+        $box.prop("checked", false);
+        $(group).prop("required", true);
+      }
+    });
+    
+    $('#_Gender-0').click(function() {
+      $('#note').show();
+      append(menRequired, menOptional);
+    });
+
+    $('#_Gender-1').click(function() {
+      $('#note').show();
+      append(womenRequired, menOptional);
+    });
+    
   //Auto geolocation. Requires permission. Pick this because SSL is required, which Google has
   //verify geo location https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
 	$("#towncity").click(()=> {
@@ -355,7 +381,7 @@
     var task = storageRef.put(file);
     photoUploaded =  "yes";
   }
-    
+  
 </script>
 
 </html> 

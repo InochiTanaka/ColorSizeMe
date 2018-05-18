@@ -1,52 +1,3 @@
-function display(){
-    var x = document.getElementById("gender").selectedIndex;
-    var gender = document.getElementById("gender").getElementsByTagName("option")[x].value;
-
-    var y = document.getElementById("type").selectedIndex;
-    var type = document.getElementById("type").getElementsByTagName("option")[y].value;
-
-    if (gender == "male" && type == "top")
-    {
-        $("#brand").show();
-        $("#measurement").show();
-        
-        $("#maletop").show();
-        $("#malebottom").hide();
-        $("#femalebottom").hide();
-        $("#femaletop").hide();
-    }
-    else if (gender == "male" && type == "bottom")
-    {
-        $("#brand").show();
-        $("#measurement").show();
-        
-        $("#maletop").hide();
-        $("#malebottom").show();
-        $("#femalebottom").hide();
-        $("#femaletop").hide();        
-    }
-    else if (gender == "female" && type == "top")
-    {
-        $("#brand").show();
-        $("#measurement").show();
-        
-        $("#maletop").hide();
-        $("#malebottom").hide();
-        $("#femalebottom").hide();
-        $("#femaletop").show();
-    }
-    else if (gender == "female" && type == "bottom")
-    {
-        $("#brand").show();
-        $("#measurement").show();
-        
-        $("#maletop").hide();
-        $("#malebottom").hide();
-        $("#femalebottom").show();
-        $("#femaletop").hide();               
-    }
-}
-
 /*
 	First search page method #1
 */
@@ -128,6 +79,17 @@ var womenTop = ['Height', 'Bust', 'Shoulder-shoulder-F', 'Shoulder-elbow', 'Arms
 var womenBottom = ['Ankle', 'Waist', 'Waist-hip', 'Waist-knee', 'Inseam',
 				'Outseam', 'Hips', 'Thigh', 'Calf', 'Knee'];
 
+var men = menTop.concat(menBottom); 
+var women = womenTop.concat(womenBottom); 
+
+var menRequired = ['Height', 'Neck', 'Chest', 'Waist', 'Hip', 'Inseam', 'Shoulder Width'];
+
+var menOptional = ['Age', 'Head', 'Armscye', 'Armscye Depth', 'Bicep', 'Arm Length', 'Sleeve Length', 'Elbow', 'Wrist', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Crotch Length', 'Back Length', 'Shoulder', 'Upper Arm Length', 'Waist to Floor', 'Front Upper Chest Width', 'Upper Back Width'];
+
+var womenRequired = ['Height', 'Bust', 'Cup Size', 'Waist', 'Hip', 'Inseam'];
+
+var womenOptional = ['Age', 'Head', 'Neck', 'Upper Chest', 'Lower Chest', 'Armscye', 'Bicep', 'Sleeve Length', 'Elbow', 'Wrist', 'Upper Hip', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Croth Length', 'Back Length', 'Shoulder', 'Upper Arm Length', 'Arm Length', 'Armscye Depth', 'Bust to Bust', 'Front Bodice Length', 'Waist to Knee', 'Waist to Floor', 'Shoulder Width', 'Front Upper Chest Width', 'Upper Back Width'];
+
 /*
 	Second search page. Appends array respective to gender.
 */
@@ -135,23 +97,55 @@ function append(measurements) {
 	var measures = '';
 	$("#measures").empty();
 	$.each(measurements, function(index, value){
-		measures += '<label>'+value+'</label> <input type="number" id="'+value+'"><br>';
+		measures += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
 	});
 
 	$("#measures").append(measures).show();
 	$('input[type=number]').attr( {
         step : 0.01,
-        min : 10,
+        min : 0,
         max : 500,
         maxlength : 5,
         value : 0
     });
+  
+  //model getting values like this... but right #id element.
+	//or parseFloat($(#id).val().toFixed(2));
+	$('input[type="number"]').on('input', () => {
+        this.value = parseFloat(this.value).toFixed(2);
+  });
+}
+
+function append(requiredMeasurement, optionalMeasurement) {
+	var required = '';
+	$("#required").empty();
+	$.each(requiredMeasurement, function(index, value){
+		required += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'<span>*</span></label><div class="col-sm-4"><input type="number" id="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48" required></div></div><br>';
+	});
+
+	$("#required").append(required).show();
+  
+  var optional = '';
+	$("#optional").empty();
+	$.each(optionalMeasurement, function(index, value){
+		optional += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
+	});
+
+	$("#optional").append(optional).show();
+  
+	$('input[type=number]').attr( {
+        step : 0.01,
+        min : 0,
+        max : 500,
+        maxlength : 5,
+        value : 0
+  });
 
 	//model getting values like this... but right #id element.
 	//or parseFloat($(#id).val().toFixed(2));
 	$('input[type="number"]').on('input', () => {
         this.value = parseFloat(this.value).toFixed(2);
-    });
+  });
 }
 
 /*
