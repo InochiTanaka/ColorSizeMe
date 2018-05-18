@@ -146,7 +146,7 @@
                 <input type="button" class="btn btn-default" value="Cancel" onclick="window.location='index.html';">
               </div>
               <br>
-              <div style="clear:both;text-align:center;font-size:20px;padding-top:10px;">The following measurement information is optional. You can edit this later in your user profile.</div>
+              <div id="note" style="clear:both;text-align:center;font-size:20px;padding-top:10px;display:none;">The following measurement information is optional. You can edit this later in your user profile.</div>
             
             <!-- Measurement inputs-->             
             <div id = "measures" class="toggle" style="display:none;padding-top:20px;">"></div>                       
@@ -235,10 +235,12 @@
     });
     
     $('#_Gender-0').click(function() {
+      $('#note').show();
       append(men);
     });
 
     $('#_Gender-1').click(function() {
+      $('#note').show();
       append(women);
     });
     
