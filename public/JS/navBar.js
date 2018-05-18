@@ -21,13 +21,14 @@ window.onresize = function () {
 		}
 	});	
   }, 0);
-};
+}
 
 window.onload = function()
 {	
 	//alert(document.getElementById("email").value);
 	firebase.auth().onAuthStateChanged(function(user)
 	{
+		//alert();
 		// If user auth data is exixts
 		if(user) 
 		{		
@@ -83,7 +84,7 @@ window.onload = function()
 			}		
 		}		
 		else //If user auth data is not exists and logout:
-		{			
+		{				
 			document.getElementById("accountMenu").style.display="none";
 			document.getElementById("login").style.display="inline-block";
 			document.getElementById("logout").style.display="none";
