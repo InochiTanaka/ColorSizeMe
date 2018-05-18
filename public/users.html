@@ -3,15 +3,11 @@
 <html lang="en">
 <head>
   <title>All Users</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="JS/signup.js"></script>
-  <script type="text/javascript" src="JS/navBar.js"></script>
-   
-  <!-- update the version number as needed -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
@@ -20,17 +16,25 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
+    <script type="text/javascript" src="JS/Style.js"></script>
+    <script type="text/javascript" src="JS/navBar.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
     <style media="screen"></style>
-      
+  
+   
 </head>
 
 <body>
-
-<div id="wrap">
+    <div id="wrap">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -42,7 +46,7 @@
                         <li><a href="#">Contact</a></li>
                     </ul>
                     <ul id="loginTable" class="nav navbar-nav navbar-right">
-                        <li id="login" onclick="loginFunction()">Log In</li>
+                        <li id="login" onclick="loginFunction(location.pathname)">Log In</li>
                         <li id="messageText0">
                             <p></p>
                         </li>
@@ -56,17 +60,19 @@
                 </div>
             </div>
         </nav>
-</div>
+		
+		
+	</div>
 
-<h1>List of All Users</h1>
+	<h1>List of All Users</h1>
 
-<footer class="navbar navbar-fixed-bottom">
-  <div class="full">
-    <div class="container">
-      <span> © 2018 Copyright:</span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a>
-    </div>
-  </div>
-</footer>
+	<footer class="navbar navbar-fixed-bottom">
+	  <div class="full">
+		<div class="container">
+		  <span> © 2018 Copyright:</span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a>
+		</div>
+	  </div>
+	</footer>
 
 </body>
 
