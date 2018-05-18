@@ -236,7 +236,7 @@ function save() {
   db.ref('takenusernames/' + uid).set($("#username").val());
   
   //Update display name
-  create($("#username").val());
+  update($("#username").val());
   
   $("#edit").show();
   $("#save").hide();

@@ -21,6 +21,31 @@ function create(data)
 			  //alert("Pushed displayName");
 			  location.href = "/index.html" ;	
 			}).catch(function(error) {
+			  alert("An error occured. Please try again later.");
+			});
+		}
+		else
+		{
+			alert("You need to login before register your info.");
+		}
+	});	
+}
+
+function update(name)
+{
+	//alert($(data).val());
+	
+	firebase.auth().onAuthStateChanged(function(user)
+	{
+		if(user)
+		{
+			user.updateProfile({
+			  displayName: name,
+			  //photoURL: "https://example.com/jane-q-user/profile.jpg"
+			}).then(function() {
+			  // Update successful.
+
+			}).catch(function(error) {
 			  //alert("Mistook to push displayName");
 			});
 		}
@@ -29,7 +54,6 @@ function create(data)
 			alert("You need to login before register your info.");
 		}
 	});	
-
 }
 
 function upload(photo)
@@ -53,5 +77,4 @@ function upload(photo)
 			alert("You need to login before register your info.");
 		}
 	});	
-
 }
