@@ -2,17 +2,13 @@
 
 <html lang="en">
 <head>
-  <title>Profile Page</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="JS/signup.js"></script>
-  <script type="text/javascript" src="JS/Style.js"></script>
-  <script type="text/javascript" src="JS/navBar.js"></script>
-   
-  <!-- update the version number as needed -->
+    <title>Profile Page</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
@@ -21,15 +17,24 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="JS/signup.js"></script>
+    <script type="text/javascript" src="JS/Style.js"></script>
     <script type="text/javascript" src="JS/navBar.js"></script>
+    <script type="text/javascript" src="JS/navBar.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
     <style media="screen"></style>
 </head>
 <body>
-
-<div id="wrap">
+    <div id="wrap">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -55,383 +60,384 @@
                 </div>
             </div>
         </nav>
-</div>
-            
-<img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
 
-<span id="privacy" style="display:none;">
-  <span style="position:relative;bottom:15px";>Private mode</span>
-  
-  <!-- Rounded switch -->
-  <label class="switch">
-    <input id="toggle" type="checkbox" onclick="setPrivacy()">
-    <span class="slider round"></span>
-  </label>
-</span>
+        <div class="container-fluid">
+            <div class="content" style="padding-top: 2em;">
+                <div class="col-xs-12" id="main">
+                    <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
 
-<div>
-   
-  <label id="change" for="pic" class="custom-file-upload" style="display:none;">
-    Change
-  </label>
-  <input  id="pic" type="file" style="display:none;"/>
+                    <span id="privacy" style="display:none;">
+                        <span style="position:relative;bottom:15px";>Private mode</span>
 
-  <button id="remove" class="custom-file-upload" value="Remove" onclick="removeAvatar()" style="width:90px;display:none;">Remove</button>
+                            <!-- Rounded switch -->
+                            <label class="switch">
+                                <input id="toggle" type="checkbox" onclick="setPrivacy()">
+                                <span class="slider round"></span>
+                            </label>
+                        </span>
 
-</div>
+                        <div>
+                            <label id="change" for="pic" class="custom-file-upload" style="display:none;">
+                                Change
+                            </label>
+                            <input  id="pic" type="file" style="display:none;"/>
+                            <button id="remove" class="custom-file-upload" value="Remove" onclick="removeAvatar()" style="width:90px;display:none;">Remove</button>
+                        </div>
 
-<br>
+                        <br>
 
-<div class="form-group">
-  <label for="fname">First Name: </label>  
-  <span id ="firstname"></span>
-  <input id="fname" name="fname" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>   
-</div>
+                        <div class="form-group">
+                            <label for="fname">First Name: </label>
+                            <span id ="firstname"></span>
+                            <input id="fname" name="fname" type="text" value="" style="display:none;">
+                            <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>
+                        </div>
 
-<div class="form-group">
-  <label for="lname">Last Name: </label>  
-  <span id ="lastname"></span>
-  <input id="lname" name="lname" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>   
-</div>
+                        <div class="form-group">
+                            <label for="lname">Last Name: </label>
+                            <span id ="lastname"></span>
+                            <input id="lname" name="lname" type="text" value="" style="display:none;">
+                            <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span>
+                        </div>
 
-<div class="form-group">
-  <label for="username">Username: </label>  
-  <span id ="uname"></span>
-  <input id="username" name="uname" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>   
-</div>
+                    <div class="form-group">
+                      <label for="username">Username: </label>
+                      <span id ="uname"></span>
+                      <input id="username" name="uname" type="text" value="" style="display:none;">
+                      <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span>
+                    </div>
 
-<div class="form-group">
-  <label for="towncity">City/Town: </label>  
-  <span id ="citytown"></span>
-  <input id="towncity" name="towncity" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>    
-</div>
+                    <div class="form-group">
+                      <label for="towncity">City/Town: </label>
+                      <span id ="citytown"></span>
+                      <input id="towncity" name="towncity" type="text" value="" style="display:none;">
+                      <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span>
+                    </div>
 
 
-<div class="form-group">
-  <label for="country">Country: </label>  
-  <span id ="ctry"></span>
-  <input id="country" name="country" type="text" value="" style="display:none;">
-  <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>    
-</div>
+                    <div class="form-group">
+                      <label for="country">Country: </label>
+                      <span id ="ctry"></span>
+                      <input id="country" name="country" type="text" value="" style="display:none;">
+                      <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span>
+                    </div>
 
-<button id="edit" onclick="edit()" value="Edit">Edit</button>
-<button id="save" onclick="save()" value="Save" style="display:none;">Save</button>
-<br>
-<br>
-<button onclick="location.href = '/delAccount.html';" id="delete" value="Delete" style="display:none;">Delete Account</button>
-
-<footer class="navbar navbar-fixed-bottom">
-  <div class="full">
-    <div class="container">
-      <span> © 2018 Copyright:</span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a>
+                    <div class="form-group">
+                        <button id="edit" onclick="edit()" value="Edit">Edit</button>
+                        <button id="save" onclick="save()" value="Save" style="display:none;">Save</button>
+                        <button onclick="location.href = '/delAccount.html';" id="delete" value="Delete" style="display:none;">Delete Account</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</footer>
 
-<script>
-var firstname;
-var lastname;
-var username;
-var photo;
-var city;
-var country;
+    <footer class="navbar navbar-fixed-bottom">
+      <div class="full">
+        <div class="container">
+          <span> © 2018 Copyright:</span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a>
+        </div>
+      </div>
+    </footer>
 
-var db;
-var uid;
-var storageRef;
+    <script>
+        var firstname;
+        var lastname;
+        var username;
+        var photo;
+        var city;
+        var country;
 
-var refreshIntervalId  = window.setInterval(loadProfile, 500);
+        var db;
+        var uid;
+        var storageRef;
 
-if (typeof firebase != 'undefined')
-  clearInterval(refreshIntervalId);
+        var refreshIntervalId  = window.setInterval(loadProfile, 500);
 
-function loadProfile() {
-  db = firebase.database(); 
-  uid = firebase.auth().currentUser.uid; 
-  storageRef = firebase.storage().ref();
-  
-  db.ref('/users/' + uid).once('value').then(function(snapshot) {
-    visibility = snapshot.val().visibility;
-    
-    if (visibility == "private")   
-      $("#toggle").prop('checked', true);
-    else
-      $("#toggle").prop('checked', false);
-  });
-  
-  db.ref('/users/' + uid + '/public_use').once('value').then(function(snapshot) {
-    firstname = snapshot.val().firstname;
-    lastname = snapshot.val().lastname;
-    username = snapshot.val().username;
-    photo = snapshot.val().profilepic;
-    city = snapshot.val().citytown;
-    country = snapshot.val().country;
-    
-    document.getElementById("firstname").innerHTML = firstname;
-    document.getElementById("lastname").innerHTML = lastname;
-    document.getElementById("uname").innerHTML = username;
-    document.getElementById("citytown").innerHTML = city;
-    document.getElementById("ctry").innerHTML = country;
-    
-    if (photo == "yes") {
-      storageRef.child('profilePictures/' + uid + '.jpg').getDownloadURL().then(function(url) { 
-        var path = url;       
-        upload(path);
-        document.getElementById("avatar").src = path;
-      }).catch(function(error) { });
-    } else {
-      storageRef.child('profilePictures/anonymous-avatar-sm.jpg').getDownloadURL().then(function(url) {
-        var path = url;
-        document.getElementById("avatar").src = path;
-      }).catch(function(error) { });
-    }
-    
-    $("#avatar").show();
-  });
-}
+        if (typeof firebase != 'undefined')
+          clearInterval(refreshIntervalId);
 
-function edit() {
-  document.getElementById("fname").value = firstname;
-  document.getElementById("lname").value = lastname;
-  document.getElementById("username").value = username;
-  document.getElementById("towncity").value = city;
-  document.getElementById("country").value = country;
- 
-  $("#edit").hide();
-  $("#save").show();
-  
-  $("#fname").show();
-  $("#firstname").hide();
-  
-  $("#lname").show();
-  $("#lastname").hide();
-  
-  $("#username").show();
-  $("#uname").hide();
-  
-  $("#towncity").show();
-  $("#citytown").hide();
-  
-  $("#country").show();
-  $("#ctry").hide();
-  
-  $("#change").show();
-  $("#remove").show();
-  
-  $("#privacy").show();
-  $("#delete").show();
-}
+        function loadProfile() {
+          db = firebase.database();
+          uid = firebase.auth().currentUser.uid;
+          storageRef = firebase.storage().ref();
 
-function save() {
-  db.ref('users/' + uid + '/public_use').update({ firstname: $("#fname").val() });
-  db.ref('users/' + uid + '/public_use').update({ lastname: $("#lname").val() });
-  db.ref('users/' + uid + '/public_use').update({ citytown: $("#towncity").val() });
-  db.ref('users/' + uid + '/public_use').update({ country: $("#country").val() });
-  db.ref('users/' + uid + '/private_use').update({ username: $("#username").val() });
-  db.ref('users/' + uid + '/public_use').update({ username: $("#username").val() });  
-  db.ref('takenusernames/' + uid).set($("#username").val());
-  
-  //Update display name
-  update($("#username").val());
-  
-  $("#edit").show();
-  $("#save").hide();
-  
-  $("#fname").hide();
-  $("#firstname").show();
-  
-  $("#lname").hide();
-  $("#lastname").show();
-  
-  $("#username").hide();
-  $("#uname").show();
-  $("#symbol").hide();
-  $("#invalid_username").hide();
-  
-  $("#towncity").hide();
-  $("#citytown").show();
-  
-  $("#country").hide();
-  $("#ctry").show();
-  
-  $("#change").hide();
-  $("#remove").hide();
-  $("#pic").hide();
-  
-  $("#privacy").hide();
-  $("#delete").hide();
-  
-  //refresh the page
-  //location.reload();
-}
+          db.ref('/users/' + uid).once('value').then(function(snapshot) {
+            visibility = snapshot.val().visibility;
 
-function deleteAccount() {
-  var sure = confirm("Are you sure you want to delete your account?");
-  
-  if (sure) {   
-    firebase.auth().currentUser.delete().then(function () {
-      //console.log('delete successful?');
-      //console.log(app.auth().currentUser);
-      
-      db.ref('/users/' + uid).remove();
-      db.ref('takenusernames/' + uid).remove();
-          
-      window.location.href = 'index.html';
-      alert("Profile deleted successfully.");  
-    }).catch(function (error) {
-      console.error({error});
-      alert("Please sign out and sign in again to delete your profile.");  
-    })
-  }
-}
+            if (visibility == "private")
+              $("#toggle").prop('checked', true);
+            else
+              $("#toggle").prop('checked', false);
+          });
 
-function removeAvatar() {
-  db.ref('users/' + uid + '/public_use').update({ profilepic: "no" });
-  upload(null);
-  
-  // Create a reference to the file to delete
-  var desertRef = storageRef.child('profilePictures/' + uid + '.jpg');
+          db.ref('/users/' + uid + '/public_use').once('value').then(function(snapshot) {
+            firstname = snapshot.val().firstname;
+            lastname = snapshot.val().lastname;
+            username = snapshot.val().username;
+            photo = snapshot.val().profilepic;
+            city = snapshot.val().citytown;
+            country = snapshot.val().country;
 
-  // Delete the file
-  desertRef.delete().then(function() {
-    // File deleted successfully
-  }).catch(function(error) {
-    // Uh-oh, an error occurred!
-  });
-}
+            document.getElementById("firstname").innerHTML = firstname;
+            document.getElementById("lastname").innerHTML = lastname;
+            document.getElementById("uname").innerHTML = username;
+            document.getElementById("citytown").innerHTML = city;
+            document.getElementById("ctry").innerHTML = country;
 
-function setPrivacy(){
-  var privatemode = document.getElementById("toggle").checked;
-                
-  if (privatemode)
-    db.ref('users/' + uid).update({ visibility: "private" });
-  else
-    db.ref('users/' + uid).update({ visibility: "public" });               
-}
+            if (photo == "yes") {
+              storageRef.child('profilePictures/' + uid + '.jpg').getDownloadURL().then(function(url) {
+                var path = url;
+                upload(path);
+                document.getElementById("avatar").src = path;
+              }).catch(function(error) { });
+            } else {
+              storageRef.child('profilePictures/anonymous-avatar-sm.jpg').getDownloadURL().then(function(url) {
+                var path = url;
+                document.getElementById("avatar").src = path;
+              }).catch(function(error) { });
+            }
 
-</script>
-
-<script>
-  var username_avb;
-
-  var condition1 = false;
-  var condition2 = false;
-  var condition3 = false;
-  $(':input[type="submit"]').prop('disabled', true);
-  
-  //Validate the inputs
-  function validate() {
-    if (condition1 && condition2 && condition3)
-      $(':input[type="submit"]').prop('disabled', false);
-    else
-      $(':input[type="submit"]').prop('disabled', true);
-  }
-  
-	$("input[type=text]").attr( {
-		maxlength : 50
-    }); 
-    //Sorted by class name of names! -or- A-Za-z
-    $("#fname").keyup( function() {
-        if (!(/^[A-Za-z]+$/.test(this.value))) {
-          condition1 = false;
-          $("#invalid_fname").show();
-        } else {
-          condition1 = true;
-          $("#invalid_fname").hide();
+            $("#avatar").show();
+          });
         }
-        validate();
-    });
-    
-    $("#lname").keyup( function() {
-        if (!(/^[A-Za-z]+$/.test(this.value))) {
-          condition2 = false;
-          $("#invalid_lname").show();
-        } else {
-          condition2 = true;
-          $("#invalid_lname").hide();
+
+        function edit() {
+          document.getElementById("fname").value = firstname;
+          document.getElementById("lname").value = lastname;
+          document.getElementById("username").value = username;
+          document.getElementById("towncity").value = city;
+          document.getElementById("country").value = country;
+
+          $("#edit").hide();
+          $("#save").show();
+
+          $("#fname").show();
+          $("#firstname").hide();
+
+          $("#lname").show();
+          $("#lastname").hide();
+
+          $("#username").show();
+          $("#uname").hide();
+
+          $("#towncity").show();
+          $("#citytown").hide();
+
+          $("#country").show();
+          $("#ctry").hide();
+
+          $("#change").show();
+          $("#remove").show();
+
+          $("#privacy").show();
+          $("#delete").show();
         }
-        validate();
-    });
-       
-  //Username Regex
-  $("#username").keyup( function() {
-    if (!(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/.test(this.value))) {
-      condition3 = false;
-      document.getElementById("invalid_username").innerHTML = "Username can only contain alphabetic, numeric and -,_ characters. ";
-      document.getElementById("invalid_username").style.color = "red";
-      $("#invalid_username").show();
-      $("#symbol").hide();
-    } else        
-      checkIfNew(this.value)
-                       
-    validate();
-  });
-	  
-  /*
-    Checks if username is available. Returns TRUE if username already exists. False otherwise
-  */
-  function checkIfNew(dusername) {
 
-    var taken;
-    var uid = firebase.auth().currentUser.uid;  
-    
-    db.ref().child("takenusernames/").once('value', function(snapshot) {
-      snapshot.forEach(function(childSnapshot) {
+        function save() {
+          db.ref('users/' + uid + '/public_use').update({ firstname: $("#fname").val() });
+          db.ref('users/' + uid + '/public_use').update({ lastname: $("#lname").val() });
+          db.ref('users/' + uid + '/public_use').update({ citytown: $("#towncity").val() });
+          db.ref('users/' + uid + '/public_use').update({ country: $("#country").val() });
+          db.ref('users/' + uid + '/private_use').update({ username: $("#username").val() });
+          db.ref('users/' + uid + '/public_use').update({ username: $("#username").val() });
+          db.ref('takenusernames/' + uid).set($("#username").val());
 
-        if (childSnapshot.val() == dusername) {
-            document.getElementById("invalid_username").innerHTML = "This user name is already taken. ";
-            document.getElementById("invalid_username").style.color = "red";
-            document.getElementById("symbol").style.color = "red";
-            $("#symbol").html('&#10008;');
-            $("#symbol").show();
-            $("#invalid_username").show();
-            
-            username_avb = false;
-            condition3 = false;
-            taken = true;
-        } else if (!taken) {        
-            document.getElementById("invalid_username").innerHTML = "This user name is available. "; 
-            document.getElementById("invalid_username").style.color = "green";
-            document.getElementById("symbol").style.color = "green";
-            $("#symbol").html('&#10004;');
-            $("#symbol").show();
-            $("#invalid_username").show();
-            
-            username_avb = true;
-            condition3 = true;
-            taken = false;
+          //Update display name
+          update($("#username").val());
+
+          $("#edit").show();
+          $("#save").hide();
+
+          $("#fname").hide();
+          $("#firstname").show();
+
+          $("#lname").hide();
+          $("#lastname").show();
+
+          $("#username").hide();
+          $("#uname").show();
+          $("#symbol").hide();
+          $("#invalid_username").hide();
+
+          $("#towncity").hide();
+          $("#citytown").show();
+
+          $("#country").hide();
+          $("#ctry").show();
+
+          $("#change").hide();
+          $("#remove").hide();
+          $("#pic").hide();
+
+          $("#privacy").hide();
+          $("#delete").hide();
+
+          //refresh the page
+          //location.reload();
         }
-    });
-   });
-   return username_avb;
-  }
-  
-   //Get Elements
-  var fileButton = document.getElementById('pic');
-  //Listen for file 
-  fileButton.onchange = function(event) {
-    
-    //Get File
-  var file = fileButton.files[0];   
-  uploadPhoto(file);
-  }
-  
-  function uploadPhoto(file) {
-    var uid = firebase.auth().currentUser.uid; 
-    
-    //Create a Storage Ref
-    var storageRef = firebase.storage().ref('profilePictures/' + uid + '.jpg');
-    
-    //Upload file
-    var task = storageRef.put(file);
-    db.ref('users/' + uid + '/public_use').update({ profilepic: "yes" });
-  }
-</script>
 
+        function deleteAccount() {
+          var sure = confirm("Are you sure you want to delete your account?");
+
+          if (sure) {
+            firebase.auth().currentUser.delete().then(function () {
+              //console.log('delete successful?');
+              //console.log(app.auth().currentUser);
+
+              db.ref('/users/' + uid).remove();
+              db.ref('takenusernames/' + uid).remove();
+
+              window.location.href = 'index.html';
+              alert("Profile deleted successfully.");
+            }).catch(function (error) {
+              console.error({error});
+              alert("Please sign out and sign in again to delete your profile.");
+            })
+          }
+        }
+
+        function removeAvatar() {
+          db.ref('users/' + uid + '/public_use').update({ profilepic: "no" });
+          upload(null);
+
+          // Create a reference to the file to delete
+          var desertRef = storageRef.child('profilePictures/' + uid + '.jpg');
+
+          // Delete the file
+          desertRef.delete().then(function() {
+            // File deleted successfully
+          }).catch(function(error) {
+            // Uh-oh, an error occurred!
+          });
+        }
+
+        function setPrivacy(){
+          var privatemode = document.getElementById("toggle").checked;
+
+          if (privatemode)
+            db.ref('users/' + uid).update({ visibility: "private" });
+          else
+            db.ref('users/' + uid).update({ visibility: "public" });
+        }
+    </script>
+
+    <script>
+          var username_avb;
+
+          var condition1 = false;
+          var condition2 = false;
+          var condition3 = false;
+          $(':input[type="submit"]').prop('disabled', true);
+
+          //Validate the inputs
+          function validate() {
+            if (condition1 && condition2 && condition3)
+              $(':input[type="submit"]').prop('disabled', false);
+            else
+              $(':input[type="submit"]').prop('disabled', true);
+          }
+
+            $("input[type=text]").attr( {
+                maxlength : 50
+            });
+            //Sorted by class name of names! -or- A-Za-z
+            $("#fname").keyup( function() {
+                if (!(/^[A-Za-z]+$/.test(this.value))) {
+                  condition1 = false;
+                  $("#invalid_fname").show();
+                } else {
+                  condition1 = true;
+                  $("#invalid_fname").hide();
+                }
+                validate();
+            });
+
+            $("#lname").keyup( function() {
+                if (!(/^[A-Za-z]+$/.test(this.value))) {
+                  condition2 = false;
+                  $("#invalid_lname").show();
+                } else {
+                  condition2 = true;
+                  $("#invalid_lname").hide();
+                }
+                validate();
+            });
+
+          //Username Regex
+          $("#username").keyup( function() {
+            if (!(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/.test(this.value))) {
+              condition3 = false;
+              document.getElementById("invalid_username").innerHTML = "Username can only contain alphabetic, numeric and -,_ characters. ";
+              document.getElementById("invalid_username").style.color = "red";
+              $("#invalid_username").show();
+              $("#symbol").hide();
+            } else
+              checkIfNew(this.value)
+
+            validate();
+          });
+
+          /*
+            Checks if username is available. Returns TRUE if username already exists. False otherwise
+          */
+          function checkIfNew(dusername) {
+
+            var taken;
+            var uid = firebase.auth().currentUser.uid;
+
+            db.ref().child("takenusernames/").once('value', function(snapshot) {
+              snapshot.forEach(function(childSnapshot) {
+
+                if (childSnapshot.val() == dusername) {
+                    document.getElementById("invalid_username").innerHTML = "This user name is already taken. ";
+                    document.getElementById("invalid_username").style.color = "red";
+                    document.getElementById("symbol").style.color = "red";
+                    $("#symbol").html('&#10008;');
+                    $("#symbol").show();
+                    $("#invalid_username").show();
+
+                    username_avb = false;
+                    condition3 = false;
+                    taken = true;
+                } else if (!taken) {
+                    document.getElementById("invalid_username").innerHTML = "This user name is available. ";
+                    document.getElementById("invalid_username").style.color = "green";
+                    document.getElementById("symbol").style.color = "green";
+                    $("#symbol").html('&#10004;');
+                    $("#symbol").show();
+                    $("#invalid_username").show();
+
+                    username_avb = true;
+                    condition3 = true;
+                    taken = false;
+                }
+            });
+           });
+           return username_avb;
+          }
+
+           //Get Elements
+          var fileButton = document.getElementById('pic');
+          //Listen for file
+          fileButton.onchange = function(event) {
+
+            //Get File
+          var file = fileButton.files[0];
+          uploadPhoto(file);
+          }
+
+          function uploadPhoto(file) {
+            var uid = firebase.auth().currentUser.uid;
+
+            //Create a Storage Ref
+            var storageRef = firebase.storage().ref('profilePictures/' + uid + '.jpg');
+
+            //Upload file
+            var task = storageRef.put(file);
+            db.ref('users/' + uid + '/public_use').update({ profilepic: "yes" });
+          }
+    </script>
 </body>
 
 </html> 
