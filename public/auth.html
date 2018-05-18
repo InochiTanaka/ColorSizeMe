@@ -5,40 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register Email and Password</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-	
-		 <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="styles/auth.css" />
-		<script type="text/javascript" src="JS/auth.js"></script>
-		<script type="text/javascript" src="JS/common.js"></script>
+	  <!-- update the version number as needed -->
+	  <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
+	  <!-- include only the Firebase features as you need -->
+	  <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
+	  <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
+	  <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
+	  <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
+	  <!-- initialize the SDK after all desired features are loaded -->
+	  <script defer src="/__/firebase/init.js"></script>
 
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-	<script type="text/javascript" src="FirebaseInitialScript.js"></script>
+	  <!-- Bootstrap -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	  <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
+	  <script type="text/javascript" src="JS/Style.js"></script>
+	  <script type="text/javascript" src="JS/navBar.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <link rel="stylesheet" href="styles/style.css" type="text/css">
+	  <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+	  <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+	  <link rel="stylesheet" type="text/css" media="screen" href="styles/dropdownMenu.css" />
+	  <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
+	  <style media="screen"></style>
+
+	  <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+	  <link rel="stylesheet" type="text/css" media="screen" href="styles/auth.css" />
+	  <script type="text/javascript" src="JS/auth.js"></script>
+	  <script type="text/javascript" src="JS/common.js"></script>
+
+	  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+	  <script type="text/javascript" src="FirebaseInitialScript.js"></script>
   </head>
   
 <body>
-    <h2 id="authTitle">Register Email and Password</h2>
-	<div id="input-area">
+    <div id="wrap">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">ColorSizeMe</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <ul id="loginTable" class="nav navbar-nav navbar-right">
+                        <li><a id="login" onclick="loginFunction()">Log In</a></li>
+                        <li id="messageText0"><p></p></li>
+                        <li a id="signup" onclick="signupFunction()">Sign Up</a></li>
+                        <li id="messageText1"><p></p></li>
+                        <li>
+                            <div id="accountMenu" onclick="">
+                                <img id="accountImage" src="">
+                                <!--
+                                <div class="dropDownSign"></div>
+                                <ul id="menu">
+                                    <li>
+                                        <a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
+                                        <a href="#">Categories</a>
+                                        <ul>
+                                            <li><a href="#">CSS</a></li>
+                                            <li><a href="#">Graphic design</a></li>
+                                            <li><a href="#">Development tools</a></li>
+                                            <li><a href="#">Web design</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                              -->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid text-center">
+            <div class="content">
+                <div class="col-xs-12" id="main">
+                    <h2 id="authTitle">Register Email and Password</h2>
+                    <div id="input-area">
 
-		<p id="messageText"></p>
-		<input id="email" type="email" placeholder="Email:" required/>
-		<input id="password" type="password" placeholder="Password:" required/>
-		<input id="passwordConf" type="password" placeholder="Confirmation Password:" required/>
-		
-		<button id="valify" onclick="execute(id)">Send Verification Email</button>
-		<button id="reload" onclick="execute(id)">Varified</button>
-		<button id="regist" onclick="execute(id)">Register Your Personal Data</button>
-		
-		<button id="cancel" onclick="moveToIndex()">Cancel</button>
-	</div>
- </body>
+                        <p id="messageText"></p>
+                        <input class="form-control" id="email" type="email" placeholder="Email:" required/>
+                        <input class="form-control" id="password" type="password" placeholder="Password:" required/>
+                        <input class="form-control" id="passwordConf" type="password" placeholder="Confirmation Password:" required/>
+
+                        <button class="btn btn-default" type="button" id="valify" onclick="execute(id)">Send Verification Email</button>
+                        <button class="btn btn-default" type="button" id="reload" onclick="execute(id)">Verified</button>
+                        <button class="btn btn-default" type="button" id="regist" onclick="execute(id)">Register Your Personal Data</button>
+
+                        <button class="btn btn-default" type="button" id="cancel" onclick="jumpToIndex()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<footer class="navbar navbar-fixed-bottom">
+		<div class="full">
+			<div class="container">
+				<p> © 2018 Copyright:</p>
+			</div>
+		</div>
+	</footer>
+</body>
   
 </html>

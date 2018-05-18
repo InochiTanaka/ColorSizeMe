@@ -1,9 +1,34 @@
-window.onload = function()
-{	
-			//alert(document.getElementById("email").value);
-alert();
+var timer = 0;
+ 
+window.onresize = function () {
+  if (timer > 0) {
+    clearTimeout(timer);
+  }
+ 
+  timer = setTimeout(function () {
 	firebase.auth().onAuthStateChanged(function(user)
 	{
+		if(user.displayName != null)
+		{
+			if(window.innerWidth < 769)
+			{
+				document.getElementById("accountMenu").style.display="none";
+			}
+			else
+			{
+				document.getElementById("accountMenu").style.display="inline-block";
+			}	
+		}
+	});	
+  }, 0);
+}
+
+window.onload = function()
+{	
+	//alert(document.getElementById("email").value);
+	firebase.auth().onAuthStateChanged(function(user)
+	{
+		//alert();
 		// If user auth data is exixts
 		if(user) 
 		{		
@@ -17,17 +42,20 @@ alert();
 					document.getElementById("signup").style.display="inline-block";
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("accountMenu").style.display="none";
-					messageText0.textContent = "Please continue your Sign Up process ";
+          //document.getElementById("users").style.display="none";
+					messageText0.textContent = "Please continue \"Sign Up\" ";
 					messageText1.textContent = "or";	
-					
+          $("#users").hide();					
 				}
 				else //If user.displayName is not null(means registered already)
 				{
-					document.getElementById("accountMenu").style.display="inline-block";
 					document.getElementById("login").style.display="none";
-					document.getElementById("logout").style.display="none";
+					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("signup").style.display="none";
+					document.getElementById("accountMenu").style.display="inline-block";
+          //document.getElementById("users").style.display="inline-block";
 					messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
+          $("#users").show();
 					
 					if(user.photoURL == null)
 					{
@@ -56,18 +84,20 @@ alert();
 			}		
 		}		
 		else //If user auth data is not exists and logout:
-		{			
+		{				
 			document.getElementById("accountMenu").style.display="none";
 			document.getElementById("login").style.display="inline-block";
 			document.getElementById("logout").style.display="none";
 			messageText0.textContent = "or";	
 			messageText1.textContent = "";	
 			document.getElementById("signup").style.display="inline-block";
+      //document.getElementById("users").style.display="none";
+      $("#users").hide();			
 		}	
 	});		
 }
 
-function loginFunction()
+function loginFunction(locate)
 {			
 	firebase.auth().onAuthStateChanged(function(user)
 	{
@@ -84,7 +114,7 @@ function loginFunction()
 		}		
 		else
 		{			
-			location.href = "/login.html" ;	
+			location.href = "/login.html?"+locate ;	
 		}	
 	});						
 }
@@ -93,10 +123,11 @@ function loginFunction()
 function logoutFunction()
 {
 	if(window.confirm('Do you want to log out?')){
+    location.href = "/index.html" ;
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {	
 				firebase.auth().signOut().then(function() {
-									
+					location.href = "/";	
 				}).catch(function(error) {
 					alert('Failed to Logout : ' + error.message);
 				});

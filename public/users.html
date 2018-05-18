@@ -1,13 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
-<html>
-
+<html lang="en">
 <head>
+  <title>All Users</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>ColorSizeMe</title>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -17,12 +16,10 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
     <script type="text/javascript" src="JS/Style.js"></script>
     <script type="text/javascript" src="JS/navBar.js"></script>
@@ -32,6 +29,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
     <style media="screen"></style>
+  
+   
 </head>
 
 <body>
@@ -61,35 +60,58 @@
                 </div>
             </div>
         </nav>
-        <div class="container-fluid text-center">
-            <div class="content">
-                <div class="col-xs-12" id="main">
-                    <h1>Welcome</h1>
-                    <p>Some Text</p>
-                    <br>
-                    <div class="inputs">
-                        <button class="btn btn-default" type="button" onclick="window.location='input.html'">Search</button>
-                    </div>
-                    <br>
-                    <h3>Switching User role</h3>
-                    <select class="form-control" id="sel1 userRole" onchange="switchRole()">
-                        <option value="user">User</option>
-                        <option value="manager">Manager</option>
-                        <option value="retailer">Retailer</option>
-                        <option value="admin">Admin</option>
-                    </select>
-				</div>
-            </div>
-        </div>
-    </div>
-    <footer class="navbar navbar-fixed-bottom">
-        <div class="full">
-            <div class="container">
-                <span> © 2018 Copyright:</span>
-                <span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a></span>
-            </div>
-        </div>
-    </footer>
+		
+		
+	</div>
+
+	<h1>List of All Users</h1>
+
+	<footer class="navbar navbar-fixed-bottom">
+	  <div class="full">
+		<div class="container">
+		  <span> © 2018 Copyright:</span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a>
+		</div>
+	  </div>
+	</footer>
+
 </body>
 
-</html>
+<script>
+  
+var count = 0;
+var key;
+
+window.onload = function() {
+    firebase.database().ref().child("takenusernames/").once('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot) { 
+        var user = document.createElement("A");
+        user.setAttribute("id", "user" + count);
+        document.body.appendChild(user);
+        document.body.appendChild(document.createElement("BR"));
+        
+        var uid = firebase.auth().currentUser.uid;  
+        
+        if (uid == childSnapshot.key)
+          document.getElementById("user" + count).innerHTML = childSnapshot.val() + " (You!)";
+        else
+          document.getElementById("user" + count).innerHTML = childSnapshot.val();
+          
+        document.getElementById("user" + count).name = childSnapshot.key;
+        document.getElementById("user" + count).href = "usersprofile.html";
+        document.getElementById("user" + count).onclick = openProfile;
+        
+        count++;      
+      }); 
+    });
+}
+ 
+function openProfile() {
+  var userid = $(this).attr('name');
+  
+  // Store it in the cookies
+  document.cookie = userid;
+}
+ 
+</script>
+
+</html> 
