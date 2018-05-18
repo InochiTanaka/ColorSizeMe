@@ -49,24 +49,7 @@
                         <li id="messageText1">
                             <p></p>
                         </li>
-                        <li>
-                            <div id="accountMenu" onclick="location.href='myprofile.html';"> <img id="accountImage" src="">
-                                <!--
-                                    <div class="dropDownSign"></div>
-                                    <ul id="menu">
-                                        <li>
-                                            <a id="accountMenu" href="#"><img id="accountImage" src=""><div class="dropDownSign"/></a>
-                                            <a href="#">Categories</a>
-                                            <ul>
-                                                <li><a href="#">CSS</a></li>
-                                                <li><a href="#">Graphic design</a></li>
-                                                <li><a href="#">Development tools</a></li>
-                                                <li><a href="#">Web design</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                  --></div>
-                        </li>
+                        <li id="accountMenu" onclick="window.location='myprofile.html'"><img id="accountImage" src="" /></li>
                         <li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
                     </ul>
                 </div>
@@ -87,13 +70,15 @@
 </span>
 
 <div>
-  <button id="change" value="Change" onclick="changeAvatar()" style="width:80px;display:none;">Change</button>
-  <button id="remove" value="Remove" onclick="removeAvatar()" style="width:80px;display:none;">Remove</button>
+   
+  <label id="change" for="pic" class="custom-file-upload" style="display:none;">
+    Change
+  </label>
+  <input  id="pic" type="file" style="display:none;"/>
+
+  <button id="remove" class="custom-file-upload" value="Remove" onclick="removeAvatar()" style="width:90px;display:none;">Remove</button>
+
 </div>
-
-<br>
-
-<input id="pic" name="Profile Picture" class="input-file" type="file" style="display:none;">
 
 <br>
 
@@ -134,11 +119,18 @@
 </div>
 
 <button id="edit" onclick="edit()" value="Edit">Edit</button>
-<br>
 <button id="save" onclick="save()" value="Save" style="display:none;">Save</button>
 <br>
 <br>
-<button onclick="deleteAccount()" id="delete" value="Delete" style="display:none;">Delete Account</button>
+<button onclick="location.href = '/delAccount.html';" id="delete" value="Delete" style="display:none;">Delete Account</button>
+
+<footer class="navbar navbar-fixed-bottom">
+  <div class="full">
+    <div class="container">
+      <span> © 2018 Copyright:</span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a>
+    </div>
+  </div>
+</footer>
 
 <script>
 var firstname;
@@ -237,10 +229,14 @@ function edit() {
 function save() {
   db.ref('users/' + uid + '/public_use').update({ firstname: $("#fname").val() });
   db.ref('users/' + uid + '/public_use').update({ lastname: $("#lname").val() });
-  db.ref('users/' + uid + '/private_use').update({ username: $("#username").val() });
-  db.ref('users/' + uid + '/public_use').update({ username: $("#username").val() });
   db.ref('users/' + uid + '/public_use').update({ citytown: $("#towncity").val() });
   db.ref('users/' + uid + '/public_use').update({ country: $("#country").val() });
+  db.ref('users/' + uid + '/private_use').update({ username: $("#username").val() });
+  db.ref('users/' + uid + '/public_use').update({ username: $("#username").val() });  
+  db.ref('takenusernames/' + uid).set($("#username").val());
+  
+  //Update display name
+  update($("#username").val());
   
   $("#edit").show();
   $("#save").hide();
@@ -268,6 +264,9 @@ function save() {
   
   $("#privacy").hide();
   $("#delete").hide();
+  
+  //refresh the page
+  //location.reload();
 }
 
 function deleteAccount() {
@@ -288,10 +287,6 @@ function deleteAccount() {
       alert("Please sign out and sign in again to delete your profile.");  
     })
   }
-}
-
-function changeAvatar() {  
-  $("#pic").show();
 }
 
 function removeAvatar() {
