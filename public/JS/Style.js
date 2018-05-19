@@ -68,22 +68,16 @@ var womenTop = ['Height', 'Bust', 'Cup Size', 'Shoulder', 'Shoulder Witdh', 'Arm
 				];
 var womenBottom = ['Ankle', 'Waist', 'Inseam', 'Waist to Knee', 'Hip', 'Thigh', 'Calf', 'Knee'];
 
-var men = menTop.concat(menBottom); 
-var women = womenTop.concat(womenBottom); 
-
 var menRequired = ['Height', 'Neck', 'Chest', 'Waist', 'Hip', 'Inseam', 'Shoulder Width'];
 
-var menOptional = ['Age', 'Head', 'Armscye', 'Armscye Depth', 'Bicep', 'Arm Length', 'Sleeve Length', 
-				   'Elbow', 'Wrist', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Crotch Length', 
-				   'Back Length', 'Shoulder', 'Upper Arm Length', 'Waist to Floor', 'Front Upper Chest Width', 
-				   'Upper Back Width'];
+var menOptional = ['Head', 'Armscye', 'Armscye Depth', 'Bicep', 'Arm Length', 'Sleeve Length', 'Elbow', 'Wrist', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Crotch Length', 'Back Length', 'Shoulder', 'Upper Arm Length', 'Waist to Floor', 'Front Upper Chest Width', 'Upper Back Width'];
 
 var womenRequired = ['Height', 'Bust', 'Cup Size', 'Waist', 'Hip', 'Inseam'];
 
-var womenOptional = ['Age', 'Head', 'Neck', 'Upper Chest', 'Lower Chest', 'Armscye', 'Bicep', 'Sleeve Length', 
-				     'Elbow', 'Wrist', 'Upper Hip', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Croth Length', 
-					 'Back Length', 'Shoulder', 'Upper Arm Length', 'Arm Length', 'Armscye Depth', 'Bust to Bust', 
-					 'Front Bodice Length', 'Waist to Knee', 'Waist to Floor', 'Shoulder Width', 'Front Upper Chest Width', 'Upper Back Width'];
+var womenOptional = ['Head', 'Neck', 'Upper Chest', 'Lower Chest', 'Armscye', 'Bicep', 'Sleeve Length', 'Elbow', 'Wrist', 'Upper Hip', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Croth Length', 'Back Length', 'Shoulder', 'Upper Arm Length', 'Arm Length', 'Armscye Depth', 'Bust to Bust', 'Front Bodice Length', 'Waist to Knee', 'Waist to Floor', 'Shoulder Width', 'Front Upper Chest Width', 'Upper Back Width'];
+
+var men = menRequired.concat(menOptional); 
+var women = womenRequired.concat(womenOptional); 
 
 /*
 	Second search page. Appends array respective to gender.
@@ -137,6 +131,73 @@ function append(measurements, sex, downUP) {
 	$('input[type="number"]').on('input', () => {
         this.value = parseFloat(this.value).toFixed(2);
     });
+}
+
+function append(requiredMeasurement, optionalMeasurement) {
+	var required = '';
+	$("#required").empty();
+  
+	$.each(requiredMeasurement, function(index, value){
+    var id = value.replace(/[ *]/g,"").toLowerCase();
+    
+		required += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+id+'">'+value+'<span>*</span></label><div class="col-sm-4"><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm measurement" placeholder="0" onkeypress="return event.charCode >= 48" required></div></div><br>';
+	});
+
+	$("#required").append(required).show();
+  
+  var optional = '';
+	$("#optional").empty();
+  
+	$.each(optionalMeasurement, function(index, value){
+    var id = value.replace(/[ *]/g,"").toLowerCase();
+    
+		optional += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+id+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm measurement" value="0" onkeypress="return event.charCode >= 48"></div></div><br>';
+	});
+
+	$("#optional").append(optional).show();
+  
+	$('input[type=number]:not(#age)').attr( {
+        step : 0.01,
+        min : 0,
+        max : 500,
+        maxlength : 5,
+        
+  });
+
+	//model getting values like this... but right #id element.
+	//or parseFloat($(#id).val().toFixed(2));
+	$('input[type="number"]').on('input', () => {
+        this.value = parseFloat(this.value).toFixed(2);
+  });
+}
+
+/*
+	Display measurements information on user profile's page.
+*/
+function display(measurements) {
+	var measures = '';
+	$("#measures").empty();
+  
+	$.each(measurements, function(index, value){
+    var id = value.replace(/[ *]/g,"").toLowerCase();
+    
+		measures += '<div class="form-group"><label for="'+id+'">'+value+':'+'&nbsp;'+'</label><span id ="'+id+'0"></span><input type="number" id="'+id+'" name="'+value+'" value="" onkeypress="return event.charCode >= 48"  style="display:none;"></div>';
+	});
+
+	$("#measures").append(measures).show();
+	$('input[type=number]:not(#age)').attr( {
+        step : 0.01,
+        min : 0,
+        max : 500,
+        maxlength : 5,
+        value : 0
+    });
+  
+  //model getting values like this... but right #id element.
+	//or parseFloat($(#id).val().toFixed(2));
+	$('input[type="number"]').on('input', () => {
+        this.value = parseFloat(this.value).toFixed(2);
+  });
 }
 
 /*
