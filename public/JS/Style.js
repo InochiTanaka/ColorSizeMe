@@ -10,7 +10,7 @@ $(".radio-inline").change( ()=> {
 	if ((gender) && (brand) && (topOrBottom)) {
 			$("#submitDiv").show();
 	} else {
-			$("#submitDiv").hide();
+			//$("#submitDiv").hide();
 	}
 
 });
@@ -20,17 +20,7 @@ $(".radio-inline").change( ()=> {
 */
 
 function displaySubmit() {
-	var gender = $("input[name=genderwear]:checked").val();
-	var brand = $("#leBrand").val();
-	var topOrBottom = $("#type").val();
-	var measure = $("#measure").val();
-	if (!measure && !topOrBottom && !brand && !gender) 
-	{
-		$("#submitDiv").hide();
-	} 
-	else {
-		$("#submitDiv").show();
-	}
+	$("#submitDiv").show();
 }
 
 /*
@@ -38,8 +28,8 @@ function displaySubmit() {
 */
 $("#submit1").click( ()=> {
 	var gender = $("input[name=genderwear]:checked").val();
-	var brand = $("#leBrand").val();
-	var topOrBottom = $("input[name=topORbot]:checked").val();
+	var brand = $("#idbrand option:selected").val();
+	var topOrBottom = $("#sel2 option:selected").val();
 	
 	//hard-code server validatoin post-submit.
 	if (	(gender != ('men' || 'women')) &&
@@ -224,10 +214,10 @@ function displayCategories(){
 	
 	if ((gender) && (brand) && (topOrBottom)) {
 			$("#measurement").show();
-			$("#submitDiv").hide();
+			//$("#submitDiv").hide();
 	} else {
 			$("#measurement").hide();
-			$("#submitDiv").hide();
+			//$("#submitDiv").hide();
 	}
 
 }
