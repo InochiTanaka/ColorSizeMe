@@ -1,17 +1,15 @@
 //Initial setup form
-//If user is in login, show only logout button.
-//If user is in logout, show except logout button.
+//If user is in logout, show Authenticatation for new user.
 window.onload = function()
 {	
+	//Get change event on Firebase Authenticatation
 	firebase.auth().onAuthStateChanged(function(user)
-	{
-		//alert(user.isEmailVerified());
-			//alert(user.emailVerified);
-			
+	{			
 			if(user) 
 			{		
+				// If user auth data exixts
 				if(user.emailVerified)
-				{
+				{	//If email verifying is done
 					document.getElementById("authTitle").style.display="block";
 					document.getElementById("email").style.display="none";
 					document.getElementById("password").style.display="none";
@@ -25,6 +23,7 @@ window.onload = function()
 				}
 				else
 				{
+					//If email verifying is not done:
 					document.getElementById("authTitle").style.display="block";
 					document.getElementById("messageText").style.display="block";
 					document.getElementById("email").style.display="none";
@@ -36,11 +35,10 @@ window.onload = function()
 					document.getElementById("cancel").style.display="none";
 					authTitle.textContent = "Please activate your account from Verification Email";
 					messageText.textContent = "Then, please push \"verified\".";	
-					//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 				}		
 			}		
 			else
-			{			
+			{	// If user auth data does not exixts, or logout		
 				document.getElementById("authTitle").style.display="block";
 				document.getElementById("email").style.display="block";
 				document.getElementById("password").style.display="block";
@@ -55,6 +53,8 @@ window.onload = function()
 	});
 }
 
+//Compare the typed password and Confirmation password is same.
+//If same, return true
 function checkSamePassWord(password, passwordConf)
 {	
 	if(password != "")
@@ -78,61 +78,42 @@ function execute(id)
 	var messageText = document.getElementById('messageText');
 	
 	firebase.auth().onAuthStateChanged(function(user) {
-	  if (user) {
-		if(id == "regist" && user.displayName == null)//execute when pushed Log in button
-		{			
-			location.href = "/signup.html";
-			//location.href = "/testRegist.html";
-		}
-	  } else {
-		if(id == "valify")//execute when pushed Sign in button
+		if (user) 
 		{
-			if(!checkSamePassWord(password, passwordConf))
-			{
-				alert("Please check Password and Confirmation Password");
-				location.reload(false);
+			//execute when pushed Log in button
+			if(id == "regist" && user.displayName == null)
+			{			
+				location.href = "/signup.html";
 			}
-			else
+		  }
+		  else 
+		  {	//execute when pushed Sign in button
+			if(id == "valify")
 			{
-				firebase.auth().createUserWithEmailAndPassword(email, password).then(user => {
+				if(!checkSamePassWord(password, passwordConf))
+				{
+					alert("Please check Password and Confirmation Password");
+					location.reload(false);
+				}
+				else
+				{
+					firebase.auth().createUserWithEmailAndPassword(email, password).then(user => {
 
-					user.sendEmailVerification().then(function() {
-					//alert("Sent Verification Email");
-					//firebase.auth().signOut()
-					//.catch(function(error) {
-					//	alert('Failed to Logout : ' + error.message);
-					//});				  
-				}).catch(function(error) {
-				  alert(error);
-				});
-				
-			  }, err => {
-				alert(err);
-			  });
-			}
-			/*
-			firebase.auth().createUserWithEmailAndPassword(email, password)
-			 .then(user => {
-
-				user.sendEmailVerification().then(function() {
-				  //alert("Sent Verification Email");
-					//firebase.auth().signOut()
-					//.catch(function(error) {
-					//	alert('Failed to Logout : ' + error.message);
-					//});				  
-				}).catch(function(error) {
-				  alert(error);
-				});
-				
-			  }, err => {
-				alert(err);
-			  });
-			  */
+						user.sendEmailVerification().then(function() {
+							
+					}).catch(function(error) {
+					  alert(error);
+					});
+					
+				  }, err => {
+					alert(err);
+				  });
+				}
 			}
 		}
 	});
-	
-	if(id == "reload")//execute when pushed Log in button
+	//execute when pushed Log in button
+	if(id == "reload")
 	{			
 		location.reload(true);
 	}
