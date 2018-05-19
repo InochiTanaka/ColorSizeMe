@@ -1,24 +1,13 @@
+//The function to jump to any location
+//For using this function, need instance variable of page address
 function jumpToLocate(param)
 {
 	param = param.substring(1);
 	location.href = param;
 }
 
+//The function to jump to index page
 function jumpToIndex()
 {
 	location.href = "/";
-}
-
-function closeAndreload()
-{
-	window.opener.location.reload(false);
-	
-	if (/Chrome/i.test(navigator.userAgent)) 
-	{ 
-		window.close(); 
-	} 
-	else 
-	{ 
-		window.open('about:blank', '_self').close(); 
-	}
 }
