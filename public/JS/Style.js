@@ -97,7 +97,7 @@ function append(measurements) {
 	var measures = '';
 	$("#measures").empty();
 	$.each(measurements, function(index, value){
-		measures += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
+		measures += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value.replace(/[ *]/g,"").toLowerCase()+'" name="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
 	});
 
 	$("#measures").append(measures).show();
@@ -120,7 +120,7 @@ function append(requiredMeasurement, optionalMeasurement) {
 	var required = '';
 	$("#required").empty();
 	$.each(requiredMeasurement, function(index, value){
-		required += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'<span>*</span></label><div class="col-sm-4"><input type="number" id="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48" required></div></div><br>';
+		required += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'<span>*</span></label><div class="col-sm-4"><input type="number" id="'+value.replace(/[ *]/g,"").toLowerCase()+'" name="'+value+'" class="form-control input-sm measurement" placeholder="0" onkeypress="return event.charCode >= 48" required></div></div><br>';
 	});
 
 	$("#required").append(required).show();
@@ -128,7 +128,7 @@ function append(requiredMeasurement, optionalMeasurement) {
   var optional = '';
 	$("#optional").empty();
 	$.each(optionalMeasurement, function(index, value){
-		optional += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
+		optional += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value.replace(/[ *]/g,"").toLowerCase()+'" name="'+value+'" class="form-control input-sm measurement" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
 	});
 
 	$("#optional").append(optional).show();
