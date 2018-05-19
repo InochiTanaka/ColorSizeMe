@@ -36,6 +36,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
     <style media="screen"></style>
     <script src="JS/read_write.js"></script>
+	<script defer src="JS/Style.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -91,37 +92,38 @@
                     <button class="btn btn-default" type="button" onclick="update_user()"> Update User </button>
                     <button class="btn btn-default" type="button" onclick="update_size()"> Update Size </button>
                 </div>
-                <div id="wrapper">
-                        <label>Cloth Type</label>
-                        <div id="swear-gender">
-                            <label class="radio-inline"> <input type="radio" name="optradio" value="male">Menswear</label>
-                            <label class="radio-inline"> <input type="radio" name="optradio" value="female">Womenswear</label>
-                        </div>
+                <form>
+                    <div class="form-group" id="swear-gender">
+						<label>Cloth Type</label>
+                        <label class="radio-inline"> <input type="radio" class="sex" name="genderwear" value="men">Menswear</label>
+                        <label class="radio-inline"> <input type="radio" class="sex" name="genderwear" value="women">Womenswear</label>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="sel1">Brand:</label>
-                            <select class="form-control" id="sel1">
-                                <option value="zara">Zara</option>
-                                <option value="hm">H&M</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="sel1">Brand:</label>
+                        <select class="form-control" id="idbrand">
+                            <option value="zara" name="brand">Zara</option>
+                            <option value="hm" name="brand">HnM</option>
+                        </select>
+                    </div>
 
 
-                        <div class="form-group">
-                            <label for="sel1">Type of Clothes </label>
-                            <select class="form-control" id="sel2">
-                                <option value="top">Top</option>
-                                <option value="bottom">Bottom</option>
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label for="sel1">Type of Clothes </label>
+                        <select class="form-control" id="sel2">
+                            <option value="top" name="topORbot">Top</option>
+                            <option value="bottom" name="topORbot">Bottom</option>
+                        </select>
+                    </div>
 
-                        <div id = "measurement" class="toggle" style="display: none;">
-                            <label>Measurement Units</label>
-                            <label class="radio-inline"><input type="radio" name="optradio" value="centimeter">Cm</label>
-                            <label class="radio-inline"><input type="radio" name="optradio" value="inches">Inches</label>
-                        </div>
-                        <button type="button" class="btn btn-default">Submit</button>
-                </div>
+                    <div id = "measurement" class="toggle" style="display: none;">
+                        <label>Measurement Units</label>
+                        <label class="radio-inline"><input type="radio" name="optradio" value="centimeter">Cm</label>
+                        <label class="radio-inline"><input type="radio" name="optradio" value="inches">Inches</label>
+                    </div>
+					
+						<input button="submit" class="btn btn-default" id="submit1" name="Submit">Submit</button>
+                </form>
             </div>
         </div>
     </div>
