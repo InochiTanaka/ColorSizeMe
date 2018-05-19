@@ -1,5 +1,7 @@
-var timer = 0;
- 
+
+//Responsive by size of Window.
+//If window width is less than 769px include mobile screen, user picture on header will be hidden.
+var timer = 0; 
 window.onresize = function () {
   if (timer > 0) {
     clearTimeout(timer);
@@ -10,26 +12,29 @@ window.onresize = function () {
 	{
 		if(user.displayName != null)
 		{
+			//Compare current window size
 			if(window.innerWidth < 769)
 			{
+				//Hide user picutre
 				document.getElementById("accountMenu").style.display="none";
 			}
 			else
 			{
+				//Appier user picture
 				document.getElementById("accountMenu").style.display="inline-block";
 			}	
 		}
 	});	
-  }, 0);
+  }, 0); //Set 0 timw as waiting responce timw
 }
 
+//Load this part when web page include this script file
 window.onload = function()
 {	
-	//alert(document.getElementById("email").value);
+	//Get change event on Firebase Authenticatation
 	firebase.auth().onAuthStateChanged(function(user)
 	{
-		//alert();
-		// If user auth data is exixts
+		// If user auth data is exixts, ture
 		if(user) 
 		{		
 			//If email verifying is done:
@@ -42,10 +47,9 @@ window.onload = function()
 					document.getElementById("signup").style.display="inline-block";
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("accountMenu").style.display="none";
-          //document.getElementById("users").style.display="none";
 					messageText0.textContent = "Please continue \"Sign Up\" ";
 					messageText1.textContent = "or";	
-          $("#users").hide();					
+					$("#users").hide(); //Hide link to User list 					
 				}
 				else //If user.displayName is not null(means registered already)
 				{
@@ -53,9 +57,8 @@ window.onload = function()
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("signup").style.display="none";
 					document.getElementById("accountMenu").style.display="inline-block";
-          //document.getElementById("users").style.display="inline-block";
 					messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
-          $("#users").show();
+					$("#users").show(); //show link to User list 	
 					
 					if(user.photoURL == null)
 					{
@@ -65,13 +68,6 @@ window.onload = function()
 					{
 						document.images["accountImage"].src = user.photoURL;
 					}
-					/*name = user.displayName;
-					  email = user.email;
-					  photoUrl = user.photoURL;
-					  emailVerified = user.emailVerified;
-					  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-									   // this value to authenticate with your backend server, if
-									   // you have one. Use User.getToken() instead.*/
 				}
 			}
 			else //If email verrifying is not done:
@@ -80,7 +76,6 @@ window.onload = function()
 				document.getElementById("login").style.display="inline-block";
 				document.getElementById("signup").style.display="inline-block";
 				messageText.textContent = "";	
-				//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
 			}		
 		}		
 		else //If user auth data is not exists and logout:
@@ -91,43 +86,38 @@ window.onload = function()
 			messageText0.textContent = "or";	
 			messageText1.textContent = "";	
 			document.getElementById("signup").style.display="inline-block";
-      //document.getElementById("users").style.display="none";
-      $("#users").hide();			
+			$("#users").hide();			
 		}	
 	});		
 }
 
+//User Login function
 function loginFunction(locate)
 {			
 	firebase.auth().onAuthStateChanged(function(user)
 	{
+		//If User exist, ture
 		if(user) 
-		{		
-			if(user.emailVerified)
-			{
-			}
-			else
-			{
-				location.href = "/authentication.html" ;	
-				//alert("Please activate your account on Valification Email.\n Or, please Sign in another account");
-			}		
+		{							
 		}		
 		else
-		{			
+		{	//Jump to login.html with location parameter 
+			//which for returning to previous page after login process.		
 			location.href = "/login.html?"+locate ;	
 		}	
 	});						
 }
 
-
+//Logout function. If logout is executed, moe to index page .
 function logoutFunction()
 {
 	if(window.confirm('Do you want to log out?')){
-    location.href = "/index.html" ;
+
 		firebase.auth().onAuthStateChanged(function(user) {
 			if(user) {	
 				firebase.auth().signOut().then(function() {
-					location.href = "/";	
+					//move to index page
+					location.href = "/index.html" ;
 				}).catch(function(error) {
 					alert('Failed to Logout : ' + error.message);
 				});
@@ -136,16 +126,8 @@ function logoutFunction()
 	}
 }
 
+//Move to signup page
 function signupFunction()
 {			
-	/*firebase.auth().onAuthStateChanged(function(user)
-	{
-		if(user) 
-		{			
-		}		
-		else
-		{	*/		
-			location.href = "/auth.html" ;		
-		/*}	
-	});	*/					
+	location.href = "/auth.html" ;						
 }
