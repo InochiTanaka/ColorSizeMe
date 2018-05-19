@@ -10,7 +10,7 @@ $(".radio-inline").change( ()=> {
 	if ((gender) && (brand) && (topOrBottom)) {
 			$("#submitDiv").show();
 	} else {
-			$("#submitDiv").hide();
+			//$("#submitDiv").hide();
 	}
 
 });
@@ -20,17 +20,7 @@ $(".radio-inline").change( ()=> {
 */
 
 function displaySubmit() {
-	var gender = $("input[name=genderwear]:checked").val();
-	var brand = $("#leBrand").val();
-	var topOrBottom = $("#type").val();
-	var measure = $("#measure").val();
-	if (!measure && !topOrBottom && !brand && !gender) 
-	{
-		$("#submitDiv").hide();
-	} 
-	else {
-		$("#submitDiv").show();
-	}
+	$("#submitDiv").show();
 }
 
 /*
@@ -38,8 +28,8 @@ function displaySubmit() {
 */
 $("#submit1").click( ()=> {
 	var gender = $("input[name=genderwear]:checked").val();
-	var brand = $("#leBrand").val();
-	var topOrBottom = $("input[name=topORbot]:checked").val();
+	var brand = $("#idbrand option:selected").val();
+	var topOrBottom = $("#sel2 option:selected").val();
 	
 	//hard-code server validatoin post-submit.
 	if (	(gender != ('men' || 'women')) &&
@@ -68,34 +58,39 @@ $("#submit1").click( ()=> {
 });
 
 //arrays for measurements (revised for '21')
-var menTop = ['Armseye Circumference', 'Bicep', 'Height', 'Neck', 'Shoulder-shoulder-F', 
-			    'Shoulder-length', 'Armsleeve-F', 'Armsleeve-B', 'Wrist', 'Chest', 'Waist', 'Neck-waist', 'Shoulder-length'
+var menTop = ['Armscye', 'Back Length', 'Bicep', 'Height', 'Neck', 'Shoulder width', 
+			    'Chest', 'Waist', 'Neck-waist', 'Shoulder-length', 'Sleeve length'
 				];
-var menBottom = ['Ankle', 'Waist', 'Waist-hip', 'Inseam',
-				'outseam', 'Hips', 'Thigh', 'Calf', 'Knee', 'Crotch depth'];
-var womenTop = ['Height', 'Bust', 'Shoulder-shoulder-F', 'Shoulder-elbow', 'Armsleeve-F',
-				'Armsleeve-B', 'Waist', 'Neck-waist', 
-				'Elbow-wrist'];
-var womenBottom = ['Ankle', 'Waist', 'Waist-hip', 'Waist-knee', 'Inseam',
-				'Outseam', 'Hips', 'Thigh', 'Calf', 'Knee'];
+var menBottom = ['Ankle', 'Waist', 'Waist to Floor', 'Inseam',
+				 'Hips', 'Thigh', 'Calf', 'Knee', 'Crotch Depth'];
+var womenTop = ['Height', 'Bust', 'Cup Size', 'Shoulder', 'Shoulder Witdh', 'Arm Length', 
+				'Back-Length', 'Waist', 'Waist', 'Hip', 
+				];
+var womenBottom = ['Ankle', 'Waist', 'Inseam', 'Waist to Knee', 'Hip', 'Thigh', 'Calf', 'Knee'];
 
 var men = menTop.concat(menBottom); 
 var women = womenTop.concat(womenBottom); 
 
 var menRequired = ['Height', 'Neck', 'Chest', 'Waist', 'Hip', 'Inseam', 'Shoulder Width'];
 
-var menOptional = ['Age', 'Head', 'Armscye', 'Armscye Depth', 'Bicep', 'Arm Length', 'Sleeve Length', 'Elbow', 'Wrist', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Crotch Length', 'Back Length', 'Shoulder', 'Upper Arm Length', 'Waist to Floor', 'Front Upper Chest Width', 'Upper Back Width'];
+var menOptional = ['Age', 'Head', 'Armscye', 'Armscye Depth', 'Bicep', 'Arm Length', 'Sleeve Length', 
+				   'Elbow', 'Wrist', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Crotch Length', 
+				   'Back Length', 'Shoulder', 'Upper Arm Length', 'Waist to Floor', 'Front Upper Chest Width', 
+				   'Upper Back Width'];
 
 var womenRequired = ['Height', 'Bust', 'Cup Size', 'Waist', 'Hip', 'Inseam'];
 
-var womenOptional = ['Age', 'Head', 'Neck', 'Upper Chest', 'Lower Chest', 'Armscye', 'Bicep', 'Sleeve Length', 'Elbow', 'Wrist', 'Upper Hip', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Croth Length', 'Back Length', 'Shoulder', 'Upper Arm Length', 'Arm Length', 'Armscye Depth', 'Bust to Bust', 'Front Bodice Length', 'Waist to Knee', 'Waist to Floor', 'Shoulder Width', 'Front Upper Chest Width', 'Upper Back Width'];
+var womenOptional = ['Age', 'Head', 'Neck', 'Upper Chest', 'Lower Chest', 'Armscye', 'Bicep', 'Sleeve Length', 
+				     'Elbow', 'Wrist', 'Upper Hip', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Croth Length', 
+					 'Back Length', 'Shoulder', 'Upper Arm Length', 'Arm Length', 'Armscye Depth', 'Bust to Bust', 
+					 'Front Bodice Length', 'Waist to Knee', 'Waist to Floor', 'Shoulder Width', 'Front Upper Chest Width', 'Upper Back Width'];
 
 /*
 	Second search page. Appends array respective to gender.
 */
 function append(measurements) {
-	var measures = '';
 	$("#measures").empty();
+	var measures = '';
 	$.each(measurements, function(index, value){
 		measures += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value.replace(/[ *]/g,"").toLowerCase()+'" name="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
 	});
@@ -116,36 +111,32 @@ function append(measurements) {
   });
 }
 
-function append(requiredMeasurement, optionalMeasurement) {
-	var required = '';
-	$("#required").empty();
-	$.each(requiredMeasurement, function(index, value){
-		required += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'<span>*</span></label><div class="col-sm-4"><input type="number" id="'+value.replace(/[ *]/g,"").toLowerCase()+'" name="'+value+'" class="form-control input-sm measurement" placeholder="0" onkeypress="return event.charCode >= 48" required></div></div><br>';
+/*ERF
+	Second search page. Appends array respective to gender.
+*/
+function append(measurements, sex, downUP) {
+	var measures = '';
+	$("#measures").empty();
+	measures += '<form>';
+	$.each(measurements, function(index, value){
+		measures += '<label>'+value+'</label> <input type="number" id="'+value.toLowerCase()+'" name="'+value.replace(/[ *]/g,"").toLowerCase()+'" class="'+sex+downUP+'"><br>';
 	});
-
-	$("#required").append(required).show();
-  
-  var optional = '';
-	$("#optional").empty();
-	$.each(optionalMeasurement, function(index, value){
-		optional += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value.replace(/[ *]/g,"").toLowerCase()+'" name="'+value+'" class="form-control input-sm measurement" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
-	});
-
-	$("#optional").append(optional).show();
-  
+	measures += '</form>';
+	$("#measures").append(measures).show();
 	$('input[type=number]').attr( {
         step : 0.01,
-        min : 0,
+        min : 1,
         max : 500,
         maxlength : 5,
+		placeholder : 0,
         value : 0
-  });
+    });
 
 	//model getting values like this... but right #id element.
 	//or parseFloat($(#id).val().toFixed(2));
 	$('input[type="number"]').on('input', () => {
         this.value = parseFloat(this.value).toFixed(2);
-  });
+    });
 }
 
 /*
@@ -158,16 +149,16 @@ $("._type").change( ()=> {
 	measurements = [ ];
 	if (sex == 'men' && downUP == 'top') {
 		measurements = menTop;
-		append(measurements);
+		append(measurements, sex, downUP);
 	} else if (sex == 'men' && downUP == 'bottom') {
 		measurements = menBottom;
-		append(measurements);
+		append(measurements, sex, downUP);
 	} else if (sex == 'women' && downUP == 'top') {
 		measurements = womenTop;
-		append(measurements);
+		append(measurements, sex, downUP);
 	} else if (sex == 'women' && downUP == 'bottom') {
 		measurements = womenBottom;
-		append(measurements);
+		append(measurements, sex, downUP);
 	}
 });
 
@@ -223,10 +214,10 @@ function displayCategories(){
 	
 	if ((gender) && (brand) && (topOrBottom)) {
 			$("#measurement").show();
-			$("#submitDiv").hide();
+			//$("#submitDiv").hide();
 	} else {
 			$("#measurement").hide();
-			$("#submitDiv").hide();
+			//$("#submitDiv").hide();
 	}
 
 }
