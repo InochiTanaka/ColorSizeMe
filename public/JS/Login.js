@@ -1,6 +1,5 @@
 //Initial setup form
-//If user is in login, show only logout button.
-//If user is in logout, show except logout button.
+//If user is in logout, show login form.
 window.onload = function()
 {	
 	//Get change event on Firebase Authenticatation
