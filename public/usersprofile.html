@@ -4,7 +4,16 @@
 <head>
     <title>Profile Page</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="JS/signup.js"></script>
+    <script type="text/javascript" src="JS/Style.js"></script>
+    <script type="text/javascript" src="JS/navBar.js"></script>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -14,13 +23,11 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-     <!-- Bootstrap -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="JS/signup.js"></script>
-    <script type="text/javascript" src="JS/Style.js"></script>
-    <script type="text/javascript" src="JS/navBar.js"></script>
+
     <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
@@ -81,7 +88,7 @@
                         <!-- Measurement info-->
                         <div id="measures" class="toggle" style="display:none;padding-top:2px;"></div>
                     </form>
-                    <button id="show" onclick="show()" value="Show" style="display:none;">Show Measures</button>
+                    <button class="btn btn-default" id="show" onclick="show()" value="Show" style="display:none;">Show Measures</button>
                 </div>
             </div>
         </div>
@@ -142,7 +149,7 @@
                     else if (gender == "female") {
                         displayAll(women);
                         loaded = true;
-                    }                    
+                    }
                 }
                 db.ref('/users/' + uid + '/public_use/measurements').once('value', function (snapshot) {
                     snapshot.forEach(function (childSnapshot) {
