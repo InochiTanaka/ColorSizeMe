@@ -79,44 +79,34 @@ var womenOptional = ['Head', 'Neck', 'Upper Chest', 'Lower Chest', 'Armscye', 'B
 var men = menRequired.concat(menOptional); 
 var women = womenRequired.concat(womenOptional); 
 
-/*
-	Second search page. Appends array respective to gender.
-*/
-function append(measurements) {
-	$("#measures").empty();
-	var measures = '';
-	$.each(measurements, function(index, value){
-		measures += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value.replace(/[ *]/g,"").toLowerCase()+'" name="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
-	});
-
-	$("#measures").append(measures).show();
-	$('input[type=number]').attr( {
-        step : 0.01,
-        min : 0,
-        max : 500,
-        maxlength : 5,
-        value : 0
-    });
-  
-  //model getting values like this... but right #id element.
-	//or parseFloat($(#id).val().toFixed(2));
-	$('input[type="number"]').on('input', () => {
-        this.value = parseFloat(this.value).toFixed(2);
-  });
-}
-
 /*ERF
 	Second search page. Appends array respective to gender.
 */
 function append(measurements, sex, downUP) {
+	var DB = firebase.database();
+	var userId = firebase.auth().currentUser.uid;
 	var measures = '';
 	$("#measures").empty();
 	measures += '<form>';
-	$.each(measurements, function(index, value){
-		measures += '<label>'+value+'</label> <input type="number" id="'+value.toLowerCase()+'" name="'+value.replace(/[ *]/g,"").toLowerCase()+'" class="'+sex+downUP+'"><br>';
+	var userMeasureRef = DB.ref('users/' + userId +'/public_use/measurements').once('value', (online_measure) => {
+		
+		var online_copy = online_measure.toJSON(); //online_measure.val().JSON;
+		
+		for (var i = 0; i < measurements.length; ++i) {
+			var measure = measurements[i].replace(/[ *]/g,"").toLowerCase();
+			var searchParam = measurements[i].replace(/[*]/g,"").toLowerCase();
+			
+      measures += '<label>'+measurements[i]+'</label> <input type="number" id="'+measure.toUpperCase()+'" name="'+searchParam+'" value="'+online_copy[measure]+'"><br>';				
+		}		
+		
+		/*$.each(measurements, function(index, value){
+      measures += '<label>'+value+'</label> <input type="number" id="'+value.toLowerCase()+'" name="'+value.replace(/[ *]/g,"").toLowerCase()+'" class="'+sex+downUP+'"><br>';
+		});*/
+    
+    measures += '</form>';
+    $("#measures").append(measures).show();
 	});
-	measures += '</form>';
-	$("#measures").append(measures).show();
+	
 	$('input[type=number]').attr( {
         step : 0.01,
         min : 1,
@@ -140,22 +130,21 @@ $("._type").change( ()=> {
 	var sex	= $("#_sex").text().toLowerCase();
 	var downUP = $("#_tb").text().toLowerCase();
 	$("#measurement").show();
-	measurements = [ ];
+	var measureFields = [ ];
 	if (sex == 'men' && downUP == 'top') {
-		measurements = menTop;
-		append(measurements, sex, downUP);
+		measureFields = menTop;
+		append(measureFields, sex, downUP);
 	} else if (sex == 'men' && downUP == 'bottom') {
-		measurements = menBottom;
-		append(measurements, sex, downUP);
+		measureFields = menBottom;
+		append(measureFields, sex, downUP);
 	} else if (sex == 'women' && downUP == 'top') {
-		measurements = womenTop;
-		append(measurements, sex, downUP);
+		measureFields = womenTop;
+		append(measureFields, sex, downUP);
 	} else if (sex == 'women' && downUP == 'bottom') {
-		measurements = womenBottom;
-		append(measurements, sex, downUP);
+		measureFields = womenBottom;
+		append(measureFields, sex, downUP);
 	}
 });
-
 
 /*
 	Second search page method #2.
@@ -197,7 +186,6 @@ $(document).ready( ()=> {
 	$("._type").html(options);
 });
 
-
 function displayCategories(){
 	
     //var x = document.getElementById("gender").selectedIndex;
@@ -215,7 +203,6 @@ function displayCategories(){
 	}
 
 }
-
 
 // Temp Switching user role function *INOCHI'S CODE starts here!
 
