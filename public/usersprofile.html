@@ -145,11 +145,12 @@
                 if (!loaded) {
                     if (gender == "male") {
                         displayAll(men);
+                        loaded = true;
                     }
-                    else {
+                    else if (gender == "female") {
                         displayAll(women);
+                        loaded = true;
                     }
-                    loaded = true;
                 }
                 db.ref('/users/' + uid + '/public_use/measurements').once('value', function (snapshot) {
                     snapshot.forEach(function (childSnapshot) {
