@@ -222,7 +222,7 @@ function displayAll(measurements) {
 	$.each(measurements, function(index, value){
     var id = value.replace(/[ *]/g,"").toLowerCase();
     
-		measures += '<div class="form-group"><label for="'+id+'">'+value+':'+'&nbsp;'+'</label><span id ="'+id+'0"></span><input type="number" id="'+id+'" name="'+value+'" value="" onkeypress="return event.charCode >= 48"  style="display:none;"></div>';
+		measures += '<div class="form-group"><label for="'+id+'">'+value+':'+'&nbsp;'+'</label><span id ="'+id+'0"></span><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm" value="" onkeypress="return event.charCode >= 48"  style="display:none;"></div>';
 	});
 
 	$("#measures").append(measures).show();
