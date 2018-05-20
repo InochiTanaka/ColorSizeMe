@@ -58,18 +58,22 @@
         </nav>
         <div class="container-fluid">
             <div class="content" style="padding-top: 2em;">
-                <div class="col-xs-12" id="main"> <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;"> <span id="privacy" style="display:none;">
-                        <span style="position:relative;bottom:15px";>Private mode</span>
-                    <!-- Rounded switch -->
-                    <label class="switch">
-                        <input id="toggle" type="checkbox" onclick="setPrivacy()"> <span class="slider round"></span> </label>
-                    </span>
+                <div class="col-xs-12" id="main"> <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">                 
                     <div>
                         <label id="change" for="pic" class="custom-file-upload" style="display:none;"> Change </label>
                         <input id="pic" type="file" style="display:none;" />
                         <button id="remove" class="custom-file-upload" value="Remove" onclick="removeAvatar()" style="width:90px;display:none;">Remove</button>
                     </div>
+                    
                     <br>
+                    
+                    <div id="privacy" style="display:none;">
+                        <span style="position:relative;bottom:15px";>Private mode</span>
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                        <input id="toggle" type="checkbox" onclick="setPrivacy()"> <span class="slider round"></span> </label>
+                    </div>
+                    
                     <div class="form-group">
                         <label for="fname">First Name: </label> <span id="firstname"></span>
                         <input id="fname" name="fname" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span> </div>
