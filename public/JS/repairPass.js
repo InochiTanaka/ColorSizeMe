@@ -1,3 +1,5 @@
+//Sending reset password function.
+//Get Email from form, if the email is valkid, send Reset email to the address.
 function repair()
 {
 	var auth = firebase.auth();
