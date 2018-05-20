@@ -84,5 +84,3 @@ function login()
 		alert('Failed to Login : ' + error.message);
 	});	
 }
-
-
