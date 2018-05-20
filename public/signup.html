@@ -207,12 +207,12 @@
     $('#Gender-0').click(function () {
         gender = "male";
         $('.note').show();
-        append(menRequired, menOptional);
+        display(menRequired, menOptional);
     });
     $('#Gender-1').click(function () {
         gender = "female";
         $('.note').show();
-        append(womenRequired, menOptional);
+        display(womenRequired, menOptional);
     });
     //Auto geolocation. Requires permission. Pick this because SSL is required, which Google has
     //verify geo location https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
