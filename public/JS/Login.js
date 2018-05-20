@@ -20,7 +20,7 @@ window.onload = function()
 					document.getElementById("repairPassword").style.display="none";
 					document.getElementById("login").style.display="none";
 					document.getElementById("cancel").style.display="inline-block";
-					cancel.textContent = "Back to Home
+					cancel.textContent = "Back to Home";
 					if(user.displayName == null)
 					{	
 						//If signin is not completed, put "Guest" as user name
