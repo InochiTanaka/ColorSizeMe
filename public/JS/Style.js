@@ -68,22 +68,16 @@ var womenTop = ['Height', 'Bust', 'Cup Size', 'Shoulder', 'Shoulder Witdh', 'Arm
 				];
 var womenBottom = ['Ankle', 'Waist', 'Inseam', 'Waist to Knee', 'Hip', 'Thigh', 'Calf', 'Knee'];
 
-var men = menTop.concat(menBottom); 
-var women = womenTop.concat(womenBottom); 
-
 var menRequired = ['Height', 'Neck', 'Chest', 'Waist', 'Hip', 'Inseam', 'Shoulder Width'];
 
-var menOptional = ['Age', 'Head', 'Armscye', 'Armscye Depth', 'Bicep', 'Arm Length', 'Sleeve Length', 
-				   'Elbow', 'Wrist', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Crotch Length', 
-				   'Back Length', 'Shoulder', 'Upper Arm Length', 'Waist to Floor', 'Front Upper Chest Width', 
-				   'Upper Back Width'];
+var menOptional = ['Head', 'Armscye', 'Armscye Depth', 'Bicep', 'Arm Length', 'Sleeve Length', 'Elbow', 'Wrist', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Crotch Length', 'Back Length', 'Shoulder', 'Upper Arm Length', 'Waist to Floor', 'Front Upper Chest Width', 'Upper Back Width'];
 
 var womenRequired = ['Height', 'Bust', 'Cup Size', 'Waist', 'Hip', 'Inseam'];
 
-var womenOptional = ['Age', 'Head', 'Neck', 'Upper Chest', 'Lower Chest', 'Armscye', 'Bicep', 'Sleeve Length', 
-				     'Elbow', 'Wrist', 'Upper Hip', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Croth Length', 
-					 'Back Length', 'Shoulder', 'Upper Arm Length', 'Arm Length', 'Armscye Depth', 'Bust to Bust', 
-					 'Front Bodice Length', 'Waist to Knee', 'Waist to Floor', 'Shoulder Width', 'Front Upper Chest Width', 'Upper Back Width'];
+var womenOptional = ['Head', 'Neck', 'Upper Chest', 'Lower Chest', 'Armscye', 'Bicep', 'Sleeve Length', 'Elbow', 'Wrist', 'Upper Hip', 'Thigh', 'Knee', 'Calf', 'Ankle', 'Crotch Depth', 'Croth Length', 'Back Length', 'Shoulder', 'Upper Arm Length', 'Arm Length', 'Armscye Depth', 'Bust to Bust', 'Front Bodice Length', 'Waist to Knee', 'Waist to Floor', 'Shoulder Width', 'Front Upper Chest Width', 'Upper Back Width'];
+
+var men = menRequired.concat(menOptional); 
+var women = womenRequired.concat(womenOptional); 
 
 /*
 	Second search page. Appends array respective to gender.
@@ -115,12 +109,30 @@ function append(measurements) {
 	Second search page. Appends array respective to gender.
 */
 function append(measurements, sex, downUP) {
+	var DB = firebase.database();
+	var userId = firebase.auth().currentUser.uid;
 	var measures = '';
 	$("#measures").empty();
 	measures += '<form>';
-	$.each(measurements, function(index, value){
-		measures += '<label>'+value+'</label> <input type="number" id="'+value.toLowerCase()+'" name="'+value.replace(/[ *]/g,"").toLowerCase()+'" class="'+sex+downUP+'"><br>';
+	var userMeasureRef = DB.ref('users/'+uid+'/measurements').once('value', (online_measure) => {
+		
+		var online_copy = online_measure.toJSON(); //online_measure.val().JSON;
+		
+		for (var i = 0; i < meausurements.length; ++i) {
+			var measure = measurements[i].replace(/[ *]/g,"").toLowerCase();
+			var searchParam = measurements[i].replace(/[*]/g,"").toLowerCase();
+				if (measure == online_copy.measure) {
+measures += '<label>'+measurements[i]+'</label> <input type="number" id="'+measure.toUpperCase()+'" name="'+searchParam+'" value="'+online_copy.val().measure+'"><br>';
+				}
+		}		
+		
+		/*$.each(measurements, function(index, value){
+measures += '<label>'+value+'</label> <input type="number" id="'+value.toLowerCase()+'" name="'+value.replace(/[ *]/g,"").toLowerCase()+'" class="'+sex+downUP+'"><br>';
+		});*/
+	
 	});
+	
+	
 	measures += '</form>';
 	$("#measures").append(measures).show();
 	$('input[type=number]').attr( {
@@ -146,19 +158,19 @@ $("._type").change( ()=> {
 	var sex	= $("#_sex").text().toLowerCase();
 	var downUP = $("#_tb").text().toLowerCase();
 	$("#measurement").show();
-	measurements = [ ];
+	var measureFields = [ ];
 	if (sex == 'men' && downUP == 'top') {
-		measurements = menTop;
-		append(measurements, sex, downUP);
+		measureFields = menTop;
+		append(measureFields, sex, downUP);
 	} else if (sex == 'men' && downUP == 'bottom') {
-		measurements = menBottom;
-		append(measurements, sex, downUP);
+		measureFields = menBottom;
+		append(measureFields, sex, downUP);
 	} else if (sex == 'women' && downUP == 'top') {
-		measurements = womenTop;
-		append(measurements, sex, downUP);
+		measureFields = womenTop;
+		append(measureFields, sex, downUP);
 	} else if (sex == 'women' && downUP == 'bottom') {
-		measurements = womenBottom;
-		append(measurements, sex, downUP);
+		measureFields = womenBottom;
+		append(measureFields, sex, downUP);
 	}
 });
 
@@ -229,4 +241,71 @@ function switchRole()
 {
 	var role = document.getElementById('userRole').value;
 	alert(role);
+}
+
+/*
+	Display measurements information on user profile's page.
+*/
+function displayAll(measurements) {
+	var measures = '';
+	$("#measures").empty();
+  
+	$.each(measurements, function(index, value){
+    var id = value.replace(/[ *]/g,"").toLowerCase();
+    
+		measures += '<div class="form-group"><label for="'+id+'">'+value+':'+'&nbsp;'+'</label><span id ="'+id+'0"></span><input type="number" id="'+id+'" name="'+value+'" value="" onkeypress="return event.charCode >= 48"  style="display:none;"></div>';
+	});
+
+	$("#measures").append(measures).show();
+	$('input[type=number]:not(#age)').attr( {
+        step : 0.01,
+        min : 0,
+        max : 500,
+        maxlength : 5,
+        value : 0
+    });
+  
+  //model getting values like this... but right #id element.
+	//or parseFloat($(#id).val().toFixed(2));
+	$('input[type="number"]').on('input', () => {
+        this.value = parseFloat(this.value).toFixed(2);
+  });
+}
+
+function display(requiredMeasurement, optionalMeasurement) {
+	var required = '';
+	$("#required").empty();
+  
+	$.each(requiredMeasurement, function(index, value){
+    var id = value.replace(/[ *]/g,"").toLowerCase();
+    
+		required += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+id+'">'+value+'<span>*</span></label><div class="col-sm-4"><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm measurement" placeholder="0" onkeypress="return event.charCode >= 48" required></div></div><br>';
+	});
+
+	$("#required").append(required).show();
+  
+  var optional = '';
+	$("#optional").empty();
+  
+	$.each(optionalMeasurement, function(index, value){
+    var id = value.replace(/[ *]/g,"").toLowerCase();
+    
+		optional += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+id+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm measurement" value="0" onkeypress="return event.charCode >= 48"></div></div><br>';
+	});
+
+	$("#optional").append(optional).show();
+  
+	$('input[type=number]:not(#age)').attr( {
+        step : 0.01,
+        min : 0,
+        max : 500,
+        maxlength : 5,
+        
+  });
+
+	//model getting values like this... but right #id element.
+	//or parseFloat($(#id).val().toFixed(2));
+	$('input[type="number"]').on('input', () => {
+        this.value = parseFloat(this.value).toFixed(2);
+  });
 }
