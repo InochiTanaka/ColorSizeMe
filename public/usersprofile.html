@@ -4,13 +4,7 @@
 <head>
     <title>Profile Page</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="JS/signup.js"></script>
-    <script type="text/javascript" src="JS/Style.js"></script>
-    <script type="text/javascript" src="JS/navBar.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/style.css">  
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -20,6 +14,13 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+     <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="JS/signup.js"></script>
+    <script type="text/javascript" src="JS/Style.js"></script>
+    <script type="text/javascript" src="JS/navBar.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
@@ -60,7 +61,7 @@
                     <br>
                     <div class="form-group">
                         <label for="fname" style="display:none;">First Name: </label> <span id="firstname"></span>
-                        <input id="fname" name="First Name" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span> </div>
+                        <input id="fname" name="First Name" class="form-control input-sm" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span> </div>
                     <div class="form-group">
                         <label for="lname" style="display:none;">Last Name: </label> <span id="lastname"></span>
                         <input id="lname" name="Last Name" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span> </div>
@@ -136,11 +137,12 @@
                 if (!loaded) {
                     if (gender == "male") {
                         displayAll(men);
+                        loaded = true;
                     }
-                    else {
+                    else if (gender == "female") {
                         displayAll(women);
-                    }
-                    loaded = true;
+                        loaded = true;
+                    }                    
                 }
                 db.ref('/users/' + uid + '/public_use/measurements').once('value', function (snapshot) {
                     snapshot.forEach(function (childSnapshot) {
