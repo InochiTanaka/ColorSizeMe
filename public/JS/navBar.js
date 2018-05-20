@@ -34,7 +34,7 @@ window.onload = function()
 	//Get change event on Firebase Authenticatation
 	firebase.auth().onAuthStateChanged(function(user)
 	{
-		// If user auth data is exixts, ture
+		// If user auth data exixts, ture
 		if(user) 
 		{		
 			//If email verifying is done:
@@ -78,7 +78,7 @@ window.onload = function()
 				messageText.textContent = "";	
 			}		
 		}		
-		else //If user auth data is not exists and logout:
+		else //If user auth data does not exists and logout:
 		{				
 			document.getElementById("accountMenu").style.display="none";
 			document.getElementById("login").style.display="inline-block";

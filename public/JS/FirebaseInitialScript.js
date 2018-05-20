@@ -1,5 +1,6 @@
+// Initialize Firebase if move this project to another Firebase project,
+// need to replace to new one.
 window.onload = function () {
-    // Initialize Firebase
     var config = {
         apiKey: "AIzaSyAggze2rZ60EcMihQwYTEoIjRyBqyYVkgA",
         authDomain: "colorsizeme-demo.firebaseapp.com",
