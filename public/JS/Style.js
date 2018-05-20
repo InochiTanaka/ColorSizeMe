@@ -133,73 +133,6 @@ function append(measurements, sex, downUP) {
     });
 }
 
-function append(requiredMeasurement, optionalMeasurement) {
-	var required = '';
-	$("#required").empty();
-  
-	$.each(requiredMeasurement, function(index, value){
-    var id = value.replace(/[ *]/g,"").toLowerCase();
-    
-		required += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+id+'">'+value+'<span>*</span></label><div class="col-sm-4"><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm measurement" placeholder="0" onkeypress="return event.charCode >= 48" required></div></div><br>';
-	});
-
-	$("#required").append(required).show();
-  
-  var optional = '';
-	$("#optional").empty();
-  
-	$.each(optionalMeasurement, function(index, value){
-    var id = value.replace(/[ *]/g,"").toLowerCase();
-    
-		optional += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+id+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm measurement" value="0" onkeypress="return event.charCode >= 48"></div></div><br>';
-	});
-
-	$("#optional").append(optional).show();
-  
-	$('input[type=number]:not(#age)').attr( {
-        step : 0.01,
-        min : 0,
-        max : 500,
-        maxlength : 5,
-        
-  });
-
-	//model getting values like this... but right #id element.
-	//or parseFloat($(#id).val().toFixed(2));
-	$('input[type="number"]').on('input', () => {
-        this.value = parseFloat(this.value).toFixed(2);
-  });
-}
-
-/*
-	Display measurements information on user profile's page.
-*/
-function display(measurements) {
-	var measures = '';
-	$("#measures").empty();
-  
-	$.each(measurements, function(index, value){
-    var id = value.replace(/[ *]/g,"").toLowerCase();
-    
-		measures += '<div class="form-group"><label for="'+id+'">'+value+':'+'&nbsp;'+'</label><span id ="'+id+'0"></span><input type="number" id="'+id+'" name="'+value+'" value="" onkeypress="return event.charCode >= 48"  style="display:none;"></div>';
-	});
-
-	$("#measures").append(measures).show();
-	$('input[type=number]:not(#age)').attr( {
-        step : 0.01,
-        min : 0,
-        max : 500,
-        maxlength : 5,
-        value : 0
-    });
-  
-  //model getting values like this... but right #id element.
-	//or parseFloat($(#id).val().toFixed(2));
-	$('input[type="number"]').on('input', () => {
-        this.value = parseFloat(this.value).toFixed(2);
-  });
-}
-
 /*
 	Gets right 'sex' array.
 */
@@ -290,4 +223,71 @@ function switchRole()
 {
 	var role = document.getElementById('userRole').value;
 	alert(role);
+}
+
+/*
+	Display measurements information on user profile's page.
+*/
+function displayAll(measurements) {
+	var measures = '';
+	$("#measures").empty();
+  
+	$.each(measurements, function(index, value){
+    var id = value.replace(/[ *]/g,"").toLowerCase();
+    
+		measures += '<div class="form-group"><label for="'+id+'">'+value+':'+'&nbsp;'+'</label><span id ="'+id+'0"></span><input type="number" id="'+id+'" name="'+value+'" value="" onkeypress="return event.charCode >= 48"  style="display:none;"></div>';
+	});
+
+	$("#measures").append(measures).show();
+	$('input[type=number]:not(#age)').attr( {
+        step : 0.01,
+        min : 0,
+        max : 500,
+        maxlength : 5,
+        value : 0
+    });
+  
+  //model getting values like this... but right #id element.
+	//or parseFloat($(#id).val().toFixed(2));
+	$('input[type="number"]').on('input', () => {
+        this.value = parseFloat(this.value).toFixed(2);
+  });
+}
+
+function display(requiredMeasurement, optionalMeasurement) {
+	var required = '';
+	$("#required").empty();
+  
+	$.each(requiredMeasurement, function(index, value){
+    var id = value.replace(/[ *]/g,"").toLowerCase();
+    
+		required += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+id+'">'+value+'<span>*</span></label><div class="col-sm-4"><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm measurement" placeholder="0" onkeypress="return event.charCode >= 48" required></div></div><br>';
+	});
+
+	$("#required").append(required).show();
+  
+  var optional = '';
+	$("#optional").empty();
+  
+	$.each(optionalMeasurement, function(index, value){
+    var id = value.replace(/[ *]/g,"").toLowerCase();
+    
+		optional += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+id+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm measurement" value="0" onkeypress="return event.charCode >= 48"></div></div><br>';
+	});
+
+	$("#optional").append(optional).show();
+  
+	$('input[type=number]:not(#age)').attr( {
+        step : 0.01,
+        min : 0,
+        max : 500,
+        maxlength : 5,
+        
+  });
+
+	//model getting values like this... but right #id element.
+	//or parseFloat($(#id).val().toFixed(2));
+	$('input[type="number"]').on('input', () => {
+        this.value = parseFloat(this.value).toFixed(2);
+  });
 }
