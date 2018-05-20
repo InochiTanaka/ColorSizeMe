@@ -61,7 +61,7 @@
             <label for="lname" style="display:none;">Last Name: </label> <span id="lastname"></span>
             <input id="lname" name="lname" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span> </div>
         <div class="form-group">
-            <label for="age">Age: </label> <span id="a"></span>
+            <label for="age" style="display:none;">Age: </label> <span id="a"></span>
             <input id="age" name="Age" type="number" value="" onkeypress="return event.charCode >= 48" style="display:none;"> </div>
         <div class="form-group">
             <label id="un" for="username" style="display:none;">Username: </label> <span id="uname"></span>
@@ -76,7 +76,7 @@
             <!-- Measurement info-->
             <div id="measures" class="toggle" style="display:none;padding-top:2px;"></div>
         </form>
-        <button id="show" onclick="show()" value="Show">Show Measures</button>
+        <button id="show" onclick="show()" value="Show" style="display:none;">Show Measures</button>
     </div>
     <footer class="navbar navbar-fixed-bottom">
         <div class="full">
@@ -108,6 +108,7 @@
                 visibility = snapshot.val().visibility;
             });
             if (visibility == "public") {
+                $("#show").show();
                 $('label').show();
                 db.ref('/users/' + uid + '/public_use').once('value').then(function (snapshot) {
                     firstname = snapshot.val().firstname;
@@ -140,7 +141,7 @@
                     });
                 });
             }
-            if (visibility == "private") {
+            if (visibility == "private") {               
                 $('#un').show();
                 db.ref('/users/' + uid + '/private_use').once('value').then(function (snapshot) {
                     username = snapshot.val().username;
