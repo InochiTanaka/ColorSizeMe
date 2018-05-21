@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
-  <title>All Users</title>
+    <title>All Users</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -16,7 +16,6 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,8 +29,6 @@
     <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
     <style media="screen"></style>
-  
-   
 </head>
 
 <body>
@@ -61,54 +58,40 @@
                 </div>
             </div>
         </nav>
-        <h1 style="text-align: center; padding-top: 1em;">List of All Users</h1>
-	</div>
-	<footer class="navbar navbar-fixed-bottom">
-	  <div class="full">
-		<div class="container">
-		  <span> © 2018 Copyright:</span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a>
-		</div>
-	  </div>
-	</footer>
-
+        <h1 style="text-align: center; padding-top: 1em;">List of All Users</h1> </div>
+    <footer class="navbar navbar-fixed-bottom">
+        <div class="full">
+            <div class="container"> <span> © 2018 Copyright:</span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a> </div>
+        </div>
+    </footer>
 </body>
-
 <script>
+    var count = 0;
+    var key;
+    window.onload = function () {
+        firebase.database().ref().child("takenusernames/").once('value', function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                var user = document.createElement("A");
+                user.setAttribute("id", "user" + count);
+                document.body.appendChild(user);
+                document.body.appendChild(document.createElement("BR"));
+                var uid = firebase.auth().currentUser.uid;
+                if (uid == childSnapshot.key) document.getElementById("user" + count).innerHTML = childSnapshot.val() + " (You!)";
+                else document.getElementById("user" + count).innerHTML = childSnapshot.val();
+                document.getElementById("user" + count).name = childSnapshot.key;
+                document.getElementById("user" + count).href = "usersprofile.html";
+                document.getElementById("user" + count).onclick = openProfile;
+                document.getElementById("user" + count).style.marginLeft = "20%";
+                count++;
+            });
+        });
+    }
 
-var count = 0;
-var key;
-
-window.onload = function() {
-    firebase.database().ref().child("takenusernames/").once('value', function(snapshot) {
-      snapshot.forEach(function(childSnapshot) {
-        var user = document.createElement("A");
-        user.setAttribute("id", "user" + count);
-        document.body.appendChild(user);
-        document.body.appendChild(document.createElement("BR"));
-
-        var uid = firebase.auth().currentUser.uid;
-
-        if (uid == childSnapshot.key)
-          document.getElementById("user" + count).innerHTML = childSnapshot.val() + " (You!)";
-        else
-          document.getElementById("user" + count).innerHTML = childSnapshot.val();
-
-        document.getElementById("user" + count).name = childSnapshot.key;
-        document.getElementById("user" + count).href = "usersprofile.html";
-        document.getElementById("user" + count).onclick = openProfile;
-
-        count++;
-      });
-    });
-}
-
-function openProfile() {
-  var userid = $(this).attr('name');
-
-  // Store it in the cookies
-  document.cookie = userid;
-}
-
+    function openProfile() {
+        var userid = $(this).attr('name');
+        // Store it in the cookies
+        document.cookie = userid;
+    }
 </script>
 
-</html> 
+</html>
