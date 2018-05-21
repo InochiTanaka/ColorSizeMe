@@ -79,32 +79,6 @@ var womenOptional = ['Head', 'Neck', 'Upper Chest', 'Lower Chest', 'Armscye', 'B
 var men = menRequired.concat(menOptional); 
 var women = womenRequired.concat(womenOptional); 
 
-/*
-	Second search page. Appends array respective to gender.
-*/
-function append(measurements) {
-	$("#measures").empty();
-	var measures = '';
-	$.each(measurements, function(index, value){
-		measures += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label" for="'+value+'">'+value+'</label><div class="col-sm-4"><input type="number" id="'+value.replace(/[ *]/g,"").toLowerCase()+'" name="'+value+'" class="form-control input-sm" placeholder="0" onkeypress="return event.charCode >= 48"></div></div><br>';
-	});
-
-	$("#measures").append(measures).show();
-	$('input[type=number]').attr( {
-        step : 0.01,
-        min : 0,
-        max : 500,
-        maxlength : 5,
-        value : 0
-    });
-  
-  //model getting values like this... but right #id element.
-	//or parseFloat($(#id).val().toFixed(2));
-	$('input[type="number"]').on('input', () => {
-        this.value = parseFloat(this.value).toFixed(2);
-  });
-}
-
 /*ERF
 	Second search page. Appends array respective to gender.
 */
@@ -114,27 +88,25 @@ function append(measurements, sex, downUP) {
 	var measures = '';
 	$("#measures").empty();
 	measures += '<form>';
-	var userMeasureRef = DB.ref('users/'+uid+'/measurements').once('value', (online_measure) => {
+	var userMeasureRef = DB.ref('users/' + userId +'/public_use/measurements').once('value', (online_measure) => {
 		
 		var online_copy = online_measure.toJSON(); //online_measure.val().JSON;
 		
-		for (var i = 0; i < meausurements.length; ++i) {
+		for (var i = 0; i < measurements.length; ++i) {
 			var measure = measurements[i].replace(/[ *]/g,"").toLowerCase();
 			var searchParam = measurements[i].replace(/[*]/g,"").toLowerCase();
-				if (measure == online_copy.measure) {
-measures += '<label>'+measurements[i]+'</label> <input type="number" id="'+measure.toUpperCase()+'" name="'+searchParam+'" value="'+online_copy.val().measure+'"><br>';
-				}
+			
+      measures += '<label>'+measurements[i]+'</label> <input type="number" id="'+measure.toUpperCase()+'" name="'+searchParam+'" value="'+online_copy[measure]+'"><br>';				
 		}		
 		
 		/*$.each(measurements, function(index, value){
-measures += '<label>'+value+'</label> <input type="number" id="'+value.toLowerCase()+'" name="'+value.replace(/[ *]/g,"").toLowerCase()+'" class="'+sex+downUP+'"><br>';
+      measures += '<label>'+value+'</label> <input type="number" id="'+value.toLowerCase()+'" name="'+value.replace(/[ *]/g,"").toLowerCase()+'" class="'+sex+downUP+'"><br>';
 		});*/
-	
+    
+    measures += '</form>';
+    $("#measures").append(measures).show();
 	});
-	
-	
-	measures += '</form>';
-	$("#measures").append(measures).show();
+
 	$('input[type=number]').attr( {
         step : 0.01,
         min : 1,
@@ -173,7 +145,6 @@ $("._type").change( ()=> {
 		append(measureFields, sex, downUP);
 	}
 });
-
 
 /*
 	Second search page method #2.
@@ -215,7 +186,6 @@ $(document).ready( ()=> {
 	$("._type").html(options);
 });
 
-
 function displayCategories(){
 	
     //var x = document.getElementById("gender").selectedIndex;
@@ -233,7 +203,6 @@ function displayCategories(){
 	}
 
 }
-
 
 // Temp Switching user role function *INOCHI'S CODE starts here!
 
@@ -253,7 +222,7 @@ function displayAll(measurements) {
 	$.each(measurements, function(index, value){
     var id = value.replace(/[ *]/g,"").toLowerCase();
     
-		measures += '<div class="form-group"><label for="'+id+'">'+value+':'+'&nbsp;'+'</label><span id ="'+id+'0"></span><input type="number" id="'+id+'" name="'+value+'" value="" onkeypress="return event.charCode >= 48"  style="display:none;"></div>';
+		measures += '<div class="form-group"><label for="'+id+'">'+value+':'+'&nbsp;'+'</label><span id ="'+id+'0"></span><input type="number" id="'+id+'" name="'+value+'" class="form-control input-sm" value="" onkeypress="return event.charCode >= 48"  style="display:none;"></div>';
 	});
 
 	$("#measures").append(measures).show();
