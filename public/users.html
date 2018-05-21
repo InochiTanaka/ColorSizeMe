@@ -16,6 +16,7 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -60,12 +61,8 @@
                 </div>
             </div>
         </nav>
-		
-		
+        <h1 style="text-align: center; padding-top: 1em;">List of All Users</h1>
 	</div>
-
-	<h1>List of All Users</h1>
-
 	<footer class="navbar navbar-fixed-bottom">
 	  <div class="full">
 		<div class="container">
@@ -77,41 +74,41 @@
 </body>
 
 <script>
-  
+
 var count = 0;
 var key;
 
 window.onload = function() {
     firebase.database().ref().child("takenusernames/").once('value', function(snapshot) {
-      snapshot.forEach(function(childSnapshot) { 
+      snapshot.forEach(function(childSnapshot) {
         var user = document.createElement("A");
         user.setAttribute("id", "user" + count);
         document.body.appendChild(user);
         document.body.appendChild(document.createElement("BR"));
-        
-        var uid = firebase.auth().currentUser.uid;  
-        
+
+        var uid = firebase.auth().currentUser.uid;
+
         if (uid == childSnapshot.key)
           document.getElementById("user" + count).innerHTML = childSnapshot.val() + " (You!)";
         else
           document.getElementById("user" + count).innerHTML = childSnapshot.val();
-          
+
         document.getElementById("user" + count).name = childSnapshot.key;
         document.getElementById("user" + count).href = "usersprofile.html";
         document.getElementById("user" + count).onclick = openProfile;
-        
-        count++;      
-      }); 
+
+        count++;
+      });
     });
 }
- 
+
 function openProfile() {
   var userid = $(this).attr('name');
-  
+
   // Store it in the cookies
   document.cookie = userid;
 }
- 
+
 </script>
 
 </html> 

@@ -4,6 +4,9 @@
 <head>
     <title>Profile Page</title>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,6 +23,11 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
@@ -52,31 +60,38 @@
                     </ul>
                 </div>
             </div>
-        </nav> <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
-        <br>
-        <div class="form-group">
-            <label for="fname" style="display:none;">First Name: </label> <span id="firstname"></span>
-            <input id="fname" name="fname" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span> </div>
-        <div class="form-group">
-            <label for="lname" style="display:none;">Last Name: </label> <span id="lastname"></span>
-            <input id="lname" name="lname" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span> </div>
-        <div class="form-group">
-            <label for="age">Age: </label> <span id="a"></span>
-            <input id="age" name="Age" type="number" value="" onkeypress="return event.charCode >= 48" style="display:none;"> </div>
-        <div class="form-group">
-            <label id="un" for="username" style="display:none;">Username: </label> <span id="uname"></span>
-            <input id="username" name="uname" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span> </div>
-        <div class="form-group">
-            <label for="towncity" style="display:none;">City/Town: </label> <span id="citytown"></span>
-            <input id="towncity" name="towncity" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span> </div>
-        <div class="form-group">
-            <label for="country" style="display:none;">Country: </label> <span id="ctry"></span>
-            <input id="country" name="country" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span> </div>
-        <form id="measurement" style="display:none;">
-            <!-- Measurement info-->
-            <div id="measures" class="toggle" style="display:none;padding-top:2px;"></div>
-        </form>
-        <button id="show" onclick="show()" value="Show">Show Measures</button>
+        </nav>
+        <div class="container-fluid">
+            <div class="content" style="padding-top: 2em;">
+                <div class="col-xs-12" id="main"> <img src="" alt="Avatar" width="200" height="200" id="avatar" style="display:none;">
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label for="fname" style="display:none;">First Name: </label> <span id="firstname"></span>
+                        <input id="fname" name="First Name" class="form-control input-sm" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_fname" style="color:red;display: none;">Name can only contains alphabetic characters.</span> </div>
+                    <div class="form-group">
+                        <label for="lname" style="display:none;">Last Name: </label> <span id="lastname"></span>
+                        <input id="lname" name="Last Name" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_lname" style="color:red;display: none;">Name can only contains alphabetic characters.</span> </div>
+                    <div class="form-group">
+                        <label for="age" style="display:none;">Age: </label> <span id="age"></span>
+                        <input id="age" name="Age" type="number" value="" onkeypress="return event.charCode >= 48" style="display:none;"> </div>
+                    <div class="form-group">
+                        <label id="un" for="username" style="display:none;">Username: </label> <span id="uname"></span>
+                        <input id="username" name="Username" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_username" style="display:inline;"></span><span id="symbol" style="display:inline;"></span> </div>
+                    <div class="form-group">
+                        <label for="towncity" style="display:none;">City/Town: </label> <span id="citytown"></span>
+                        <input id="towncity" name="City" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_loc1" style="color:red;display: none;">Type in city/town</span> </div>
+                    <div class="form-group">
+                        <label for="country" style="display:none;">Country: </label> <span id="ctry"></span>
+                        <input id="country" name="Country" type="text" value="" style="display:none;"> <span class="help-block" id="invalid_loc2" style="color:red;display: none;">Type in country</span> </div>
+                    <form id="measurement" style="display:none;">
+                        <!-- Measurement info-->
+                        <div id="measures" class="toggle" style="display:none;padding-top:2px;"></div>
+                    </form>
+                    <button class="btn btn-default" id="show" onclick="show()" value="Show" style="display:none;">Show Measures</button>
+                </div>
+            </div>
+        </div>
     </div>
     <footer class="navbar navbar-fixed-bottom">
         <div class="full">
@@ -108,6 +123,7 @@
                 visibility = snapshot.val().visibility;
             });
             if (visibility == "public") {
+                $("#show").show();
                 $('label').show();
                 db.ref('/users/' + uid + '/public_use').once('value').then(function (snapshot) {
                     firstname = snapshot.val().firstname;
@@ -127,12 +143,13 @@
                 });
                 if (!loaded) {
                     if (gender == "male") {
-                        display(men);
+                        displayAll(men);
+                        loaded = true;
                     }
-                    else {
-                        display(women);
+                    else if (gender == "female") {
+                        displayAll(women);
+                        loaded = true;
                     }
-                    loaded = true;
                 }
                 db.ref('/users/' + uid + '/public_use/measurements').once('value', function (snapshot) {
                     snapshot.forEach(function (childSnapshot) {
