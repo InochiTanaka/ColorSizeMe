@@ -96,7 +96,7 @@ function append(measurements, sex, downUP) {
 			var measure = measurements[i].replace(/[ *]/g,"").toLowerCase();
 			var searchParam = measurements[i].replace(/[*]/g,"").toLowerCase();
 			
-      measures += '<label>'+measurements[i]+'</label> <input type="number" id="'+measure.toUpperCase()+'" name="'+searchParam+'" value="'+online_copy[measure]+'"><br>';				
+      measures += '<div class="col-sm-12 form-group"><label class="col-sm-4 control-label">'+measurements[i]+'</label><div class="col-sm-4"><input type="number" id="'+measure.toUpperCase()+'" name="'+searchParam+'" class="form-control input-sm" value="'+online_copy[measure]+'" onkeypress="return event.charCode >= 48"></div></div><br>';						
 		}		
 		
 		/*$.each(measurements, function(index, value){

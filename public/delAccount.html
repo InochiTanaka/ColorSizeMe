@@ -1,48 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <title>Delete Account form</title>
 
-	  <!-- update the version number as needed -->
-	  <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
-	  <!-- include only the Firebase features as you need -->
-	  <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
-	  <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
-	  <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
-	  <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
-	  <!-- initialize the SDK after all desired features are loaded -->
-	  <script defer src="/__/firebase/init.js"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delete Account form</title>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/login.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
+    <script type="text/javascript" src="JS/accountManage.js"></script>
+    <script type="text/javascript" src="JS/common.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script type="text/javascript" src="FirebaseInitialScript.js"></script>
+</head>
 
-	  <!-- Bootstrap -->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-	  <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
-	  <link rel="stylesheet" type="text/css" media="screen" href="styles/login.css" />
-	  <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
-	   <script type="text/javascript" src="JS/accountManage.js"></script>
-	  <script type="text/javascript" src="JS/common.js"></script>
-	  <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-	  <script type="text/javascript" src="FirebaseInitialScript.js"></script>
-  </head>
-  
 <body>
-	<div id="wrap">
-		<div id="content-area">
-			<h1>Delete Account</h1>
-			<img id="loginPic" />
-			<p>Please Input Password</p>
-			<p></p>
+    <div id="wrap">
+        <div id="content-area">
+            <h1>Delete Account</h1> <img id="loginPic" />
+            <p>Please Input Password</p>
+            <p></p>
+            <input class="form-control" id="pw" type="password" placeholder="Password:" required/>
+            <button class="btn btn-default" type="button" onclick="accountDel()">Delete account</button>
+            <button class="btn btn-default" type="button" id="cancel" onclick="location.href='myprofile.html'">Cancel</button> <a id="repairPassword" href="/repairPass.html">If you forget your password</a> </div>
+    </div>
+</body>
 
-			<input class="form-control" id="pw" type="password" placeholder="Password:" required/>
-			<button class="btn btn-default" type="button"  onclick = "accountDel()">Delete account</button>
-			<button class="btn btn-default" type="button" id="cancel" onclick="location.href='myprofile.html'">Cancel</button>
-
-			<a id="repairPassword" href="/repairPass.html">If you forget your password</a>
-		</div>
-	</div>
- </body>
 </html>
