@@ -106,7 +106,7 @@ function append(measurements, sex, downUP) {
     measures += '</form>';
     $("#measures").append(measures).show();
 	});
-	
+
 	$('input[type=number]').attr( {
         step : 0.01,
         min : 1,
