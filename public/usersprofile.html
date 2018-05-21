@@ -155,26 +155,33 @@
                         compare(childSnapshot.key, childSnapshot.val());
                     });
                 });
+                
+                if (photo == "yes") {
+                    storageRef.child('profilePictures/' + uid + '.jpg').getDownloadURL().then(function (url) {
+                        var path = url;
+                        document.getElementById("avatar").src = path;
+                    }).catch(function (error) {});
+                } else if (photo == "no") {
+                    storageRef.child('profilePictures/anonymous-avatar-sm.jpg').getDownloadURL().then(function (url) {
+                        var path = url;
+                        document.getElementById("avatar").src = path;
+                    }).catch(function (error) {});
+                }
             }
+            
             if (visibility == "private") {
                 $('#un').show();
                 db.ref('/users/' + uid + '/private_use').once('value').then(function (snapshot) {
                     username = snapshot.val().username;
                     document.getElementById("uname").innerHTML = username;
                 });
-            }
-            if (photo == "yes") {
-                storageRef.child('profilePictures/' + uid + '.jpg').getDownloadURL().then(function (url) {
-                    var path = url;
-                    document.getElementById("avatar").src = path;
-                }).catch(function (error) {});
-            }
-            else {
+                
                 storageRef.child('profilePictures/anonymous-avatar-sm.jpg').getDownloadURL().then(function (url) {
                     var path = url;
                     document.getElementById("avatar").src = path;
                 }).catch(function (error) {});
             }
+            
             $("#avatar").show();
         }
 
