@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
     <title>User Inputs</title>
     <meta charset="utf-8">
@@ -8,9 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <!--<script src="JS/ninput.js"></script>-->
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
@@ -21,55 +20,42 @@
     <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-
     <!-- Bootstrap -->
     <link href="styles/bootstrap.min.css" rel="stylesheet">
-
     <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
     <script type="text/javascript" src="JS/Style.js"></script>
     <link rel="stylesheet" href="styles/style.css" type="text/css">
     <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
-	<script defer src="JS/Style.js"></script>
+    <script defer src="JS/Style.js"></script>
     <!--<script src="JS/read_write.js"></script>-->
     <style media="screen"></style>
 </head>
+
 <body>
-    <header id="header">
-        <a onclick="window.open.href='index.html'">Color Size Me</a>
-    </header>
+    <header id="header"> <a onclick="window.open.href='index.html'">Color Size Me</a> </header>
     <div id="status">
         <button type="button" onclick="contact_form()">Contact Us</button>
         <button type="button" onclick="update_user()"> Update User </button>
         <button type="button" onclick="update_size()"> Update Size </button>
     </div>
     <div id="wrapper">
-		<div>
-			<span>Wear</span> 
-			<span>
+        <div> <span>Wear</span> <span>
 				    <label class="radio-inline">
 					  <input type="radio" name="genderwear" value="men">Men
 					</label>
 					<label class="radio-inline">
 					  <input type="radio" name="genderwear" value="women">Women
 					</label>
-			</span>
-		</div>
-		
-		<div>
-              <span>Brand </span>
-              <span>
+			</span> </div>
+        <div> <span>Brand </span> <span>
                  <select id="leBrand" size="1">
                     <option disabled selected value> -- select an option -- </option>
                     <option value="zara">Zara</option>
                     <option value="hnm">H&M </option>
                  </select>
-              </span>
-          </div>
-
-        <div>
-            <span>Clothes</span>
-            <span>
+              </span> </div>
+        <div> <span>Clothes</span> <span>
 				<label class="radio-inline">
 					<input type="radio" name="topORbot" value="top">Top
 				</label>
@@ -77,18 +63,15 @@
 					<input type="radio" name="topORbot" value="bottom">Bottom
 				</label>
 				
-            </span>
-        </div>
-	
-		<div id = "submitDiv" class="toggle" style="display: none;">
-		      <input type="submit" id="submit1"value="Next">
-			  <input type= "button" value="Cancel" onclick="window.location='index.html';">
-		</div>
-		
-
-      </div>
+            </span> </div>
+        <div id="submitDiv" class="toggle" style="display: none;">
+            <input type="submit" id="submit1" value="Next">
+            <input type="button" value="Cancel" onclick="window.location='index.html';"> </div>
+    </div>
     <div id="footer">
-        <div><p>About Us</p></div>
+        <div>
+            <p>About Us</p>
+        </div>
     </div>
 </body>
 

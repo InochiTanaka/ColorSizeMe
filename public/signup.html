@@ -290,9 +290,7 @@
             var visibility = 'public'; //default value on profile creation
             var usersRef = db.ref().child('users/' + uid); //data node for public-visibility
             usersRef.set({
-                private_use
-                , public_use
-                , visibility
+                private_use, public_use, visibility
             });
             var measurement = db.ref().child('users/' + uid + '/public_use/measurements');
             set(measurement);
