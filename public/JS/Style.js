@@ -57,13 +57,13 @@ $("#submit1").click(() => {
     }
 });
 //arrays for measurements (revised for '21')
-var menTop = ['Armscye', 'Back Length', 'Bicep', 'Height', 'Neck', 'Shoulder width'
-			    , 'Chest', 'Waist', 'Neck-waist', 'Shoulder-length', 'Sleeve length'
+var menTop = ['Armscye', 'Back Length', 'Bicep', 'Height', 'Neck', 'Shoulder Width'
+			    , 'Chest', 'Waist', 'Neck-Waist', 'Shoulder Length', 'Sleeve Length'
 				];
 var menBottom = ['Ankle', 'Waist', 'Waist to Floor', 'Inseam'
 				 , 'Hips', 'Thigh', 'Calf', 'Knee', 'Crotch Depth'];
 var womenTop = ['Height', 'Bust', 'Cup Size', 'Shoulder', 'Shoulder Witdh', 'Arm Length'
-				, 'Back-Length', 'Waist', 'Waist', 'Hip'
+				, 'Back Length', 'Waist', 'Hip'
 				, ];
 var womenBottom = ['Ankle', 'Waist', 'Inseam', 'Waist to Knee', 'Hip', 'Thigh', 'Calf', 'Knee'];
 var menRequired = ['Height', 'Neck', 'Chest', 'Waist', 'Hip', 'Inseam', 'Shoulder Width'];
