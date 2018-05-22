@@ -1,10 +1,14 @@
+var cookiearray;
 var DB = firebase.database();
-/*Callback function to return and load results*/
+window.onload = function () {
+        cookiearray = document.cookie.split(':');
+    }
+    /*Callback function to return and load results*/
 $("#submit2").click(() => {
-    var brand = $("#_brand").text().toLowerCase();
-    var sex = $("#_sex").text().toLowerCase();
+    var brand = cookiearray[1];
+    var sex = cookiearray[0];
     var gender = (sex == 'men' ? 'Male' : 'Female');
-    var botUP = $("#_tb").text().toLowerCase();
+    var botUP = cookiearray[2];
     var categ = $("._type option:selected").val().toLowerCase();
     var measures = {}; //temporary JSON.
     var searchForm = $.each($('form').serializeArray(), () => {
