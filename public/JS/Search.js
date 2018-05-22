@@ -1,28 +1,37 @@
+var found;
 var cookiearray;
+var refreshIntervalId;
 var DB = firebase.database();
 window.onload = function () {
         cookiearray = document.cookie.split(':');
     }
     /*Callback function to return and load results*/
 $("#submit2").click(() => {
-    var brand = cookiearray[1];
-    var sex = cookiearray[0];
-    var gender = (sex == 'men' ? 'Male' : 'Female');
-    var botUP = cookiearray[2];
-    var categ = $("._type option:selected").val().toLowerCase();
-    var measures = {}; //temporary JSON.
-    var searchForm = $.each($('form').serializeArray(), () => {
-        measures[this.name] = this.value;
-    });
-    var unitMeasurement = $("#measure option:selected").val();
-    if (unitMeasurement == 'centimeter') {
-        searchForm = centi_converter(searchForm);
-    }
-    var json_items;
-    if (brand == 'hnm') json_items = hnm(gender, botUP, categ, searchForm); //should render html effects on return?
-    //
-    //PARSE AND BIND JSON HERE!
-    alert('Here are results');
+    refreshIntervalId = setInterval(function () {
+        var brand = cookiearray[1];
+        var sex = cookiearray[0];
+        var gender = (sex == 'men' ? 'Male' : 'Female');
+        var botUP = cookiearray[2];
+        var categ = $("._type option:selected").val().toLowerCase();
+        var measures = {}; //temporary JSON.
+        var searchForm = $.each($('form').serializeArray(), () => {
+            measures[this.name] = this.value;
+        });
+        var unitMeasurement = $("#measure option:selected").val();
+        if (unitMeasurement == 'centimeter') {
+            searchForm = centi_converter(searchForm);
+        }
+        var json_items;
+        if (brand == 'hnm') {
+            my_size = hnm(gender, botUP, categ, searchForm); //should render html effects on return?
+        }
+        if (my_size != null) {
+            document.cookie = brand + ":" + gender + ":" + botUP + ":" + categ + ":" + my_size;
+            window.location.href = "clothes.html";
+        }
+        //
+        //PARSE AND BIND JSON HERE!
+    }, 300);
 });
 // Converter
 // from centi -> inches
@@ -49,7 +58,8 @@ function isDenim(categ) {
     if (categ == 'denim') return true;
     return false;
 }
-var hnm = function (sex, botUP, categ, measures) {
+
+function hnm(sex, botUP, categ, measures) {
     const isPetite = 63.0;
     const brand = 'Hnm'; //mistake, should have been 'hnm' on firebase.
     var sizePATH;
@@ -92,19 +102,11 @@ var hnm = function (sex, botUP, categ, measures) {
         }
     }
     //CALL TWO FUNCTIONS. find size...
-    var user_size = evalSizes(sex, botUP, categ, measures, criteria, sizePATH);
+    evalSizes(sex, botUP, categ, measures, criteria, sizePATH);
     //GET PATH with that size
-    var productSizeList = getProductSizeList(brand, sex, botUP, categ, user_size); //gets JSON of products sizes.
+    //var productSizeList = getProductSizeList(brand, sex, botUP, categ, found); //gets JSON of products sizes.
     //var products = prodMetadata(brand, sex, botUP, productSizeList); //gets JSON object of product# data for rendering.
-};
-/*Sets path and get everything of that clothing category of that size. Returns json object*/
-function getProductSizeList(brand, sex, botUP, categ, user_size) {
-    var json;
-    var _thebrand;
-    var prodListRef = firebase.database();
-    //json = prods.toJSON();
-    //prodListRef.ref('hnm_' + botUP + '_siztems/' + user_size + '/' + categ +').once(' + value + ', (prods) => {' + json + ' }');	
-    return json;
+    return found;
 }
 var removeElement = ((array, element) => {
     const index = array.indexOf(element);
@@ -188,9 +190,14 @@ var evalSizes = function (sex, botUP, categ, measures, criteria, sizePATH) {
                 }
             }
         });
-        if (size == null) alert("There are no clothes that match your measurement!");
-        else alert(size);
-        return size;
+        if (size == null) {
+            alert("Sorry, there are no clothes that match your measurement!");
+            clearInterval(refreshIntervalId);
+        }
+        else {
+            found = size;
+        }
+        //return size;  
     });
 }
 
