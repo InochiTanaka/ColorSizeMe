@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>User Inputs</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <!--<script src="JS/ninput.js"></script>-->
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="JS/FirebaseInitialScript.js"></script>
+    <script type="text/javascript" src="../JS/Style.js"></script>
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/common.css" />
+    <script defer src="JS/Style.js"></script>
+    <script type="text/javascript" src="JS/navBar.js"></script>
+    <script defer src="JS/Search.js"></script>
+    <!--<script src="JS/read_write.js"></script>-->
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/navBar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/iphone.css" />
+    <style media="screen"></style>
+</head>
+
+<body>
+    <div> <span class="searchparams1" id="_brand" style="display:none;">HnM</span> <span class="searchparams1" id="_sex" style="display:none;">Men</span> <span class="searchparams1" id="_tb" style="display:none;">Top</span> </div>
+    <div id="wrapper">
+        <div id="wrap">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="width:40px;"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html">ColorSizeMe</a> </div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                        <ul id="loginTable" class="nav navbar-nav navbar-right">
+                            <li id="login" onclick="loginFunction(location.pathname)">Log In</li>
+                            <li>
+                                <a id="messageText0" href="myprofile.html" style="color:white;"></a>
+                            </li>
+                            <li id="signup" onclick="signupFunction()">Sign Up</li>
+                            <li id="messageText1">
+                                <p></p>
+                            </li>
+                            <li id="accountMenu" onclick="window.location='myprofile.html'"><img id="accountImage" src="" /></li>
+                            <li id="logout" class="buttons" onclick="logoutFunction()">Log Out</li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-fluid text-center">
+                <div class="content">
+                    <div class="col-xs-12" id="main">
+                        <div> <span>Clothing Type</span> <span>
+                <select class = "_type" size="1">
+					<option disabled selected value> -- Select Clothes -- </option>
+					<option></option>
+				</select>
+            </span> </div>
+                        <div id="measurement" class="toggle" style="display: none;"> <span>Measurement </span> <span>
+                <select id="measure" onchange="displaySubmit()" size="1">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="centimeter">cm</option>
+                    <option value="inch">inch</option>
+                </select>
+            </span> </div>
+                    </div>
+                </div>
+            </div>
+            <div id="measures" class="toggle" style="display: none;"> </div>
+            <div id="submitDiv" class="toggle" style="display: none;">
+                <input type="button" name="whatsnext" value="Previous" onclick="window.location='ninput.html';">
+                <input type="submit" id="submit2" name="Search" value="Search" onsubmit="search()">
+                <input type="button" name="whatsnext" value="Cancel" onclick="window.location='index.html';"> </div>
+            <footer class="navbar navbar-fixed-bottom">
+                <div class="full">
+                    <div class="container"> <span> © 2018 Copyright:</span> <span><a id="users" href="users.html" style="float:right;color:white;display:none;">Registered Users</a></span> </div>
+                </div>
+            </footer>
+</body>
+
+</html>
