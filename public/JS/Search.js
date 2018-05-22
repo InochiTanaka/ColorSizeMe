@@ -10,8 +10,8 @@ $("#submit2").click(() => {
     var searchForm = $.each($('form').serializeArray(), () => {
         measures[this.name] = this.value;
     });
-    var unitMeasurement = $("#option option:selected").val();
-    if (unitMeasurement == 'cm') {
+    var unitMeasurement = $("#measure option:selected").val();
+    if (unitMeasurement == 'centimeter') {
         searchForm = centi_converter(searchForm);
     }
     var json_items;
@@ -23,10 +23,12 @@ $("#submit2").click(() => {
 // Converter
 // from centi -> inches
 function centi_converter(input) {
-    for (var key of Object.keys(input)) {
-        input[key] = (input[key] * diffe);
-    }
-    return input
+    const cmIN = 0.393701;
+    input.forEach(key => {
+        key.value *= cmIN;
+        key.value = key.value.toFixed(2);
+    })
+    return input;
 };
 
 function isMale(sex) {
