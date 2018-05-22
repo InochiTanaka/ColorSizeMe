@@ -49,7 +49,9 @@ window.onload = function()
 					document.getElementById("accountMenu").style.display="none";
 					messageText0.textContent = "Please continue \"Sign Up\" ";
 					messageText1.textContent = "or";	
-					$("#users").hide(); //Hide link to User list 					
+          messageText2.textContent = "Please sign in or complete registration process to start searching!";	
+					$("#users").hide(); //Hide link to User list
+          document.getElementById("search").disabled = true; 					
 				}
 				else //If user.displayName is not null(means registered already)
 				{
@@ -57,7 +59,9 @@ window.onload = function()
 					document.getElementById("logout").style.display="inline-block";
 					document.getElementById("signup").style.display="none";
 					document.getElementById("accountMenu").style.display="inline-block";
-					messageText0.textContent = "Welcome, "+user.displayName+" ! ";	
+					messageText0.textContent = "Welcome, "+user.displayName+" ! ";
+          messageText2.textContent = "Please choose search and let us help you looking for you clothes!";
+          document.getElementById("search").disabled = false;
 					$("#users").show(); //show link to User list 	
 					
 					if(user.photoURL == null)
@@ -76,6 +80,9 @@ window.onload = function()
 				document.getElementById("login").style.display="inline-block";
 				document.getElementById("signup").style.display="inline-block";
 				messageText.textContent = "";	
+        messageText2.textContent = "Please sign in or complete registration process to start searching!";
+        $("#users").hide(); //Hide link to User list
+        document.getElementById("search").disabled = true; 
 			}		
 		}		
 		else //If user auth data does not exists and logout:
@@ -85,8 +92,11 @@ window.onload = function()
 			document.getElementById("logout").style.display="none";
 			messageText0.textContent = "or";	
 			messageText1.textContent = "";	
+      messageText2.textContent = "Please sign in or complete registration process to start searching!";
 			document.getElementById("signup").style.display="inline-block";
-			$("#users").hide();			
+			$("#users").hide();	
+      $("#users").hide(); //Hide link to User list
+      document.getElementById("search").disabled = true; 
 		}	
 	});		
 }
