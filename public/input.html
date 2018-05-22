@@ -46,12 +46,14 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                     <ul id="loginTable" class="nav navbar-nav navbar-right">
                         <li id="login" onclick="loginFunction(location.pathname)">Log In</li>
-                        <li><a id="messageText0" href="myprofile.html" style="color:white;"></a></li>
+                        <li>
+                            <a id="messageText0" href="myprofile.html" style="color:white;"></a>
+                        </li>
                         <li id="signup" onclick="signupFunction()">Sign Up</li>
                         <li id="messageText1">
                             <p></p>
@@ -65,32 +67,26 @@
         <div class="container-fluid text-center">
             <div class="content">
                 <div class="col-xs-12" id="main">
-                    <!--
-                <div id="status">
-                    <button class="btn btn-default" type="button" onclick="new_user()"> New User</button>
-                    <button class="btn btn-default" type="button" onclick="update_user()"> Update User </button>
-                    <button class="btn btn-default" type="button" onclick="update_size()"> Update Size </button>
-                </div>
-                -->
-                    <form>
+                    <form action="search.html">
                         <div class="form-group" id="swear-gender">
                             <label>Cloth Type: </label>
                             <br>
                             <label class="radio-inline">
-                                <input type="radio" class="sex" name="genderwear" value="men">Menswear</label>
+                                <input type="radio" class="sex" name="genderwear" value="men" required>Menswear</label>
                             <label class="radio-inline">
                                 <input type="radio" class="sex" name="genderwear" value="women">Womenswear</label>
                         </div>
                         <div class="form-group">
                             <label for="sel1">Brand: </label>
-                            <select class="form-control" id="idbrand">
-                                <option value="zara" name="brand">Zara</option>
-                                <option value="hm" name="brand">H&M</option>
+                            <select class="form-control" id="idbrand" required>                              
+                                <option disabled selected value> -- Select Brand -- </option>                               
+                                <option value="hnm" name="brand">H&M</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="sel1">Categories: </label>
-                            <select class="form-control" id="sel2">
+                            <select class="form-control" id="cat" required>
+                                <option disabled selected value> -- Select Type -- </option>
                                 <option value="top" name="topORbot">Top</option>
                                 <option value="bottom" name="topORbot">Bottom</option>
                             </select>
@@ -102,8 +98,7 @@
                             <label class="radio-inline">
                                 <input type="radio" name="optradio" value="inches">Inches</label>
                         </div>
-                        <input button="submit" class="btn btn-default" id="submit1" name="Submit" value="Submit">
-                        </button>
+                        <button type="submit" onclick="myFunction()" class="btn btn-default" id="submit1" name="Submit" value="Submit">Search</button>
                     </form>
                 </div>
             </div>
@@ -114,5 +109,23 @@
             </div>
         </footer>
 </body>
+<script>
+    function myFunction() {
+        var gender;
+        var radios = document.getElementsByName('genderwear');
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                // do whatever you want with the checked radio
+                gender = radios[i].value;
+                // only one radio can be logically checked, don't check the rest
+                break;
+            }
+        }
+        var brand = document.getElementById("idbrand").value;
+        var category = document.getElementById("cat").value;
+        var string = gender + ':' + brand + ':' + category;
+        document.cookie = string;
+    }
+</script>
 
 </html>
