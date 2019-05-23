@@ -1,6 +1,6 @@
 # ColorSizeMe
 This program is for converting the size of clothes on local to another local one.
-The size of clothes are different with Residential area like US, UK, Agian and also.
+The size of clothes are different with Residential area like US, UK, Asian and also.
 The purpose of the program is converting and showing which another residential size is abiliable for the program user.
 
 # Technical Description
